@@ -1,0 +1,2 @@
+# agamulator
+A Game accumulator
