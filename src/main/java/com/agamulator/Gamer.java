@@ -26,6 +26,7 @@ package com.agamulator;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
+import org.cactoos.text.TextOf;
 
 /**
  * Gamer, a person which have and plays games.
@@ -73,6 +74,14 @@ public interface Gamer {
         public Simple(final Text name) {
             this.name = name;
             this.library = new ArrayList<Game>(0);
+        }
+
+        /**
+         * Simple constructor with name as String.
+         * @param name Gamer name
+         */
+        public Simple(final String name) {
+            this(new TextOf(name));
         }
 
         /**
