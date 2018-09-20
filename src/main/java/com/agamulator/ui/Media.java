@@ -21,26 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui;
+
+import com.agamulator.core.AGamulator;
 
 /**
- * Main entry point for application.
+ * Interface for printing media.
+ *
+ * Medias are abstractions used by {@link AGamulator} to 'print' its state
+ * into.
+ *
+ * @param <T> Type of object to be printed in media
  * @since 1.0
  */
-public final class Main {
+public interface Media<T> {
 
     /**
-     * Ctor.
+     * Show what this media have to be showed (prints the objtect of type T).
      */
-    private Main() {
-        //It's a utility class.
-    }
-
-    /**
-     * Main method.
-     * @param args Arguments
-     */
-    public static void main(final String...args) {
-        //It's a utility class.
-    }
+    public void show();
 }

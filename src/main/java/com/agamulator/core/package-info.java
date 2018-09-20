@@ -21,26 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
 
 /**
- * Main entry point for application.
+ * Core aGamulator implementation. Holds all aGamulator internal logic.
  * @since 1.0
  */
-public final class Main {
-
-    /**
-     * Ctor.
-     */
-    private Main() {
-        //It's a utility class.
-    }
-
-    /**
-     * Main method.
-     * @param args Arguments
-     */
-    public static void main(final String...args) {
-        //It's a utility class.
-    }
-}
+package com.agamulator.core;

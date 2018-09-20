@@ -21,47 +21,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.core;
 
 import org.cactoos.Text;
+import org.cactoos.text.TextOf;
 
 /**
- * A game instance.
+ * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
  * @since 1.0
  */
-public interface Game {
+public interface Provider {
 
     /**
-     * Game title.
-     * @return Game title
+     * Provider name.
+     * @return Provider name (e.g. 'Steam', 'GOG', 'Physical', etc)
      */
-    Text title();
+    Text name();
 
     /**
-     * Simple game implementation which store its data in instance fields.
+     * Simple implementation of Provider which stores its data in instance
+     * fields.
      */
-    final class Simple implements Game {
+    final class Simple implements Provider {
 
         /**
-         * Game title.
+         * Provider name.
          */
-        private final Text title;
+        private final Text name;
 
         /**
          * Primary constructor.
-         * @param title Game title
+         * @param name Provider name
          */
-        public Simple(final Text title) {
-            this.title = title;
+        public Simple(final Text name) {
+            this.name = name;
         }
 
         /**
-         * Game title.
-         *
-         * @return Game title
+         * Secondary constructor with {@link String}.
+         * @param name Provider name in a {@link String} form.
          */
-        public Text title() {
-            return this.title;
+        public Simple(final String name) {
+            this(new TextOf(name));
+        }
+
+        /**
+         * Returns the provider name.
+         * @return Provider name stored in memory.
+         */
+        public Text name() {
+            return this.name;
         }
     }
 }

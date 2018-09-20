@@ -23,31 +23,37 @@
  */
 package com.agamulator.ui;
 
-import com.agamulator.Gamer;
+import org.cactoos.Text;
+
+import java.util.logging.Logger;
 
 /**
- * Console UI.
+ * Console {@link Media}.
+ *
+ * Basically prints objects of type T represented as a sequence of characters in
+ * console view. Uses {@link Logger} for writing to console.
+ *
+ * @param <T> Type of object to be printed in media (console).
  * @since 1.0
  */
-public final class Console implements Face {
+public abstract class Console<T> implements Media {
 
     /**
-     * Gamer executing the UI.
+     * Get a logger for printing things.
      */
-    private final Gamer gamer;
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     /**
-     * Constructor.
-     * @param gamer The {@link Gamer} using the console
+     * Piece of information to be printed.
      */
-    public Console(final Gamer gamer) {
-        this.gamer = gamer;
-    }
+    abstract Text text();
 
-    /**
-     * Start the console UI.
-     */
-    public void start() {
-        this.gamer.games();
+    @Override
+    public void show() {
+        try {
+            logger.fine(text().asString());
+        } catch (final Exception err) {
+            throw new IllegalStateException(err);
+        }
     }
 }

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,13 +29,13 @@ import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 
 /**
- * Gamer, a person which have and plays games.
+ * MdGamer, a person which have and plays games.
  * @since 1.0
  */
 public interface Gamer {
 
     /**
-     * Gamer name.
+     * MdGamer name.
      * @return The gamer name
      */
     Text name();
@@ -58,18 +58,18 @@ public interface Gamer {
     final class Simple implements Gamer {
 
         /**
-         * Gamer name.
+         * MdGamer name.
          */
         private final Text name;
 
         /**
-         * Gamer games.
+         * MdGamer games.
          */
         private final Collection<Game> library;
 
         /**
          * Simple constructor with name.
-         * @param name Gamer name
+         * @param name MdGamer name
          */
         public Simple(final Text name) {
             this.name = name;
@@ -78,14 +78,14 @@ public interface Gamer {
 
         /**
          * Simple constructor with name as String.
-         * @param name Gamer name
+         * @param name MdGamer name
          */
         public Simple(final String name) {
             this(new TextOf(name));
         }
 
         /**
-         * Gamer name.
+         * MdGamer name.
          * @return The name of the gamer
          */
         public Text name() {
@@ -101,7 +101,7 @@ public interface Gamer {
         }
 
         /**
-         * Gamer library.
+         * MdGamer library.
          * @return All the games of the gamer
          */
         public Collection<Game> games() {

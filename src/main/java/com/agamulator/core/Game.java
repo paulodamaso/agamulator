@@ -21,17 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui;
+package com.agamulator.core;
+
+import org.cactoos.Text;
 
 /**
- * Program 'face', i.e. user interface.
+ * A game instance.
  * @since 1.0
  */
-public interface Face {
+public interface Game {
 
     /**
-     * Start user interface.
+     * Game title.
+     * @return Game title
      */
-    void start();
+    Text title();
 
+    /**
+     * Simple game implementation which store its data in instance fields.
+     */
+    final class Simple implements Game {
+
+        /**
+         * Game title.
+         */
+        private final Text title;
+
+        /**
+         * Primary constructor.
+         * @param title Game title
+         */
+        public Simple(final Text title) {
+            this.title = title;
+        }
+
+        /**
+         * Game title.
+         *
+         * @return Game title
+         */
+        public Text title() {
+            return this.title;
+        }
+    }
 }

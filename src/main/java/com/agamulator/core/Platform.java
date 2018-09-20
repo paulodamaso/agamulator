@@ -21,33 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.core;
 
-import com.agamulator.ui.Face;
+import org.cactoos.Text;
 
 /**
- * Application class.
+ * Gaming platform (PC, Xbox, PS3, PS4, Wii, etc).
  * @since 1.0
  */
-public final class Application {
+public interface Platform {
 
     /**
-     * Application UI.
+     * Gaming platform name.
+     * @return Gaming platform name
      */
-    private final Face face;
+    Text name();
 
     /**
-     * Constructor.
-     * @param face The {@link Face} to be used
+     * Simple Platform implementation which stores its data in instance fields.
      */
-    public Application(final Face face) {
-        this.face = face;
-    }
+    final class Simple implements Platform {
 
-    /**
-     * Runs application.
-     */
-    public void run() {
-        this.face.start();
+        /**
+         * Platform name.
+         */
+        private final Text name;
+
+        /**
+         * Contructor.
+         * @param name Plataform name
+         */
+        public Simple(final Text name) {
+            this.name = name;
+        }
+
+        /**
+         * The Platform name.
+         * @return Platform name
+         */
+        public Text name() {
+            return this.name;
+        }
     }
 }

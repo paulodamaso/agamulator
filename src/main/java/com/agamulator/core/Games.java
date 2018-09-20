@@ -21,56 +21,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import org.cactoos.Text;
-import org.cactoos.text.TextOf;
 
 /**
- * Game provider / library.
+ * {@link Game} collection holder.
  * @since 1.0
  */
-public interface Provider {
+public interface Games {
 
     /**
-     * Provider name.
-     * @return Provider name (e.g. 'Steam', 'GOG', 'Physical', etc)
+     * Adds a new game.
+     * @param name Game name
+     * @param platform Game platform
+     * @param provider Game provider
+     * @return The created {@link Game}
      */
-    Text name();
+    Game add(Text name, Platform platform, Provider provider);
 
     /**
-     * Simple implementation of Provider which stores its data in instance
-     * fields.
+     * Iterate over the {@link Game} instaces stored by this {@link Games}.
+     * @return A {@link Game} iterable
      */
-    final class Simple implements Provider {
+    Iterator<Game> iterate();
+
+    /**
+     * Simple implementation.
+     */
+    final class Simple implements Games {
 
         /**
-         * Provider name.
+         * Game library.
          */
-        private final Text name;
+        private final Collection<Game> library;
 
         /**
-         * Primary constructor.
-         * @param name Provider name
+         * Default constructor.
          */
-        public Simple(final Text name) {
-            this.name = name;
+        public Simple() {
+            this.library = new ArrayList<>(0);
         }
 
-        /**
-         * Secondary constructor with {@link String}.
-         * @param name Provider name in a {@link String} form.
-         */
-        public Simple(final String name) {
-            this(new TextOf(name));
+        @Override
+        public Game add(final Text name, final Platform platform,
+            final Provider provider) {
+            final Game game = new Game.Simple(name);
+            this.library.add(game);
+            return game;
         }
 
-        /**
-         * Returns the provider name.
-         * @return Provider name stored in memory.
-         */
-        public Text name() {
-            return this.name;
+        @Override
+        public Iterator<Game> iterate() {
+            return this.library.iterator();
         }
     }
 }

@@ -21,46 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui;
 
 import org.cactoos.Text;
+import org.cactoos.text.FormattedText;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.TextOf;
 
 /**
- * Gaming platform.
+ * Media for printing {@link com.agamulator.core.Gamer} objects.
+ *
  * @since 1.0
  */
-public interface Platform {
+public final class MdGamer extends Console<com.agamulator.core.Gamer> {
 
     /**
-     * Gaming platform name.
-     * @return Gaming platform name
+     * Gamer name.
      */
-    Text name();
+    private final Text name;
 
     /**
-     * Simple Platform implementation which stores its data in instance fields.
+     * Default constructor.
+     * @param name Gamer name
      */
-    final class Simple implements Platform {
+    public MdGamer(final Text name) {
+        this.name = name;
+    }
 
-        /**
-         * Platform name.
-         */
-        private final Text name;
-
-        /**
-         * Contructor.
-         * @param name Plataform name
-         */
-        public Simple(final Text name) {
-            this.name = name;
-        }
-
-        /**
-         * The Platform name.
-         * @return Platform name
-         */
-        public Text name() {
-            return this.name;
-        }
+    /**
+     * Returns text to be printed.
+     * @return Text which will be printed
+     */
+    public Text text() {
+        return
+        new JoinedText(
+            new TextOf("\n"),
+            new TextOf("Gamer info"),
+            new TextOf("-----------------------"),
+            new FormattedText(
+                "Name: %s",
+                name
+            )
+        );
     }
 }
