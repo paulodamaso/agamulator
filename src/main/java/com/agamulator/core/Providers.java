@@ -30,6 +30,8 @@ import org.cactoos.collection.CollectionOf;
 
 /**
  * Game {@link Provider} repository.
+ *
+ * @since 1.0
  */
 public interface Providers {
     /**
@@ -37,22 +39,22 @@ public interface Providers {
      * @param name The {@link Provider} name.
      * @return Platform with the given name
      */
-    public Provider find(final Text name);
+    Provider find(Text name);
 
     /**
      * Adds a new {@link Provider}.
      * @param name Provider name
      * @return Added provider
      */
-    public Provider add(final Text name);
+    Provider add(Text name);
 
     /**
      * Iterate over Providers.
      * @return All providers
      */
-    public Iterator<Provider> iterate();
+    Iterator<Provider> iterate();
 
-    /*
+    /**
      * Simple Providers implementation.
      */
     final class Simple implements Providers {
@@ -62,20 +64,27 @@ public interface Providers {
          */
         private Collection<Provider> providers;
 
-        Simple(final Provider...platforms) {
-            this.providers = new CollectionOf<Provider>(providers);
+        /**
+         * Primary constructor.
+         *
+         * @param providers Platforms supported
+         */
+        public Simple(final Provider...providers) {
+            this.providers = new CollectionOf<>(providers);
         }
 
         @Override
-        public Provider find(Text name) {
+        public Provider find(final Text name) {
             return
-                new CollectionOf<Provider>(this.iterate()).stream().filter(
-                    (plat) -> { return name.equals(plat.name());}
+                new CollectionOf<>(this.iterate()).stream().filter(
+                    provider -> {
+                        return name.equals(provider.name());
+                    }
             ).findFirst().get();
         }
 
         @Override
-        public Provider add(Text name) {
+        public Provider add(final Text name) {
             final Provider added = new Provider.Simple(name);
             this.providers.add(added);
             return added;

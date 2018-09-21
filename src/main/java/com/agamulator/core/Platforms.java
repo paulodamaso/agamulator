@@ -62,13 +62,13 @@ public interface Platforms {
         /**
          * Platform {@link Collection}.
          */
-        private Collection<Platform> platforms;
+        private final Collection<Platform> platforms;
 
         /**
          * Constructor.
          * @param platforms Platforms
          */
-        Simple(final Platform...platforms) {
+        public Simple(final Platform...platforms) {
             this.platforms = new CollectionOf<Platform>(platforms);
         }
 

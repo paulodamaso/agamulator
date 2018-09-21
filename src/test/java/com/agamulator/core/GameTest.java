@@ -23,57 +23,29 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * {@link Game} collection holder.
+ * Test class for {@link Game}.
+ *
  * @since 1.0
  */
-public interface Games {
+public class GameTest {
 
     /**
-     * Adds a new game.
-     * @param name Game name
-     * @return The created {@link Game}
+     * Game can return title.
      */
-    Game add(Text name);
-
-    /**
-     * Iterate over the {@link Game} instaces stored by this {@link Games}.
-     * @return A {@link Game} iterable
-     */
-    Iterator<Game> iterate();
-
-    /**
-     * Simple implementation.
-     */
-    final class Simple implements Games {
-
-        /**
-         * Game library.
-         */
-        private final Collection<Game> library;
-
-        /**
-         * Default constructor.
-         */
-        public Simple() {
-            this.library = new ArrayList<>(0);
-        }
-
-        @Override
-        public Game add(final Text name) {
-            final Game game = new Game.Simple(name);
-            this.library.add(game);
-            return game;
-        }
-
-        @Override
-        public Iterator<Game> iterate() {
-            return this.library.iterator();
-        }
+    @Test
+    public void returnTitle() {
+        final Text title = new TextOf("Game Title");
+        MatcherAssert.assertThat(
+            "Returned wrong title",
+            new Game.Simple(title).title(),
+            new TextIs(title)
+        );
     }
 }

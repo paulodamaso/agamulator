@@ -23,6 +23,12 @@
  */
 package com.agamulator;
 
+import com.agamulator.core.AGamulator;
+import com.agamulator.core.Games;
+import com.agamulator.core.Platforms;
+import com.agamulator.core.Providers;
+import com.agamulator.ui.Console;
+
 /**
  * Main entry point for application.
  * @since 1.0
@@ -41,6 +47,12 @@ public final class Main {
      * @param args Arguments
      */
     public static void main(final String...args) {
-        //It's a utility class.
+        new Console(
+            new AGamulator(
+                new Platforms.Simple(),
+                new Games.Simple(),
+                new Providers.Simple()
+            )
+        ).run();
     }
 }

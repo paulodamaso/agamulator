@@ -39,5 +39,5 @@ public interface Media<T> {
     /**
      * Show what this media have to be showed (prints the objtect of type T).
      */
-    public void show();
+    void show();
 }

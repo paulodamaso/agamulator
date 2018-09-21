@@ -23,15 +23,12 @@
  */
 package com.agamulator.core;
 
-import com.agamulator.ui.Action;
-import com.agamulator.ui.MdGamer;
-import com.agamulator.ui.Media;
+import java.util.Iterator;
 import org.cactoos.Text;
 
 /**
  * An aGamulator instance. Holds all the core objects and serves as entrypoint
- * for user interaction with aGamulator. Receives {@link Action} objects and
- * act according to them printing the result in an {@link Media} object.
+ * for user interaction with aGamulator.
  * @since 1.0
  */
 public final class AGamulator {
@@ -52,59 +49,16 @@ public final class AGamulator {
     private final Providers providers;
 
     /**
-     * Front end for {@link Gamer}.
-     */
-    private final MdGamer fatgamer;
-
-    /**
      * Constructor.
      * @param platforms Platform repository
      * @param games Game repository
      * @param providers Providers repository
-     * @param face MdGamer repository
      */
     public AGamulator(final Platforms platforms, final Games games,
-        final Providers providers, final MdGamer face) {
+        final Providers providers) {
         this.providers = providers;
         this.platforms = platforms;
-        this.fatgamer = face;
         this.games = games;
-    }
-
-    /**
-     * Executes a command with some params and prints the result in some media.
-     * @param command Action to be executed
-     * @param params Value to the command params to the command
-     * @return Media with the result printed
-     */
-    public Media exec(final Action command, final String[] params) {
-        try {
-            return null;
-        } catch (final Exception err) {
-            throw new IllegalStateException(err);
-        }
-    }
-
-    /**
-     * Adds a {@link Game}.
-     * @param name Game name
-     * @param platform Game platform
-     * @param provider Game provider
-     * @return Return of game addition to media
-     */
-    private Media add(final Text name, final Platform platform,
-        final Provider provider) {
-        final Game added = this.games.add(name, platform, provider);
-        return null;
-    }
-
-    /**
-     * Lists all the games games.
-     * @return Return of game list
-     */
-    private Media list() {
-        this.games.iterate();
-        return null;
     }
 
 }

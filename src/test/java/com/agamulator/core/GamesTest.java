@@ -21,47 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui;
+package com.agamulator.core;
 
-import org.cactoos.Text;
-import org.cactoos.text.FormattedText;
-import org.cactoos.text.JoinedText;
+import org.cactoos.collection.CollectionOf;
+import org.cactoos.iterable.IterableOf;
 import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Media for printing {@link com.agamulator.core.Gamer} objects.
- *
- * @since 1.0
+ * Tests for {@link Games} repository.
  */
-public final class MdGamer extends Console<com.agamulator.core.Gamer> {
+public final class GamesTest {
 
     /**
-     * Gamer name.
+     * Games repository can add game.
      */
-    private final Text name;
-
-    /**
-     * Default constructor.
-     * @param name Gamer name
-     */
-    public MdGamer(final Text name) {
-        this.name = name;
-    }
-
-    /**
-     * Returns text to be printed.
-     * @return Text which will be printed
-     */
-    public Text text() {
-        return
-        new JoinedText(
-            new TextOf("\n"),
-            new TextOf("Gamer info"),
-            new TextOf("-----------------------"),
-            new FormattedText(
-                "Name: %s",
-                name
+     @Test
+     public void addGame() {
+        final String name = "Game Title";
+        final Games games = new Games.Simple();
+        final Game game = games.add(new TextOf(name));
+         MatcherAssert.assertThat(
+            "Game not added",
+            new IterableOf<>(
+                games.iterate()
+            ),
+            new IsIterableContainingInAnyOrder<>(
+                new CollectionOf<>(
+                    new IsEqual<>(game)
+                )
             )
-        );
-    }
+         );
+     }
 }

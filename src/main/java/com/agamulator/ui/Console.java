@@ -23,37 +23,47 @@
  */
 package com.agamulator.ui;
 
-import org.cactoos.Text;
-
+import com.agamulator.core.AGamulator;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
- * Console {@link Media}.
+ * Console {@link Face}.
  *
- * Basically prints objects of type T represented as a sequence of characters in
- * console view. Uses {@link Logger} for writing to console.
+ * Provides input via {@link java.util.Scanner} and output via {@link Logger}
+ * wrapping the {@link AGamulator} application.
  *
- * @param <T> Type of object to be printed in media (console).
  * @since 1.0
  */
-public abstract class Console<T> implements Media {
+public final class Console implements Face {
 
     /**
-     * Get a logger for printing things.
+     * Logger for printing things.
      */
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private static final Logger LOGGER =
+        Logger.getLogger(Console.class.getName());
 
     /**
-     * Piece of information to be printed.
+     * Scanner for reading keyboard input.
      */
-    abstract Text text();
+    private final Scanner scanner;
+
+    /**
+     * The wrapped {@link AGamulator} core.
+     */
+    private final AGamulator core;
+
+    /**
+     * Basic constructor.
+     * @param core The {@link AGamulator} core
+     */
+    public Console(final AGamulator core) {
+        this.core = core;
+        this.scanner = new Scanner(System.in);
+    }
 
     @Override
-    public void show() {
-        try {
-            logger.fine(text().asString());
-        } catch (final Exception err) {
-            throw new IllegalStateException(err);
-        }
+    public void run() {
+        // empty
     }
 }

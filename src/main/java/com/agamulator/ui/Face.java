@@ -21,59 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.ui;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import org.cactoos.Text;
+import com.agamulator.core.AGamulator;
 
 /**
- * {@link Game} collection holder.
+ * The {@link AGamulator} face.
+ *
+ * Wraps {@link AGamulator} providing user interface for accessing the program.
+ *
  * @since 1.0
  */
-public interface Games {
+public interface Face {
 
     /**
-     * Adds a new game.
-     * @param name Game name
-     * @return The created {@link Game}
+     * Runs the {@link Face}.
      */
-    Game add(Text name);
-
-    /**
-     * Iterate over the {@link Game} instaces stored by this {@link Games}.
-     * @return A {@link Game} iterable
-     */
-    Iterator<Game> iterate();
-
-    /**
-     * Simple implementation.
-     */
-    final class Simple implements Games {
-
-        /**
-         * Game library.
-         */
-        private final Collection<Game> library;
-
-        /**
-         * Default constructor.
-         */
-        public Simple() {
-            this.library = new ArrayList<>(0);
-        }
-
-        @Override
-        public Game add(final Text name) {
-            final Game game = new Game.Simple(name);
-            this.library.add(game);
-            return game;
-        }
-
-        @Override
-        public Iterator<Game> iterate() {
-            return this.library.iterator();
-        }
-    }
+    void run();
 }

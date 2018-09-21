@@ -23,57 +23,52 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * {@link Game} collection holder.
+ * Test case for {@link Gamer}.
+ *
  * @since 1.0
  */
-public interface Games {
+public class GamerTest {
 
     /**
-     * Adds a new game.
-     * @param name Game name
-     * @return The created {@link Game}
+     * Gamer can return name.
      */
-    Game add(Text name);
-
-    /**
-     * Iterate over the {@link Game} instaces stored by this {@link Games}.
-     * @return A {@link Game} iterable
-     */
-    Iterator<Game> iterate();
-
-    /**
-     * Simple implementation.
-     */
-    final class Simple implements Games {
-
-        /**
-         * Game library.
-         */
-        private final Collection<Game> library;
-
-        /**
-         * Default constructor.
-         */
-        public Simple() {
-            this.library = new ArrayList<>(0);
-        }
-
-        @Override
-        public Game add(final Text name) {
-            final Game game = new Game.Simple(name);
-            this.library.add(game);
-            return game;
-        }
-
-        @Override
-        public Iterator<Game> iterate() {
-            return this.library.iterator();
-        }
+    @Test
+    public void returnName() {
+        final Text name = new TextOf("Gamer Name");
+        MatcherAssert.assertThat(
+            "Returned wrong name",
+            new Gamer.Simple(name).name(),
+            new TextIs(name)
+        );
     }
+
+    /**
+     * Gamer can add game to library.
+     */
+     @Test
+     public void addGame() {
+        final Game game = new Game.Simple(new TextOf("New Game"));
+        final Gamer gamer = new Gamer.Simple(new TextOf("Gamer"));
+        gamer.add(game);
+        MatcherAssert.assertThat(
+            "Did not added game",
+            gamer.games(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(
+                    game
+                )
+            )
+        );
+     }
+
+
 }

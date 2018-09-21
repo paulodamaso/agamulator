@@ -8,6 +8,8 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
 # Roadmap
 - [ ] Dev environment setup
+    - [x] Add qulice checks
+    - [x] Add jacoco support
     - [ ] Add travis support
     - [ ] Add 0pdd support
     - [ ] Add rultor support
