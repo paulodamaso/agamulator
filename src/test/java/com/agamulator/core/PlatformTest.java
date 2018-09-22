@@ -23,51 +23,29 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.collection.CollectionOf;
+import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Tests for {@link Locations}.
+ * Test class for {@link Platform}.
  *
  * @since 1.0
  */
-public final class LocationsTest {
+public final class PlatformTest {
 
     /**
-     * Location repository can add Location.
+     * Platform can return name.
      */
     @Test
-    public void addLocation() {
-        final String name = "Location one";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
+    public void returnName() {
+        final Text name = new TextOf("Platform name");
         MatcherAssert.assertThat(
-            "Location not added",
-            new CollectionOf<>(
-                locations.iterate()
-            ),
-            new IsCollectionContaining<>(
-                new IsEqual<>(location)
-            )
-        );
-    }
-
-    /**
-     * Locations can find location.
-     */
-    @Test
-    public void findLocation() {
-        final String name = "Location two";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
-        MatcherAssert.assertThat(
-            "Location not found",
-            locations.find(new TextOf(name)),
-            new IsEqual<>(location)
+            "Returned wrong name",
+            new Platform.Simple(name).name(),
+            new TextIs(name)
         );
     }
 }

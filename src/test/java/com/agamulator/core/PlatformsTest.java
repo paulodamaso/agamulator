@@ -31,43 +31,43 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 /**
- * Tests for {@link Locations}.
+ * Tests for {@link Platforms}.
  *
  * @since 1.0
  */
-public final class LocationsTest {
+public final class PlatformsTest {
 
     /**
-     * Location repository can add Location.
+     * Platform repository can add Platform.
      */
     @Test
-    public void addLocation() {
-        final String name = "Location one";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
+    public void addPlatform() {
+        final String name = "Platform one";
+        final Platforms platforms = new Platforms.Simple();
+        final Platform platform = platforms.add(new TextOf(name));
         MatcherAssert.assertThat(
-            "Location not added",
+            "Platform not added",
             new CollectionOf<>(
-                locations.iterate()
+                platforms.iterate()
             ),
             new IsCollectionContaining<>(
-                new IsEqual<>(location)
+                new IsEqual<>(platform)
             )
         );
     }
 
     /**
-     * Locations can find location.
+     * Platforms can find platform.
      */
     @Test
-    public void findLocation() {
-        final String name = "Location two";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
+    public void findPlatform() {
+        final String name = "Platform two";
+        final Platforms platforms = new Platforms.Simple();
+        final Platform platform = platforms.add(new TextOf(name));
         MatcherAssert.assertThat(
-            "Location not found",
-            locations.find(new TextOf(name)),
-            new IsEqual<>(location)
+            "Platform not found",
+            platforms.find(new TextOf(name)),
+            new IsEqual<>(platform)
         );
     }
 }

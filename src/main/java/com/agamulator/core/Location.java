@@ -24,7 +24,6 @@
 package com.agamulator.core;
 
 import org.cactoos.Text;
-import org.cactoos.text.TextOf;
 
 /**
  * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
@@ -55,14 +54,6 @@ public interface Location {
          */
         public Simple(final Text name) {
             this.name = name;
-        }
-
-        /**
-         * Secondary constructor with {@link String}.
-         * @param name Location name in a {@link String} form.
-         */
-        public Simple(final String name) {
-            this(new TextOf(name));
         }
 
         /**
