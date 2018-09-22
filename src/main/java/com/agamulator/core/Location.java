@@ -25,48 +25,52 @@ package com.agamulator.core;
 
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test case for {@link Gamer}.
- *
+ * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
  * @since 1.0
  */
-public final class GamerTest {
+public interface Location {
 
     /**
-     * Gamer can return name.
+     * Location name.
+     * @return Location name (e.g. 'Steam', 'GOG', 'Physical', etc)
      */
-    @Test
-    public void returnName() {
-        final Text name = new TextOf("Gamer Name");
-        MatcherAssert.assertThat(
-            "Returned wrong name",
-            new Gamer.Simple(name).name(),
-            new TextIs(name)
-        );
-    }
+    Text name();
 
     /**
-     * Gamer can add game to library.
+     * Simple implementation of Location which stores its data in instance
+     * fields.
      */
-    @Test
-    public void addGame() {
-        final Game game = new Game.Simple(new TextOf("New Game"));
-        final Gamer gamer = new Gamer.Simple(new TextOf("Gamer"));
-        gamer.add(game);
-        MatcherAssert.assertThat(
-            "Did not added game",
-            gamer.games(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(
-                    game
-                )
-            )
-        );
+    final class Simple implements Location {
+
+        /**
+         * Location name.
+         */
+        private final Text name;
+
+        /**
+         * Primary constructor.
+         * @param name Location name
+         */
+        public Simple(final Text name) {
+            this.name = name;
+        }
+
+        /**
+         * Secondary constructor with {@link String}.
+         * @param name Location name in a {@link String} form.
+         */
+        public Simple(final String name) {
+            this(new TextOf(name));
+        }
+
+        /**
+         * Returns the provider name.
+         * @return Location name stored in memory.
+         */
+        public Text name() {
+            return this.name;
+        }
     }
 }

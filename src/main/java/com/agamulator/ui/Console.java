@@ -64,6 +64,6 @@ public final class Console implements Face {
 
     @Override
     public void run() {
-        // empty
+        Console.LOGGER.fine("Started");
     }
 }

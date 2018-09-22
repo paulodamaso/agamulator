@@ -25,52 +25,27 @@ package com.agamulator.core;
 
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
+ * Test class for {@link Location}.
+ *
  * @since 1.0
  */
-public interface Provider {
+public final class LocationTest {
 
     /**
-     * Provider name.
-     * @return Provider name (e.g. 'Steam', 'GOG', 'Physical', etc)
+     * Location can return name.
      */
-    Text name();
-
-    /**
-     * Simple implementation of Provider which stores its data in instance
-     * fields.
-     */
-    final class Simple implements Provider {
-
-        /**
-         * Provider name.
-         */
-        private final Text name;
-
-        /**
-         * Primary constructor.
-         * @param name Provider name
-         */
-        public Simple(final Text name) {
-            this.name = name;
-        }
-
-        /**
-         * Secondary constructor with {@link String}.
-         * @param name Provider name in a {@link String} form.
-         */
-        public Simple(final String name) {
-            this(new TextOf(name));
-        }
-
-        /**
-         * Returns the provider name.
-         * @return Provider name stored in memory.
-         */
-        public Text name() {
-            return this.name;
-        }
+    @Test
+    public void returnName() {
+        final Text name = new TextOf("Location name");
+        MatcherAssert.assertThat(
+            "Returned wrong name",
+            new Location.Simple(name).name(),
+            new TextIs(name)
+        );
     }
 }

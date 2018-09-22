@@ -34,7 +34,7 @@ import org.llorllale.cactoos.matchers.TextIs;
  *
  * @since 1.0
  */
-public class GameTest {
+public final class GameTest {
 
     /**
      * Game can return title.

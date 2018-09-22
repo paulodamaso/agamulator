@@ -26,7 +26,6 @@ package com.agamulator.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
-import org.cactoos.text.TextOf;
 
 /**
  * The {@link Gamer}, a person which have and plays games.

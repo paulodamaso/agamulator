@@ -25,7 +25,6 @@ package com.agamulator.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
 
 /**
@@ -45,7 +44,7 @@ public interface Games {
      * Iterate over the {@link Game} instaces stored by this {@link Games}.
      * @return A {@link Game} iterable
      */
-    Iterator<Game> iterate();
+    Iterable<Game> iterate();
 
     /**
      * Simple implementation.
@@ -72,8 +71,8 @@ public interface Games {
         }
 
         @Override
-        public Iterator<Game> iterate() {
-            return this.library.iterator();
+        public Iterable<Game> iterate() {
+            return this.library;
         }
     }
 }

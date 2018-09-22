@@ -23,49 +23,35 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.Text;
+import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test case for {@link Gamer}.
+ * Tests for {@link Locations}.
  *
  * @since 1.0
  */
-public final class GamerTest {
+public final class LocationsTest {
 
     /**
-     * Gamer can return name.
+     * Location repository can add Location.
      */
     @Test
-    public void returnName() {
-        final Text name = new TextOf("Gamer Name");
+    public void addLocation() {
+        final String name = "Location name";
+        final Locations locations = new Locations.Simple();
+        final Location location = locations.add(new TextOf(name));
         MatcherAssert.assertThat(
-            "Returned wrong name",
-            new Gamer.Simple(name).name(),
-            new TextIs(name)
-        );
-    }
-
-    /**
-     * Gamer can add game to library.
-     */
-    @Test
-    public void addGame() {
-        final Game game = new Game.Simple(new TextOf("New Game"));
-        final Gamer gamer = new Gamer.Simple(new TextOf("Gamer"));
-        gamer.add(game);
-        MatcherAssert.assertThat(
-            "Did not added game",
-            gamer.games(),
+            "Location not added",
+            new CollectionOf<>(
+                locations.iterate()
+            ),
             new IsCollectionContaining<>(
-                new IsEqual<>(
-                    game
-                )
+                new IsEqual<>(location)
             )
         );
     }

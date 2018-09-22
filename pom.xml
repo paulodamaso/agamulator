@@ -57,6 +57,7 @@
             </execution>
           </executions>
         </plugin>
+        <!--
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
@@ -80,6 +81,7 @@
               <goals>
                 <goal>check</goal>
               </goals>
+
               <configuration>
                 <rules>
                   <rule>
@@ -118,7 +120,9 @@
                     </limits>
                   </rule>
                 </rules>
+
               </configuration>
+
             </execution>
             <execution>
               <id>jacoco-site</id>
@@ -129,6 +133,7 @@
             </execution>
           </executions>
         </plugin>
+        -->
       </plugins>
     </build>
 </project>

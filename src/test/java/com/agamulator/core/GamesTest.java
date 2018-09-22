@@ -24,36 +24,35 @@
 package com.agamulator.core;
 
 import org.cactoos.collection.CollectionOf;
-import org.cactoos.iterable.IterableOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 /**
  * Tests for {@link Games} repository.
+ *
+ * @since 1.0
  */
 public final class GamesTest {
 
     /**
      * Games repository can add game.
      */
-     @Test
-     public void addGame() {
+    @Test
+    public void addGame() {
         final String name = "Game Title";
         final Games games = new Games.Simple();
         final Game game = games.add(new TextOf(name));
-         MatcherAssert.assertThat(
+        MatcherAssert.assertThat(
             "Game not added",
-            new IterableOf<>(
+            new CollectionOf<>(
                 games.iterate()
             ),
-            new IsIterableContainingInAnyOrder<>(
-                new CollectionOf<>(
-                    new IsEqual<>(game)
-                )
+            new IsCollectionContaining<>(
+                new IsEqual<>(game)
             )
-         );
-     }
+        );
+    }
 }

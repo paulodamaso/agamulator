@@ -25,8 +25,8 @@ package com.agamulator;
 
 import com.agamulator.core.AGamulator;
 import com.agamulator.core.Games;
+import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
-import com.agamulator.core.Providers;
 import com.agamulator.ui.Console;
 
 /**
@@ -47,11 +47,12 @@ public final class Main {
      * @param args Arguments
      */
     public static void main(final String...args) {
+
         new Console(
             new AGamulator(
                 new Platforms.Simple(),
                 new Games.Simple(),
-                new Providers.Simple()
+                new Locations.Simple()
             )
         ).run();
     }

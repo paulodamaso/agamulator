@@ -23,11 +23,8 @@
  */
 package com.agamulator.core;
 
-import java.util.Iterator;
-import org.cactoos.Text;
-
 /**
- * An aGamulator instance. Holds all the core objects and serves as entrypoint
+ * An aGamulator instance. Holds all the core objects and serves as entry point
  * for user interaction with aGamulator.
  * @since 1.0
  */
@@ -44,19 +41,19 @@ public final class AGamulator {
     private final Platforms platforms;
 
     /**
-     * Provider repository.
+     * Location repository.
      */
-    private final Providers providers;
+    private final Locations locations;
 
     /**
      * Constructor.
      * @param platforms Platform repository
      * @param games Game repository
-     * @param providers Providers repository
+     * @param locations Locations repository
      */
     public AGamulator(final Platforms platforms, final Games games,
-        final Providers providers) {
-        this.providers = providers;
+        final Locations locations) {
+        this.locations = locations;
         this.platforms = platforms;
         this.games = games;
     }

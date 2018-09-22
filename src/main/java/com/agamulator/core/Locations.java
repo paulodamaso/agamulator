@@ -23,76 +23,71 @@
  */
 package com.agamulator.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
-import org.cactoos.collection.CollectionOf;
 
 /**
- * Game {@link Provider} repository.
+ * Game {@link Location} repository.
  *
  * @since 1.0
  */
-public interface Providers {
+public interface Locations {
     /**
-     * Finds a {@link Provider} by name.
-     * @param name The {@link Provider} name.
+     * Finds a {@link Location} by name.
+     * @param name The {@link Location} name.
      * @return Platform with the given name
      */
-    Provider find(Text name);
+    Location find(Text name);
 
     /**
-     * Adds a new {@link Provider}.
-     * @param name Provider name
+     * Adds a new {@link Location}.
+     * @param name Location name
      * @return Added provider
      */
-    Provider add(Text name);
+    Location add(Text name);
 
     /**
-     * Iterate over Providers.
-     * @return All providers
+     * Iterate over Locations.
+     * @return All locations
      */
-    Iterator<Provider> iterate();
+    Iterable<Location> iterate();
 
     /**
-     * Simple Providers implementation.
+     * Simple Locations implementation.
      */
-    final class Simple implements Providers {
+    final class Simple implements Locations {
 
         /**
-         * Provider {@link Collection}.
+         * Location {@link Collection}.
          */
-        private Collection<Provider> providers;
+        private final Collection<Location> locations;
 
         /**
-         * Primary constructor.
-         *
-         * @param providers Platforms supported
+         * Constructor.
          */
-        public Simple(final Provider...providers) {
-            this.providers = new CollectionOf<>(providers);
+        public Simple() {
+            this.locations = new ArrayList<>(0);
         }
 
         @Override
-        public Provider find(final Text name) {
+        public Location find(final Text name) {
             return
-                new CollectionOf<>(this.iterate()).stream().filter(
-                    provider -> {
-                        return name.equals(provider.name());
-                    }
+                this.locations.stream().filter(
+                    location -> name.equals(location.name())
             ).findFirst().get();
         }
 
         @Override
-        public Provider add(final Text name) {
-            final Provider added = new Provider.Simple(name);
-            this.providers.add(added);
+        public Location add(final Text name) {
+            final Location added = new Location.Simple(name);
+            this.locations.add(added);
             return added;
         }
 
         @Override
-        public Iterator<Provider> iterate() {
-            return this.providers.iterator();
+        public Iterable<Location> iterate() {
+            return this.locations;
         }
     }
 }
