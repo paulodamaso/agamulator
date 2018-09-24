@@ -25,70 +25,60 @@ package com.agamulator.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import org.cactoos.Text;
 
 /**
- * A {@link Platform} repository.
+ * Game {@link Release} repository.
+ *
  * @since 1.0
  */
-public interface Platforms {
+public interface Releases {
 
     /**
-     * Finds a {@link Platform} by name.
-     * @param name The {@link Platform} name.
-     * @return Platform with the given name
+     * Adds a new {@link Release} to the repository.
+     *
+     * @param game Release game
+     * @param platform Release platform
+     * @param location Release location
+     * @return Release
      */
-    Platform find(Text name);
+    Release add(Game game, Platform platform, Location location);
 
     /**
-     * Adds a new {@link Platform}.
-     * @param name Platform name
-     * @return Added platform
+     * Iterate over all releases in the repository.
+     * @return Iterable with all releases from repository.
      */
-    Platform add(Text name);
+    Iterable<Release> iterate();
 
     /**
-     * Iterate over Platforms.
-     * @return All platforms
+     * Simple {@link Releases} implementation with data stored in memory.
      */
-    Iterator<Platform> iterate();
-
-    /**
-     * Simple Platform implementation.
-     */
-    final class Simple implements Platforms {
+    final class Simple implements Releases {
 
         /**
-         * Platform {@link Collection}.
+         * Releases storage.
          */
-        private final Collection<Platform> platforms;
+        private final Collection<Release> releases;
 
         /**
          * Constructor.
          */
         public Simple() {
-            this.platforms = new ArrayList<>(0);
+            this.releases = new ArrayList<>(0);
         }
 
         @Override
-        public Platform find(final Text name) {
-            return
-                this.platforms.stream().filter(
-                    plat -> name.equals(plat.name())
-            ).findFirst().get();
+        public Release add(final Game game, final Platform platform,
+            final Location location) {
+            final Release release = new Release.Simple(
+                game, platform, location
+            );
+            this.releases.add(release);
+            return release;
         }
 
         @Override
-        public Platform add(final Text name) {
-            final Platform added = new Platform.Simple(name);
-            this.platforms.add(added);
-            return added;
-        }
-
-        @Override
-        public Iterator<Platform> iterate() {
-            return this.platforms.iterator();
+        public Iterable<Release> iterate() {
+            return this.releases;
         }
     }
 }

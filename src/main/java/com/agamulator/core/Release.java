@@ -23,72 +23,74 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
 
 /**
- * A {@link Platform} repository.
+ * A {@link Game} release, i.e., the {@link Game} launched for some
+ * {@link Platform} at some {@link Location}.
+ *
  * @since 1.0
  */
-public interface Platforms {
+public interface Release extends Game {
 
     /**
-     * Finds a {@link Platform} by name.
-     * @param name The {@link Platform} name.
-     * @return Platform with the given name
+     * The {@link Platform}.
+     * @return Platform
      */
-    Platform find(Text name);
+    Platform platform();
 
     /**
-     * Adds a new {@link Platform}.
-     * @param name Platform name
-     * @return Added platform
+     * The {@link Location}.
+     * @return Location
      */
-    Platform add(Text name);
+    Location location();
 
     /**
-     * Iterate over Platforms.
-     * @return All platforms
+     * Simple release of a {@link Game} with the fields stored in memory.
      */
-    Iterator<Platform> iterate();
-
-    /**
-     * Simple Platform implementation.
-     */
-    final class Simple implements Platforms {
+    final class Simple implements Release {
 
         /**
-         * Platform {@link Collection}.
+         * The {@link Game} of the release.
          */
-        private final Collection<Platform> platforms;
+        private final Game origin;
+
+        /**
+         * The release {@link Platform}.
+         */
+        private final Platform platform;
+
+        /**
+         * The release {@link Location}.
+         */
+        private final Location location;
 
         /**
          * Constructor.
+         * @param origin Game wrapped
+         * @param platform Release platform
+         * @param location Release location
          */
-        public Simple() {
-            this.platforms = new ArrayList<>(0);
+        public Simple(final Game origin, final Platform platform,
+            final Location location) {
+            this.location = location;
+            this.origin = origin;
+            this.platform = platform;
         }
 
         @Override
-        public Platform find(final Text name) {
-            return
-                this.platforms.stream().filter(
-                    plat -> name.equals(plat.name())
-            ).findFirst().get();
+        public Platform platform() {
+            return this.platform;
         }
 
         @Override
-        public Platform add(final Text name) {
-            final Platform added = new Platform.Simple(name);
-            this.platforms.add(added);
-            return added;
+        public Location location() {
+            return this.location;
         }
 
         @Override
-        public Iterator<Platform> iterate() {
-            return this.platforms.iterator();
+        public Text title() {
+            return this.origin.title();
         }
     }
 }

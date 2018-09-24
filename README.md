@@ -13,6 +13,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [ ] Add travis support
     - [ ] Add 0pdd support
     - [ ] Add rultor support
+    - [ ] Add badges to repository
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation

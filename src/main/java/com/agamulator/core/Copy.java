@@ -23,72 +23,64 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
 
 /**
- * A {@link Platform} repository.
+ * A {@link Game} copy, which belongs to a a {@link Gamer}.
+ *
  * @since 1.0
  */
-public interface Platforms {
+public interface Copy extends Release {
 
     /**
-     * Finds a {@link Platform} by name.
-     * @param name The {@link Platform} name.
-     * @return Platform with the given name
+     * The {@link Gamer} who owns this copy.
+     * @return Gamer
      */
-    Platform find(Text name);
+    Gamer owner();
 
     /**
-     * Adds a new {@link Platform}.
-     * @param name Platform name
-     * @return Added platform
+     * Simple implementation of Copy with ownership data stored in memory.
      */
-    Platform add(Text name);
-
-    /**
-     * Iterate over Platforms.
-     * @return All platforms
-     */
-    Iterator<Platform> iterate();
-
-    /**
-     * Simple Platform implementation.
-     */
-    final class Simple implements Platforms {
+    final class Simple implements Copy {
 
         /**
-         * Platform {@link Collection}.
+         * Copy owner.
          */
-        private final Collection<Platform> platforms;
+        private final Gamer owner;
+
+        /**
+         * The release this copy refers to.
+         */
+        private final Release release;
 
         /**
          * Constructor.
+         * @param owner Game owner
+         * @param release Game release
          */
-        public Simple() {
-            this.platforms = new ArrayList<>(0);
+        public Simple(final Gamer owner, final Release release) {
+            this.owner = owner;
+            this.release = release;
         }
 
         @Override
-        public Platform find(final Text name) {
-            return
-                this.platforms.stream().filter(
-                    plat -> name.equals(plat.name())
-            ).findFirst().get();
+        public Gamer owner() {
+            return this.owner;
         }
 
         @Override
-        public Platform add(final Text name) {
-            final Platform added = new Platform.Simple(name);
-            this.platforms.add(added);
-            return added;
+        public Platform platform() {
+            return this.release.platform();
         }
 
         @Override
-        public Iterator<Platform> iterate() {
-            return this.platforms.iterator();
+        public Location location() {
+            return this.release.location();
+        }
+
+        @Override
+        public Text title() {
+            return this.release.title();
         }
     }
 }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.agamulator</groupId>
     <artifactId>agamulator</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -48,6 +48,16 @@
           <version>0.18.1</version>
           <configuration>
             <license>file:${basedir}/LICENSE.txt</license>
+            <excludes>
+                <!-- Excluding UI classes and Main from qulice as they are -->
+                <!-- not stable yet -->
+                <exclude>checkstyle:.*/src/main/java/com/agamulator/Main.java</exclude>
+                <exclude>pmd:/src/main/java/com/agamulator/Main.java</exclude>
+                <exclude>pmd:/src/main/java/com/agamulator/core/AGamulator.java</exclude>
+                <exclude>findbugs:com.agamulator.core.AGamulator</exclude>
+                <exclude>pmd:/src/main/java/com/agamulator/ui/.*</exclude>
+                <exclude>findbugs:com.agamulator.ui.Console</exclude>
+              </excludes>
           </configuration>
           <executions>
             <execution>
@@ -65,6 +75,11 @@
             <output>file</output>
             <excludes>
               <exclude>**/*.sketch</exclude>
+            <!-- Excluding UI classes and Main from coverage as they are -->
+            <!-- not stable yet -->
+              <exclude>**/com/agamulator/ui/*</exclude>
+              <exclude>**/com/agamulator/Main.class</exclude>
+              <exclude>**/com/agamulator/core/AGamulator.class</exclude>
             </excludes>
           </configuration>
           <executions>
@@ -80,7 +95,6 @@
               <goals>
                 <goal>check</goal>
               </goals>
-
               <configuration>
                 <rules>
                   <rule>
