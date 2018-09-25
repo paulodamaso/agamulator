@@ -17,9 +17,12 @@ buy a new game. Its purpose is to help you not to buy the same game more than
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
+        - [ ] Simple persistence implementation with MongoDB
     - [ ] Takes HTML wrapper
 - [ ] Remote application
+    - [ ] Application environment
     - [ ] Authentication
+    - [ ] Read games from each location via API
     - [ ] Takes service wrapper
     - [ ] Android app
     - [ ] iOs app
