@@ -29,3 +29,9 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     
 # Future features
 - [ ] Link for gameplay in game list
+
+# Guidelines / Inspirations / Principles
+- [Elegant Objects](https://www.elegantobjects.org/)
+- Front end based on [Fully encapsulated](https://g4s8.github.io/fully-encapsulated/) and [Printers Instead of Getters
+](https://www.yegor256.com/2016/04/05/printers-instead-of-getters.html) 
+- Back end based on [ORM Is an Offensive Anti-Pattern](https://www.yegor256.com/2014/12/01/orm-offensive-anti-pattern.html)

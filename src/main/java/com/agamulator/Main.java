@@ -27,7 +27,6 @@ import com.agamulator.core.AGamulator;
 import com.agamulator.core.Games;
 import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
-import com.agamulator.ui.Console;
 
 /**
  * Main entry point for application.
@@ -48,12 +47,6 @@ public final class Main {
      */
     public static void main(final String...args) {
 
-        new Console(
-            new AGamulator(
-                new Platforms.Simple(),
-                new Games.Simple(),
-                new Locations.Simple()
-            )
-        ).run();
+
     }
 }
