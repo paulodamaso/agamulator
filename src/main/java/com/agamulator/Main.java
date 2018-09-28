@@ -27,6 +27,7 @@ import com.agamulator.core.AGamulator;
 import com.agamulator.core.Games;
 import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
+import org.cactoos.text.TextOf;
 
 /**
  * Main entry point for application.
@@ -47,6 +48,9 @@ public final class Main {
      */
     public static void main(final String...args) {
 
-
+    com.agamulator.ui.printer.Games games = new com.agamulator.ui.printer.Games(new Games.Simple());
+    games.add(new TextOf("Game One"));
+    games.add(new TextOf("Game two"));
+    games.print(new com.agamulator.ui.logger.Games());
     }
 }

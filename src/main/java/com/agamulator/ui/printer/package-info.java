@@ -21,47 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.logger;
-
-import com.agamulator.core.Game;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * Prints {@link com.agamulator.core.Games} as a log output to console.
+ * Agamulator user interface package.
  * @since 1.0
  */
-public final class Games implements com.agamulator.ui.Games.Out<String> {
-
-    /**
-     * Logger instance.
-     */
-    private static final Logger LOGGER = Logger.getLogger("Game logger");
-
-    /**
-     * Handler instance.
-     */
-    private final ConsoleHandler handler;
-
-    /**
-     * Constructor.
-     */
-    public Games() {
-        LOGGER.setLevel(Level.FINEST);
-        this.handler = new ConsoleHandler();
-        this.handler.setLevel(Level.FINER);
-        LOGGER.addHandler(this.handler);
-    }
-
-    @Override
-    public String print(final Iterable<Game> list) {
-        LOGGER.fine("Games Available");
-        list.iterator().forEachRemaining(
-            item -> new com.agamulator.ui.printer.Game(item).print(
-                new com.agamulator.ui.logger.Game()
-            )
-        );
-        return null;
-    }
-}
+package com.agamulator.ui.printer;
