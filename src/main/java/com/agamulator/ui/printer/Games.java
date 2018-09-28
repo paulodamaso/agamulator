@@ -24,13 +24,14 @@
 package com.agamulator.ui.printer;
 
 import com.agamulator.core.Game;
+import com.agamulator.ui.face.FcGames;
 import org.cactoos.Text;
 
 /**
- * Printer for {@link com.agamulator.ui.Games}.
+ * Printer for {@link FcGames}.
  * @since 1.0
  */
-public final class Games implements com.agamulator.ui.Games {
+public final class Games implements FcGames {
 
     /**
      * Decorated {@link com.agamulator.core.Games}.
@@ -56,7 +57,7 @@ public final class Games implements com.agamulator.ui.Games {
     }
 
     @Override
-    public <T> T print(final Out<T> out) {
-        return out.print(this.iterate());
+    public <T> T print(final Out<T> where) {
+        return where.print(this.iterate());
     }
 }

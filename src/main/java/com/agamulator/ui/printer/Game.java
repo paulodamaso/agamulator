@@ -23,13 +23,16 @@
  */
 package com.agamulator.ui.printer;
 
+import com.agamulator.ui.face.FcGame;
 import org.cactoos.Text;
 
 /**
- * Printer implementation for {@link com.agamulator.ui.Game}.
+ * Printer implementation for {@link FcGame}.
+ *
+ * @param <T> Type in which this Gamex will be formatted.
  * @since 1.0
  */
-public final class Game implements com.agamulator.ui.Game {
+public final class Game<T> implements FcGame<T> {
 
     /**
      * Decorated {@link com.agamulator.core.Game}.
@@ -45,8 +48,8 @@ public final class Game implements com.agamulator.ui.Game {
     }
 
     @Override
-    public <T> T print(final Out<T> out) {
-        return out.print(this.title());
+    public T format(final Output<T> output) {
+        return output.out(this.title());
     }
 
     @Override

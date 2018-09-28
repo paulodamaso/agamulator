@@ -21,34 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui.face;
 
+import com.agamulator.core.Game;
 import com.agamulator.core.Games;
-import com.agamulator.ui.printed.Sysout;
-import org.cactoos.text.TextOf;
 
 /**
- * Main entry point for application.
+ * Face for {@link Games}. Provides contract for printing {@link Games}
+ * instances in various output types.
+ *
  * @since 1.0
  */
-public final class Main {
+public interface FcGames extends Games {
 
     /**
-     * Ctor.
+     * Returns a printed instance of the {@link Games} object.
+     *
+     * @param who Who will create printed instance
+     * @param <T> Type of the printed instance
+     * @return Printed instance
      */
-    private Main() {
-        //It's a utility class.
-    }
+    <T> T print(Out<T> who);
 
     /**
-     * Main method.
-     * @param args Arguments
+     * Creates printed instances of {@link Games} objects.
+     *
+     * @param <T> Type of generated output
      */
-    public static void main(final String...args) {
+    interface Out<T> {
 
-    com.agamulator.ui.printer.Games games = new com.agamulator.ui.printer.Games(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.Games()));
+        /**
+         * Prints the game list.
+         * @param list List to be printed
+         * @return Printed list
+         */
+        T print(Iterable<Game> list);
     }
 }

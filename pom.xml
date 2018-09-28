@@ -52,14 +52,9 @@
                   <configuration>
                     <license>file:${basedir}/LICENSE.txt</license>
                     <excludes>
-                        <!-- Excluding UI classes and Main from qulice as they are -->
-                        <!-- not stable yet -->
+                        <!-- Excluding Main from qulice as it is not stable yet -->
                         <exclude>checkstyle:.*/src/main/java/com/agamulator/Main.java</exclude>
                         <exclude>pmd:/src/main/java/com/agamulator/Main.java</exclude>
-                        <exclude>pmd:/src/main/java/com/agamulator/core/AGamulator.java</exclude>
-                        <exclude>findbugs:com.agamulator.core.AGamulator</exclude>
-                        <exclude>pmd:/src/main/java/com/agamulator/ui/.*</exclude>
-                        <exclude>findbugs:com.agamulator.ui.Console</exclude>
                       </excludes>
                   </configuration>
                   <executions>
@@ -84,12 +79,8 @@
                       <configuration>
                         <output>file</output>
                         <excludes>
-                          <exclude>**/*.sketch</exclude>
-                        <!-- Excluding UI classes and Main from coverage as they are -->
-                        <!-- not stable yet -->
-                          <exclude>**/com/agamulator/ui/*</exclude>
+                        <!-- Excluding Main from coverage as it is not stable yet -->
                           <exclude>**/com/agamulator/Main.class</exclude>
-                          <exclude>**/com/agamulator/core/AGamulator.class</exclude>
                         </excludes>
                       </configuration>
                       <executions>

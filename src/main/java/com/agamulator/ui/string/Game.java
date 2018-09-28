@@ -21,32 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui;
+package com.agamulator.ui.string;
+
+import com.agamulator.ui.face.FcGame;
+import org.cactoos.Text;
+import org.cactoos.text.UncheckedText;
 
 /**
- * Interface for printing {@link com.agamulator.core.Games} instances.
+ * A {@link com.agamulator.core.Game} formatted as a {@link String}.
+ *
  * @since 1.0
  */
-public interface Games extends com.agamulator.core.Games {
+public final class Game implements FcGame.Output<String> {
 
-    /**
-     * Prints the instance to the desired output.
-     * @param out Output
-     * @param <T> Output type
-     * @return Printed object
-     */
-    <T> T print(Out<T> out);
-
-    /**
-     * Output for printing {@link com.agamulator.core.Games} objects.
-     * @param <T> Output type
-     */
-    interface Out<T> {
-        /**
-         * Prints the game list.
-         * @param list List to be printed
-         * @return Printed list
-         */
-        T print(Iterable<com.agamulator.core.Game> list);
+    @Override
+    public String out(final Text title) {
+        return new UncheckedText(title).asString();
     }
 }

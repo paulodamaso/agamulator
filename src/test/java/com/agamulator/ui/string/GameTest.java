@@ -21,26 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.logger;
+package com.agamulator.ui.string;
 
-import java.util.logging.Logger;
-import org.cactoos.Text;
+import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Prints {@link com.agamulator.core.Game} objects as log entries.
+ * Tests for {@link Game}.
+ *
  * @since 1.0
  */
-public final class Game implements com.agamulator.ui.Game.Out<String> {
+public final class GameTest {
 
     /**
-     * Logger.
+     * Tests if a {@link com.agamulator.ui.string.Game} can format correctly a
+     * {@link com.agamulator.core.Game} into a String.
      */
-    private static final Logger LOGGER = Logger.getLogger("Game logger");
-
-    @Override
-    public String print(final Text title) {
-        LOGGER.fine(new UncheckedText(title).asString());
-        return null;
+    @Test
+    public void formatString() {
+        final com.agamulator.core.Game game =
+            new com.agamulator.core.Game.Simple(new TextOf("Full throttle"));
+        MatcherAssert.assertThat(
+            "Cannot format game as string",
+            new UncheckedText(game.title()).asString(),
+            new IsEqual<>(
+                new com.agamulator.ui.printer.Game<String>(
+                    game
+                ).format(
+                    new com.agamulator.ui.string.Game()
+                )
+            )
+        );
     }
 }

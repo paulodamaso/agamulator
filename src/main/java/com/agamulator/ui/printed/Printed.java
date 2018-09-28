@@ -21,34 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui;
-
-import org.cactoos.Text;
+package com.agamulator.ui.printed;
 
 /**
- * Interface for printing {@link com.agamulator.core.Game} instances.
+ * Printed objects. Effectively writes the 'faces' objects to some media
+ * formatted by the 'out' objects.
+ *
+ * @param <T> Type of face to be printed
  * @since 1.0
  */
-public interface Game extends com.agamulator.core.Game {
+public interface Printed<T> {
 
     /**
-     * Prints the instance to the desired output.
-     * @param out Output
-     * @param <T> Output type
-     * @return Printed object
+     * Writes something to somewhere.
+     *
+     * @param face Face to be printed
      */
-    <T> T print(Out<T> out);
-
-    /**
-     * Output for printing {@link com.agamulator.core.Game} objects.
-     * @param <T> Output type
-     */
-    interface Out<T> {
-        /**
-         * Prints the {@link com.agamulator.core.Game} title.
-         * @param title Game title
-         * @return Printed game
-         */
-        T print(Text title);
-    }
+    void write(T face);
 }

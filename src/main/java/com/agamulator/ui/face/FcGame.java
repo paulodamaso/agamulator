@@ -21,34 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui.face;
 
-import com.agamulator.core.Games;
-import com.agamulator.ui.printed.Sysout;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.Game;
+import org.cactoos.Text;
 
 /**
- * Main entry point for application.
+ * Face for {@link Game}. Provides contracts for printing {@link Game} instances
+ * in various output types.
+ *
+ * @param <T> Type of the printed instance
  * @since 1.0
  */
-public final class Main {
+public interface FcGame<T> extends Game {
 
     /**
-     * Ctor.
+     * Returns a formatted instance of {@link Game} as T.
+     *
+     * @param output Who will format the instance into the desired format
+     * @return Printed instance
      */
-    private Main() {
-        //It's a utility class.
-    }
+    T format(Output<T> output);
 
     /**
-     * Main method.
-     * @param args Arguments
+     * Creates formatted instances of {@link Game} objects. Defines the
+     * behavior of formatting a {@link Game} into a T instance.
+     *
+     * @param <T> Type of generated output
      */
-    public static void main(final String...args) {
+    interface Output<T> {
 
-    com.agamulator.ui.printer.Games games = new com.agamulator.ui.printer.Games(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.Games()));
+        /**
+         * Creates an T instance which receives an {@link Text} as parameter
+         * representing the game title.
+         *
+         * @param title The game title
+         * @return A {@link Game} in T format
+         */
+        T out(Text title);
     }
 }

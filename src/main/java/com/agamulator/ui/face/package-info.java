@@ -21,34 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
-
-import com.agamulator.core.Games;
-import com.agamulator.ui.printed.Sysout;
-import org.cactoos.text.TextOf;
 
 /**
- * Main entry point for application.
+ * Agamulator user interface package. Provides ui abstractions ('faces') for
+ * printing core objetcts.
+ *
  * @since 1.0
  */
-public final class Main {
-
-    /**
-     * Ctor.
-     */
-    private Main() {
-        //It's a utility class.
-    }
-
-    /**
-     * Main method.
-     * @param args Arguments
-     */
-    public static void main(final String...args) {
-
-    com.agamulator.ui.printer.Games games = new com.agamulator.ui.printer.Games(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.Games()));
-    }
-}
+package com.agamulator.ui.face;

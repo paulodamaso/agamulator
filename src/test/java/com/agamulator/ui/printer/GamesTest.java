@@ -21,41 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.ui.printer;
+
+import org.cactoos.collection.CollectionOf;
+import org.cactoos.iterable.IterableOf;
+import org.cactoos.text.TextOf;
+import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
+
+import java.util.Collection;
 
 /**
- * An aGamulator instance. Holds all the core objects and serves as entry point
- * for user interaction with aGamulator.
- * @since 1.0
+ * Tests for {@link Games}.
  */
-public final class AGamulator {
+public class GamesTest {
 
     /**
-     * Games repository.
+     * Tests if {@link Games} can return correct iterable.
      */
-    private final Games games;
-
-    /**
-     * Platform repository.
-     */
-    private final Platforms platforms;
-
-    /**
-     * Location repository.
-     */
-    private final Locations locations;
-
-    /**
-     * Constructor.
-     * @param platforms Platform repository
-     * @param games Game repository
-     * @param locations Locations repository
-     */
-    public AGamulator(final Platforms platforms, final Games games,
-        final Locations locations) {
-        this.locations = locations;
-        this.platforms = platforms;
-        this.games = games;
+    @Test
+    public void returnIterable() {
+        com.agamulator.core.Games games = new Games.Simple();
+        games.add(new TextOf("Maniac Mansion"));
+        games.add(new TextOf("Indiana Jones and The Fate of Atlantis"));
+        MatcherAssert.assertThat(
+            "Game repository did not returned correct iterable",
+            games.iterate(),
+            new IsIterableContainingInAnyOrder<Collection<Matcher<Game>>>(
+                new IterableOf<Game>(
+                    new IsEqual<Game>(new Games(games).iterate())
+                )
+            )
+        );
     }
-
 }

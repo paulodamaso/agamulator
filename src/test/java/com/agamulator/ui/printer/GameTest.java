@@ -21,9 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package com.agamulator.ui.printer;
+
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Agamulator user interface package.
+ * Tests for {@link Game} class.
+ *
  * @since 1.0
  */
-package com.agamulator.ui.logger;
+public final class GameTest {
+
+    /**
+     * Tests if a {@link Game} instance can return the correct title.
+     */
+    @Test
+    public void returnTitle() {
+        final com.agamulator.core.Game game =
+            new com.agamulator.core.Game.Simple(new TextOf("Zak McKracken"));
+        MatcherAssert.assertThat(
+            "Returned wrong title",
+            game.title(),
+            new IsEqual<>(new Game<>(game).title())
+        );
+    }
+}

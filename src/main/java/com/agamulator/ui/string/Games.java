@@ -21,34 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui.string;
 
-import com.agamulator.core.Games;
-import com.agamulator.ui.printed.Sysout;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.Game;
+import com.agamulator.ui.face.FcGames;
+import org.cactoos.iterable.Mapped;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.UncheckedText;
 
 /**
- * Main entry point for application.
+ * A {@link Games} instance formatted as a String.
+ *
  * @since 1.0
  */
-public final class Main {
+public final class Games implements FcGames.Out<String> {
 
-    /**
-     * Ctor.
-     */
-    private Main() {
-        //It's a utility class.
-    }
-
-    /**
-     * Main method.
-     * @param args Arguments
-     */
-    public static void main(final String...args) {
-
-    com.agamulator.ui.printer.Games games = new com.agamulator.ui.printer.Games(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.Games()));
+    @Override
+    public String print(final Iterable<Game> list) {
+        return new UncheckedText(
+            new JoinedText(
+                "\n",
+                new Mapped<>(
+                    game -> {
+                        return
+                            new com.agamulator.ui.printer.Game<String>(
+                                game
+                            ).format(
+                                new com.agamulator.ui.string.Game()
+                            );
+                    },
+                    list
+                )
+            )
+        ).asString();
     }
 }
