@@ -21,35 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator;
+package com.agamulator.ui.printer;
 
-import com.agamulator.core.Games;
-import com.agamulator.ui.printed.Sysout;
-import com.agamulator.ui.printer.PtGames;
-import org.cactoos.text.TextOf;
+import com.agamulator.ui.face.FcGame;
+import org.cactoos.Text;
 
 /**
- * Main entry point for application.
+ * Printer implementation for {@link FcGame}.
+ *
+ * @param <T> Type in which this Game will be formatted.
  * @since 1.0
  */
-public final class Main {
+public final class PtGame<T> implements FcGame<T> {
 
     /**
-     * Ctor.
+     * Decorated {@link com.agamulator.core.Game}.
      */
-    private Main() {
-        //It's a utility class.
+    private final com.agamulator.core.Game origin;
+
+    /**
+     * Constructor.
+     * @param origin Decorated game
+     */
+    public PtGame(final com.agamulator.core.Game origin) {
+        this.origin = origin;
     }
 
-    /**
-     * Main method.
-     * @param args Arguments
-     */
-    public static void main(final String...args) {
+    @Override
+    public T format(final Output<T> output) {
+        return output.out(this.title());
+    }
 
-    PtGames games = new PtGames(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.StrGames()));
+    @Override
+    public Text title() {
+        return this.origin.title();
     }
 }

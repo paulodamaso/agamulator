@@ -23,38 +23,42 @@
  */
 package com.agamulator.ui.printer;
 
-import org.cactoos.collection.CollectionOf;
-import org.cactoos.iterable.IterableOf;
-import org.cactoos.text.TextOf;
-import org.hamcrest.Matcher;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
-
-import java.util.Collection;
+import com.agamulator.core.Game;
+import com.agamulator.core.Games;
+import com.agamulator.ui.face.FcGames;
+import org.cactoos.Text;
 
 /**
- * Tests for {@link Games}.
+ * Printer for {@link FcGames}.
+ * @since 1.0
  */
-public class GamesTest {
+public final class PtGames implements FcGames {
 
     /**
-     * Tests if {@link Games} can return correct iterable.
+     * Decorated {@link Games}.
      */
-    @Test
-    public void returnIterable() {
-        com.agamulator.core.Games games = new Games.Simple();
-        games.add(new TextOf("Maniac Mansion"));
-        games.add(new TextOf("Indiana Jones and The Fate of Atlantis"));
-        MatcherAssert.assertThat(
-            "Game repository did not returned correct iterable",
-            games.iterate(),
-            new IsIterableContainingInAnyOrder<Collection<Matcher<Game>>>(
-                new IterableOf<Game>(
-                    new IsEqual<Game>(new Games(games).iterate())
-                )
-            )
-        );
+    private final Games origin;
+
+    /**
+     * Constructor.
+     * @param origin Decorated games repository
+     */
+    public PtGames(final Games origin) {
+        this.origin = origin;
+    }
+
+    @Override
+    public Game add(final Text name) {
+        return this.origin.add(name);
+    }
+
+    @Override
+    public Iterable<Game> iterate() {
+        return this.origin.iterate();
+    }
+
+    @Override
+    public <T> T print(final Output<T> where) {
+        return where.out(this.iterate());
     }
 }

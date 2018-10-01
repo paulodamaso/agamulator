@@ -41,20 +41,20 @@ public interface FcGames extends Games {
      * @param <T> Type of the printed instance
      * @return Printed instance
      */
-    <T> T print(Out<T> who);
+    <T> T print(Output<T> who);
 
     /**
      * Creates printed instances of {@link Games} objects.
      *
      * @param <T> Type of generated output
      */
-    interface Out<T> {
+    interface Output<T> {
 
         /**
          * Prints the game list.
          * @param list List to be printed
          * @return Printed list
          */
-        T print(Iterable<Game> list);
+        T out(Iterable<Game> list);
     }
 }

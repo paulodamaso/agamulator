@@ -23,37 +23,33 @@
  */
 package com.agamulator.ui.string;
 
+import com.agamulator.core.Games;
+import com.agamulator.ui.printer.PtGames;
 import org.cactoos.text.TextOf;
-import org.cactoos.text.UncheckedText;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 /**
- * Tests for {@link Game}.
+ * Tests for {@link StrGames}, a repository of {@link StrGame}.
  *
  * @since 1.0
  */
-public final class GameTest {
+public class StrGamesTest {
 
     /**
-     * Tests if a {@link com.agamulator.ui.string.Game} can format correctly a
-     * {@link com.agamulator.core.Game} into a String.
+     * Tests if {@link StrGames} can return its list correctly formatted as a
+     * String.
      */
     @Test
-    public void formatString() {
-        final com.agamulator.core.Game game =
-            new com.agamulator.core.Game.Simple(new TextOf("Full throttle"));
+    public void returnIterable() {
+        final PtGames games = new PtGames(new Games.Simple());
+        games.add(new TextOf("Day Of The Tentacle"));
+        games.add(new TextOf("Grim Fandango"));
         MatcherAssert.assertThat(
-            "Cannot format game as string",
-            new UncheckedText(game.title()).asString(),
-            new IsEqual<>(
-                new com.agamulator.ui.printer.Game<String>(
-                    game
-                ).format(
-                    new com.agamulator.ui.string.Game()
-                )
-            )
+            "Game repository did not formatted correctly to String",
+            games.print(new StrGames()),
+            new IsEqual("Day Of The Tentacle\nGrim Fandango")
         );
     }
 }

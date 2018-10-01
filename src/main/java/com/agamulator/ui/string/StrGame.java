@@ -23,36 +23,19 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.Game;
-import com.agamulator.ui.face.FcGames;
-import org.cactoos.iterable.Mapped;
-import org.cactoos.text.JoinedText;
+import com.agamulator.ui.face.FcGame;
+import org.cactoos.Text;
 import org.cactoos.text.UncheckedText;
 
 /**
- * A {@link Games} instance formatted as a String.
+ * A {@link com.agamulator.core.Game} formatted as a {@link String}.
  *
  * @since 1.0
  */
-public final class Games implements FcGames.Out<String> {
+public final class StrGame implements FcGame.Output<String> {
 
     @Override
-    public String print(final Iterable<Game> list) {
-        return new UncheckedText(
-            new JoinedText(
-                "\n",
-                new Mapped<>(
-                    game -> {
-                        return
-                            new com.agamulator.ui.printer.Game<String>(
-                                game
-                            ).format(
-                                new com.agamulator.ui.string.Game()
-                            );
-                    },
-                    list
-                )
-            )
-        ).asString();
+    public String out(final Text title) {
+        return new UncheckedText(title).asString();
     }
 }

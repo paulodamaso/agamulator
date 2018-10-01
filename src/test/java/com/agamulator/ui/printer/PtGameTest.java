@@ -23,37 +23,29 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.ui.face.FcGame;
-import org.cactoos.Text;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Printer implementation for {@link FcGame}.
+ * Tests for {@link PtGame} class.
  *
- * @param <T> Type in which this Gamex will be formatted.
  * @since 1.0
  */
-public final class Game<T> implements FcGame<T> {
+public final class PtGameTest {
 
     /**
-     * Decorated {@link com.agamulator.core.Game}.
+     * Tests if a {@link PtGame} instance can return the correct title.
      */
-    private final com.agamulator.core.Game origin;
-
-    /**
-     * Constructor.
-     * @param origin Decorated game
-     */
-    public Game(final com.agamulator.core.Game origin) {
-        this.origin = origin;
-    }
-
-    @Override
-    public T format(final Output<T> output) {
-        return output.out(this.title());
-    }
-
-    @Override
-    public Text title() {
-        return this.origin.title();
+    @Test
+    public void returnTitle() {
+        final com.agamulator.core.Game game =
+            new com.agamulator.core.Game.Simple(new TextOf("Zak McKracken"));
+        MatcherAssert.assertThat(
+            "Returned wrong title",
+            game.title(),
+            new IsEqual<>(new PtGame<>(game).title())
+        );
     }
 }

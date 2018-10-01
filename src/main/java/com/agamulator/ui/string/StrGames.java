@@ -21,31 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.printer;
+package com.agamulator.ui.string;
 
-import org.cactoos.text.TextOf;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import com.agamulator.core.Game;
+import com.agamulator.core.Games;
+import com.agamulator.ui.face.FcGames;
+import com.agamulator.ui.printer.PtGame;
+import org.cactoos.iterable.Mapped;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.UncheckedText;
 
 /**
- * Tests for {@link Game} class.
+ * A {@link Games} instance formatted as a String.
  *
  * @since 1.0
  */
-public final class GameTest {
+public final class StrGames implements FcGames.Output<String> {
 
-    /**
-     * Tests if a {@link Game} instance can return the correct title.
-     */
-    @Test
-    public void returnTitle() {
-        final com.agamulator.core.Game game =
-            new com.agamulator.core.Game.Simple(new TextOf("Zak McKracken"));
-        MatcherAssert.assertThat(
-            "Returned wrong title",
-            game.title(),
-            new IsEqual<>(new Game<>(game).title())
-        );
+    @Override
+    public String out(final Iterable<Game> list) {
+        return new UncheckedText(
+            new JoinedText(
+                "\n",
+                new Mapped<>(
+                    game -> {
+                        return
+                            new PtGame<String>(
+                                game
+                            ).format(
+                                new StrGame()
+                            );
+                    },
+                    list
+                )
+            )
+        ).asString();
     }
 }

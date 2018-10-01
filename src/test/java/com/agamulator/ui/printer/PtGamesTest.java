@@ -24,40 +24,40 @@
 package com.agamulator.ui.printer;
 
 import com.agamulator.core.Game;
-import com.agamulator.ui.face.FcGames;
-import org.cactoos.Text;
+import com.agamulator.core.Games;
+import org.cactoos.collection.CollectionOf;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Printer for {@link FcGames}.
+ * Tests for {@link Games}.
+ *
  * @since 1.0
  */
-public final class Games implements FcGames {
+public class PtGamesTest {
 
     /**
-     * Decorated {@link com.agamulator.core.Games}.
+     * Tests if {@link PtGames} can return correct iterable of printable games.
      */
-    private final com.agamulator.core.Games origin;
-
-    /**
-     * Constructor.
-     * @param origin Decorated games repository
-     */
-    public Games(final com.agamulator.core.Games origin) {
-        this.origin = origin;
-    }
-
-    @Override
-    public Game add(final Text name) {
-        return this.origin.add(name);
-    }
-
-    @Override
-    public Iterable<Game> iterate() {
-        return this.origin.iterate();
-    }
-
-    @Override
-    public <T> T print(final Out<T> where) {
-        return where.print(this.iterate());
+    @Test
+    public void returnIterable() {
+        final Games games = new PtGames(new Games.Simple());
+        final Game one = games.add(new TextOf("Maniac Mansion"));
+        final Game two = games.add(
+            new TextOf("Indiana Jones and The Fate of Atlantis")
+        );
+        MatcherAssert.assertThat(
+            "Game repository did not returned correct iterable",
+            games.iterate(),
+            new IsIterableContainingInAnyOrder<>(
+                new CollectionOf<>(
+                    new IsEqual<>(one),
+                    new IsEqual<>(two)
+                )
+            )
+        );
     }
 }

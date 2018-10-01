@@ -23,19 +23,38 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.ui.face.FcGame;
-import org.cactoos.Text;
+import com.agamulator.ui.printer.PtGame;
+import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * A {@link com.agamulator.core.Game} formatted as a {@link String}.
+ * Tests for {@link StrGame}.
  *
  * @since 1.0
  */
-public final class Game implements FcGame.Output<String> {
+public final class StrGameTest {
 
-    @Override
-    public String out(final Text title) {
-        return new UncheckedText(title).asString();
+    /**
+     * Tests if a {@link StrGame} can format correctly a
+     * {@link com.agamulator.core.Game} into a String.
+     */
+    @Test
+    public void formatString() {
+        final com.agamulator.core.Game game =
+            new com.agamulator.core.Game.Simple(new TextOf("Full throttle"));
+        MatcherAssert.assertThat(
+            "Cannot format game as string",
+            new UncheckedText(game.title()).asString(),
+            new IsEqual<>(
+                new PtGame<String>(
+                    game
+                ).format(
+                    new StrGame()
+                )
+            )
+        );
     }
 }
