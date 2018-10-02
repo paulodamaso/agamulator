@@ -29,24 +29,28 @@ import org.cactoos.Text;
 
 /**
  * The {@link Gamer}, a person which have and plays games.
+ *
  * @since 1.0
  */
 public interface Gamer {
 
     /**
      * Gamer name.
+     *
      * @return The gamer name
      */
     Text name();
 
     /**
      * Adds a game to the library.
+     *
      * @param game Game to be added to the player's library.
      */
     void add(Game game);
 
     /**
      * Return the games owned by this player.
+     *
      * @return Games owned by this player
      */
     Collection<Game> games();
@@ -68,6 +72,7 @@ public interface Gamer {
 
         /**
          * Simple constructor with name.
+         *
          * @param name Gamer name
          */
         public Simple(final Text name) {
@@ -77,6 +82,7 @@ public interface Gamer {
 
         /**
          * Gamer name.
+         *
          * @return The name of the gamer
          */
         public Text name() {
@@ -85,6 +91,7 @@ public interface Gamer {
 
         /**
          * Adds a {@link Gamer} to library.
+         *
          * @param game Game to be added to the player's library.
          */
         public void add(final Game game) {
@@ -93,6 +100,7 @@ public interface Gamer {
 
         /**
          * Gamer library.
+         *
          * @return All the games of the gamer
          */
         public Collection<Game> games() {

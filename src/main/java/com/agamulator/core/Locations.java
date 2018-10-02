@@ -35,6 +35,7 @@ import org.cactoos.Text;
 public interface Locations {
     /**
      * Finds a {@link Location} by name.
+     *
      * @param name The {@link Location} name.
      * @return Platform with the given name
      */
@@ -42,6 +43,7 @@ public interface Locations {
 
     /**
      * Adds a new {@link Location}.
+     *
      * @param name Location name
      * @return Added provider
      */
@@ -49,6 +51,7 @@ public interface Locations {
 
     /**
      * Iterate over Locations.
+     *
      * @return All locations
      */
     Iterable<Location> iterate();
@@ -75,7 +78,7 @@ public interface Locations {
             return
                 this.locations.stream().filter(
                     location -> name.equals(location.name())
-            ).findFirst().get();
+                ).findFirst().get();
         }
 
         @Override

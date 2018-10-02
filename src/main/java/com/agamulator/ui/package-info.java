@@ -24,6 +24,7 @@
 
 /**
  * Agamulator user interface package.
+ *
  * @since 1.0
  */
 package com.agamulator.ui;

@@ -23,6 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
+import com.agamulator.core.Game;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -40,8 +41,8 @@ public final class PtGameTest {
      */
     @Test
     public void returnTitle() {
-        final com.agamulator.core.Game game =
-            new com.agamulator.core.Game.Simple(new TextOf("Zak McKracken"));
+        final Game game =
+            new Game.Simple(new TextOf("Zak McKracken"));
         MatcherAssert.assertThat(
             "Returned wrong title",
             game.title(),

@@ -46,11 +46,11 @@ public final class StrGames implements FcGames.Output<String> {
                 new Mapped<>(
                     game -> {
                         return
-                            new PtGame<String>(
+                        new PtGame<String>(
                                 game
-                            ).format(
+                        ).format(
                                 new StrGame()
-                            );
+                        );
                     },
                     list
                 )

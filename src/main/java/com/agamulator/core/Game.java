@@ -27,12 +27,14 @@ import org.cactoos.Text;
 
 /**
  * A game instance.
+ *
  * @since 1.0
  */
 public interface Game {
 
     /**
      * Game title.
+     *
      * @return Game title
      */
     Text title();
@@ -49,6 +51,7 @@ public interface Game {
 
         /**
          * Primary constructor.
+         *
          * @param title Game title
          */
         public Simple(final Text title) {

@@ -52,6 +52,7 @@ public interface FcGames extends Games {
 
         /**
          * Prints the game list.
+         *
          * @param list List to be printed
          * @return Printed list
          */

@@ -29,12 +29,14 @@ import org.cactoos.Text;
 
 /**
  * {@link Game} collection holder.
+ *
  * @since 1.0
  */
 public interface Games {
 
     /**
      * Adds a new game.
+     *
      * @param name Game name
      * @return The created {@link Game}
      */
@@ -42,6 +44,7 @@ public interface Games {
 
     /**
      * Iterate over the {@link Game} instaces stored by this {@link Games}.
+     *
      * @return A {@link Game} iterable
      */
     Iterable<Game> iterate();

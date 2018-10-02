@@ -25,7 +25,7 @@ package com.agamulator.ui.printed;
 
 /**
  * Printed objects. Effectively writes the 'faces' objects to some media
- * formatted by the 'out' objects.
+ * formatted by the 'output' objects.
  *
  * @param <T> Type of face to be printed
  * @since 1.0

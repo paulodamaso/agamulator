@@ -23,6 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
+import com.agamulator.core.Game;
 import com.agamulator.ui.face.FcGame;
 import org.cactoos.Text;
 
@@ -35,15 +36,16 @@ import org.cactoos.Text;
 public final class PtGame<T> implements FcGame<T> {
 
     /**
-     * Decorated {@link com.agamulator.core.Game}.
+     * Decorated {@link Game}.
      */
-    private final com.agamulator.core.Game origin;
+    private final Game origin;
 
     /**
      * Constructor.
+     *
      * @param origin Decorated game
      */
-    public PtGame(final com.agamulator.core.Game origin) {
+    public PtGame(final Game origin) {
         this.origin = origin;
     }
 

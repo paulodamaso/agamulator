@@ -34,6 +34,7 @@ public interface Copy extends Release {
 
     /**
      * The {@link Gamer} who owns this copy.
+     *
      * @return Gamer
      */
     Gamer owner();
@@ -55,6 +56,7 @@ public interface Copy extends Release {
 
         /**
          * Constructor.
+         *
          * @param owner Game owner
          * @param release Game release
          */
@@ -76,6 +78,11 @@ public interface Copy extends Release {
         @Override
         public Location location() {
             return this.release.location();
+        }
+
+        @Override
+        public Game game() {
+            return this.release.game();
         }
 
         @Override

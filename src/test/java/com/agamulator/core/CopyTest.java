@@ -32,8 +32,8 @@ import org.junit.Test;
 /**
  * Test class for {@link Copy}.
  *
- * @since 1.0
  * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
+ * @since 1.0
  */
 public final class CopyTest {
 
@@ -54,6 +54,26 @@ public final class CopyTest {
                 )
             ).title(),
             new IsEqual<>(title)
+        );
+    }
+
+    /**
+     * Copy can return game.
+     */
+    @Test
+    public void returnGame() {
+        final Game game = new Game.Simple(new TextOf("Joust"));
+        MatcherAssert.assertThat(
+            "Returned wrong Game",
+            new Copy.Simple(
+                new Gamer.Simple(new TextOf("Gamer name")),
+                new Release.Simple(
+                    game,
+                    new Platform.Simple(new TextOf("Arcade")),
+                    new Location.Simple(new TextOf("Cabinet Machine"))
+                )
+            ).game(),
+            new IsEqual<>(game)
         );
     }
 
@@ -83,7 +103,7 @@ public final class CopyTest {
     @Test
     public void returnPlatform() {
         final Platform platform = new Platform.Simple(
-            new TextOf("Platform Two Name")
+                new TextOf("Platform Two Name")
         );
         MatcherAssert.assertThat(
             "Returned wrong Platform",
@@ -105,7 +125,7 @@ public final class CopyTest {
     @Test
     public void returnLocation() {
         final Location location = new Location.Simple(
-            new TextOf("Location Three Name")
+                new TextOf("Location Three Name")
         );
         MatcherAssert.assertThat(
             "Returned wrong Location",

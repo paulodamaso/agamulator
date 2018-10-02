@@ -46,13 +46,13 @@ public final class GamesTest {
         final Games games = new Games.Simple();
         final Game game = games.add(new TextOf(name));
         MatcherAssert.assertThat(
-            "Game not added",
-            new CollectionOf<>(
-                games.iterate()
-            ),
-            new IsCollectionContaining<>(
-                new IsEqual<>(game)
-            )
+                "Game not added",
+                new CollectionOf<>(
+                        games.iterate()
+                ),
+                new IsCollectionContaining<>(
+                        new IsEqual<>(game)
+                )
         );
     }
 }

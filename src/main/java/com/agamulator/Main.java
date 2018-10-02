@@ -30,6 +30,7 @@ import org.cactoos.text.TextOf;
 
 /**
  * Main entry point for application.
+ *
  * @since 1.0
  */
 public final class Main {
@@ -43,13 +44,14 @@ public final class Main {
 
     /**
      * Main method.
+     *
      * @param args Arguments
      */
-    public static void main(final String...args) {
+    public static void main(final String... args) {
 
-    PtGames games = new PtGames(new Games.Simple());
-    games.add(new TextOf("Game One"));
-    games.add(new TextOf("Game two"));
-    new Sysout().write(games.print(new com.agamulator.ui.string.StrGames()));
+        PtGames games = new PtGames(new Games.Simple());
+        games.add(new TextOf("Game One"));
+        games.add(new TextOf("Game two"));
+        new Sysout().write(games.print(new com.agamulator.ui.string.StrGames()));
     }
 }

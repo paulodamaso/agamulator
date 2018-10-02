@@ -25,17 +25,18 @@ package com.agamulator.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import org.cactoos.Text;
 
 /**
  * A {@link Platform} repository.
+ *
  * @since 1.0
  */
 public interface Platforms {
 
     /**
      * Finds a {@link Platform} by name.
+     *
      * @param name The {@link Platform} name.
      * @return Platform with the given name
      */
@@ -43,6 +44,7 @@ public interface Platforms {
 
     /**
      * Adds a new {@link Platform}.
+     *
      * @param name Platform name
      * @return Added platform
      */
@@ -50,9 +52,10 @@ public interface Platforms {
 
     /**
      * Iterate over Platforms.
+     *
      * @return All platforms
      */
-    Iterator<Platform> iterate();
+    Iterable<Platform> iterate();
 
     /**
      * Simple Platform implementation.
@@ -76,7 +79,7 @@ public interface Platforms {
             return
                 this.platforms.stream().filter(
                     plat -> name.equals(plat.name())
-            ).findFirst().get();
+                ).findFirst().get();
         }
 
         @Override
@@ -87,8 +90,8 @@ public interface Platforms {
         }
 
         @Override
-        public Iterator<Platform> iterate() {
-            return this.platforms.iterator();
+        public Iterable<Platform> iterate() {
+            return this.platforms;
         }
     }
 }

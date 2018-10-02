@@ -27,12 +27,14 @@ import org.cactoos.Text;
 
 /**
  * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
+ *
  * @since 1.0
  */
 public interface Location {
 
     /**
      * Location name.
+     *
      * @return Location name (e.g. 'Steam', 'GOG', 'Physical', etc)
      */
     Text name();
@@ -50,6 +52,7 @@ public interface Location {
 
         /**
          * Primary constructor.
+         *
          * @param name Location name
          */
         public Simple(final Text name) {
@@ -58,6 +61,7 @@ public interface Location {
 
         /**
          * Returns the provider name.
+         *
          * @return Location name stored in memory.
          */
         public Text name() {

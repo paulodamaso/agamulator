@@ -65,9 +65,9 @@ public final class PlatformsTest {
         final Platforms platforms = new Platforms.Simple();
         final Platform platform = platforms.add(new TextOf(name));
         MatcherAssert.assertThat(
-            "Platform not found",
-            platforms.find(new TextOf(name)),
-            new IsEqual<>(platform)
+                "Platform not found",
+                platforms.find(new TextOf(name)),
+                new IsEqual<>(platform)
         );
     }
 }

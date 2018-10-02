@@ -45,6 +45,7 @@ public interface Releases {
 
     /**
      * Iterate over all releases in the repository.
+     *
      * @return Iterable with all releases from repository.
      */
     Iterable<Release> iterate();

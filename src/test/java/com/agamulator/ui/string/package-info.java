@@ -24,6 +24,7 @@
 
 /**
  * Tests for aGamulator UI classes.
+ *
  * @since 1.0
  */
 package com.agamulator.ui.string;

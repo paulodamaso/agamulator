@@ -24,6 +24,7 @@
 
 /**
  * Core aGamulator implementation. Holds all aGamulator internal logic.
+ *
  * @since 1.0
  */
 package com.agamulator.core;

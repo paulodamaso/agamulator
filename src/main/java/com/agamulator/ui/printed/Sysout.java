@@ -29,7 +29,6 @@ package com.agamulator.ui.printed;
  *
  * @since 1.0
  */
-@SuppressWarnings("PMD.SystemPrintln")
 public final class Sysout implements Printed<String> {
     @Override
     public void write(final String face) {

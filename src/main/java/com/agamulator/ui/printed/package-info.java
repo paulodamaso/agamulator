@@ -24,6 +24,7 @@
 
 /**
  * Printed instances.
+ *
  * @since 1.0
  */
 package com.agamulator.ui.printed;

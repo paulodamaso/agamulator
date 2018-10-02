@@ -24,6 +24,7 @@
 
 /**
  * Agamulator base package.
+ *
  * @since 1.0
  */
 package com.agamulator;

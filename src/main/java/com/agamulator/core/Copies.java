@@ -35,7 +35,8 @@ public interface Copies {
 
     /**
      * Add a new {@link Copy} to the repository.
-     * @param gamer Game who owns the copy
+     *
+     * @param gamer Game who owns the copy.
      * @param release Release which the copy refers to.
      * @return New copy.
      */
@@ -43,6 +44,7 @@ public interface Copies {
 
     /**
      * Iterate over all copies in the repository.
+     *
      * @return Iterable with all copies from repository.
      */
     Iterable<Copy> iterate();

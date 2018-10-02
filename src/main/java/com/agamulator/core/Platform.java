@@ -27,12 +27,14 @@ import org.cactoos.Text;
 
 /**
  * Gaming platform (PC, Xbox, PS3, PS4, Wii, etc).
+ *
  * @since 1.0
  */
 public interface Platform {
 
     /**
      * Gaming platform name.
+     *
      * @return Gaming platform name
      */
     Text name();
@@ -49,6 +51,7 @@ public interface Platform {
 
         /**
          * Contructor.
+         *
          * @param name Plataform name
          */
         public Simple(final Text name) {
@@ -57,6 +60,7 @@ public interface Platform {
 
         /**
          * The Platform name.
+         *
          * @return Platform name
          */
         public Text name() {

@@ -30,6 +30,7 @@ import org.cactoos.Text;
 
 /**
  * Printer for {@link FcGames}.
+ *
  * @since 1.0
  */
 public final class PtGames implements FcGames {
@@ -41,6 +42,7 @@ public final class PtGames implements FcGames {
 
     /**
      * Constructor.
+     *
      * @param origin Decorated games repository
      */
     public PtGames(final Games origin) {

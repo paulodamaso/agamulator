@@ -35,15 +35,24 @@ public interface Release extends Game {
 
     /**
      * The {@link Platform}.
+     *
      * @return Platform
      */
     Platform platform();
 
     /**
      * The {@link Location}.
+     *
      * @return Location
      */
     Location location();
+
+    /**
+     * The {@link Game}.
+     *
+     * @return Game
+     */
+    Game game();
 
     /**
      * Simple release of a {@link Game} with the fields stored in memory.
@@ -67,6 +76,7 @@ public interface Release extends Game {
 
         /**
          * Constructor.
+         *
          * @param origin Game wrapped
          * @param platform Release platform
          * @param location Release location
@@ -76,6 +86,11 @@ public interface Release extends Game {
             this.location = location;
             this.origin = origin;
             this.platform = platform;
+        }
+
+        @Override
+        public Game game() {
+            return this.origin;
         }
 
         @Override
