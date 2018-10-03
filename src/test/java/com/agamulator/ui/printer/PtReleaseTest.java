@@ -50,7 +50,7 @@ public final class PtReleaseTest {
             new Release.Simple(
                 game,
                 new Platform.Simple(new TextOf("Mac")),
-                new Location.Simple(new TextOf("Physical Game"))
+                new Location.Simple(new TextOf("Physical CD ROM"))
             );
         MatcherAssert.assertThat(
             "Returned wrong game",
@@ -69,8 +69,10 @@ public final class PtReleaseTest {
         );
         final Release release =
             new Release.Simple(
-                new Game.Simple(new TextOf("Command & Conquer")),
-                new Platform.Simple(new TextOf("Mac")),
+                new Game.Simple(
+                    new TextOf("Command & Conquer Red Alert")
+                ),
+                new Platform.Simple(new TextOf("MS-DOS")),
                 location
             );
         MatcherAssert.assertThat(
@@ -85,12 +87,14 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnPlatform() {
-        final Platform platform = new Platform.Simple(new TextOf("Mac"));
+        final Platform platform = new Platform.Simple(new TextOf("Windows 95"));
         final Release release =
             new Release.Simple(
-                new Game.Simple(new TextOf("Command & Conquer")),
+                new Game.Simple(
+                    new TextOf("Command & Conquer Tiberiun Sun")
+                ),
                 platform,
-                new Location.Simple(new TextOf("Physical Game"))
+                new Location.Simple(new TextOf("Physical DVD-ROM"))
             );
         MatcherAssert.assertThat(
             "Returned wrong platform",
@@ -108,8 +112,8 @@ public final class PtReleaseTest {
         final Release release =
             new Release.Simple(
                 new Game.Simple(title),
-                new Platform.Simple(new TextOf("Mac")),
-                new Location.Simple(new TextOf("Physical Game"))
+                new Platform.Simple(new TextOf("SNES")),
+                new Location.Simple(new TextOf("SNES Cartridge"))
             );
         MatcherAssert.assertThat(
             "Returned wrong title",

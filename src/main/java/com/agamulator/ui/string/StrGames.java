@@ -47,9 +47,9 @@ public final class StrGames implements FcGames.Output<String> {
                     game -> {
                         return
                         new PtGame<String>(
-                                game
+                            game
                         ).format(
-                                new StrGame()
+                            new StrGame()
                         );
                     },
                     list

@@ -47,7 +47,7 @@ public class PtLocationsTest {
     @Test
     public void returnIterable() {
         final Locations locations = new PtLocations(new Locations.Simple());
-        final Location one = locations.add(new TextOf("GoG Galaxy"));
+        final Location one = locations.add(new TextOf("Steam"));
         final Location two = locations.add(new TextOf("Microsoft Live!"));
         MatcherAssert.assertThat(
             "Location repository did not returned correct iterable",
@@ -62,14 +62,13 @@ public class PtLocationsTest {
     }
 
     /**
-     * Tests if {@link PtLocations} can return find correct location.
+     * Tests if {@link PtLocations} can find correct location.
      */
     @Test
     public void find() {
         final Locations locations = new PtLocations(new Locations.Simple());
         final Text name = new TextOf("GoG Galaxy");
         final Location one = locations.add(name);
-        final Location two = locations.add(new TextOf("Microsoft Live!"));
         MatcherAssert.assertThat(
             "Location not found",
             locations.find(name),

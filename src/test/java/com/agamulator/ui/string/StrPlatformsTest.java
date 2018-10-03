@@ -38,8 +38,8 @@ import org.junit.Test;
 public class StrPlatformsTest {
 
     /**
-     * Tests if {@link StrPlatforms} can return its list correctly formatted as a
-     * String.
+     * Tests if {@link StrPlatforms} can return its list correctly formatted
+     * as a String.
      */
     @Test
     public void returnIterable() {

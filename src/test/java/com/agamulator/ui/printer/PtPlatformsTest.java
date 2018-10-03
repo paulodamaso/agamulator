@@ -69,11 +69,10 @@ public class PtPlatformsTest {
         final Platforms platforms = new PtPlatforms(new Platforms.Simple());
         final Text name = new TextOf("PS4");
         final Platform one = platforms.add(name);
-        final Platform two = platforms.add(new TextOf("Microsoft Windows"));
         MatcherAssert.assertThat(
-                "Platform not found",
-                platforms.find(name),
-                new IsEqual<>(one)
+            "Platform not found",
+            platforms.find(name),
+            new IsEqual<>(one)
         );
     }
 }

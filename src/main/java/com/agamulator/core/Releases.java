@@ -25,6 +25,7 @@ package com.agamulator.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import org.cactoos.Text;
 
 /**
  * Game {@link Release} repository.
@@ -41,7 +42,7 @@ public interface Releases {
      * @param location Release location
      * @return Release
      */
-    Release add(Game game, Platform platform, Location location);
+    Release add(Text game, Text platform, Text location);
 
     /**
      * Iterate over all releases in the repository.
@@ -61,17 +62,41 @@ public interface Releases {
         private final Collection<Release> releases;
 
         /**
-         * Constructor.
+         * Game storage.
          */
-        public Simple() {
+        private final Games games;
+
+        /**
+         * Location storage.
+         */
+        private final Locations locations;
+
+        /**
+         * Platform storage.
+         */
+        private final Platforms platforms;
+
+        /**
+         * Constructor.
+         * @param games Game repository
+         * @param platforms Platform repository
+         * @param locations Location repository
+         */
+        public Simple(final Games games, final Platforms platforms,
+            final Locations locations) {
+            this.games = games;
+            this.platforms = platforms;
+            this.locations = locations;
             this.releases = new ArrayList<>(0);
         }
 
         @Override
-        public Release add(final Game game, final Platform platform,
-            final Location location) {
+        public Release add(final Text game, final Text platform,
+            final Text location) {
             final Release release = new Release.Simple(
-                game, platform, location
+                this.games.find(game),
+                this.platforms.find(platform),
+                this.locations.find(location)
             );
             this.releases.add(release);
             return release;

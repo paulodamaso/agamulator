@@ -23,6 +23,7 @@
  */
 package com.agamulator.core;
 
+import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsCollectionContaining;
@@ -41,17 +42,24 @@ public final class ReleasesTest {
      */
     @Test
     public void addRelease() {
-        final Releases releases = new Releases.Simple();
+        final Text title = new TextOf("Dark Forces");
+        final Games games = new Games.Simple();
+        games.add(title);
+        final Text platform = new TextOf("MS-DOS");
+        final Platforms platforms = new Platforms.Simple();
+        platforms.add(platform);
+        final Text location = new TextOf("CD-ROM");
+        final Locations locations = new Locations.Simple();
+        locations.add(location);
+        final Releases releases = new Releases.Simple(
+            games,
+            platforms,
+            locations
+        );
         final Release release = releases.add(
-            new Game.Simple(
-                new TextOf("Game Number One")
-            ),
-            new Platform.Simple(
-                new TextOf("Gaming Platform")
-            ),
-            new Location.Simple(
-                new TextOf("Game Location")
-            )
+            title,
+            platform,
+            location
         );
         MatcherAssert.assertThat(
             "Release not added",

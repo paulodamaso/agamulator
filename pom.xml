@@ -59,6 +59,7 @@
                                 <exclude>
                                     pmd:/src/main/java/com/agamulator/Main.java
                                 </exclude>
+                                <exclude>findbugs:com.agamulator.Main</exclude>
                                 <exclude>
                                     checkstyle:.*/src/main/java/com/agamulator/ui/printed/Sysout.java
                                 </exclude>

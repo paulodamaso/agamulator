@@ -43,6 +43,14 @@ public interface Games {
     Game add(Text name);
 
     /**
+     * Finds a {@link Game} by title.
+     *
+     * @param title The {@link Game} title.
+     * @return Game with the given title
+     */
+    Game find(Text title);
+
+    /**
      * Iterate over the {@link Game} instaces stored by this {@link Games}.
      *
      * @return A {@link Game} iterable
@@ -71,6 +79,14 @@ public interface Games {
             final Game game = new Game.Simple(name);
             this.library.add(game);
             return game;
+        }
+
+        @Override
+        public Game find(final Text title) {
+            return
+                this.library.stream().filter(
+                    game -> title.equals(game.title())
+                ).findFirst().get();
         }
 
         @Override

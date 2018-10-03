@@ -37,6 +37,7 @@ import org.junit.Test;
  * Tests for {@link StrRelease}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public final class StrReleaseTest {
 

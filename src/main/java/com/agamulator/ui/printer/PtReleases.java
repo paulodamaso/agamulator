@@ -23,12 +23,10 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
 import com.agamulator.core.Releases;
 import com.agamulator.ui.face.FcReleases;
+import org.cactoos.Text;
 
 /**
  * Printer for {@link FcReleases}.
@@ -52,8 +50,8 @@ public final class PtReleases implements FcReleases {
     }
 
     @Override
-    public Release add(final Game game, final Platform platform,
-        final Location location) {
+    public Release add(final Text game, final Text platform,
+        final Text location) {
         return this.origin.add(game, platform, location);
     }
 

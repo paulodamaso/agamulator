@@ -47,9 +47,9 @@ public final class StrLocations implements FcLocations.Output<String> {
                     location -> {
                         return
                         new PtLocation<String>(
-                                location
+                            location
                         ).format(
-                                new StrLocation()
+                            new StrLocation()
                         );
                     },
                     list

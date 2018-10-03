@@ -25,6 +25,7 @@ package com.agamulator.ui.printer;
 
 import com.agamulator.core.Game;
 import com.agamulator.core.Games;
+import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -58,6 +59,21 @@ public class PtGamesTest {
                     new IsEqual<>(two)
                 )
             )
+        );
+    }
+
+    /**
+     * Tests if {@link PtGames} can find correct game.
+     */
+    @Test
+    public void find() {
+        final Games locations = new PtGames(new Games.Simple());
+        final Text title = new TextOf("Grim Fandango");
+        final Game one = locations.add(title);
+        MatcherAssert.assertThat(
+            "Game not found",
+            locations.find(title),
+            new IsEqual<>(one)
         );
     }
 }

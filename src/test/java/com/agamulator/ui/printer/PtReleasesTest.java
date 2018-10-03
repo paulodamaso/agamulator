@@ -23,11 +23,12 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
+import com.agamulator.core.Games;
+import com.agamulator.core.Locations;
+import com.agamulator.core.Platforms;
 import com.agamulator.core.Release;
 import com.agamulator.core.Releases;
+import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -39,6 +40,7 @@ import org.junit.Test;
  * Tests for {@link PtReleases}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public class PtReleasesTest {
 
@@ -48,26 +50,47 @@ public class PtReleasesTest {
      */
     @Test
     public void returnIterable() {
-        final Releases releases = new PtReleases(new Releases.Simple());
+        final Text titlea = new TextOf("P.O.W");
+        final Text titleb = new TextOf("Choplifter");
+        final Games games = new Games.Simple();
+        games.add(titlea);
+        games.add(titleb);
+        final Text platforma = new TextOf("Arcade");
+        final Text platformb = new TextOf("NES");
+        final Platforms platforms = new Platforms.Simple();
+        platforms.add(platforma);
+        platforms.add(platformb);
+        final Text locationa = new TextOf("Physical Cabinet");
+        final Text locationb = new TextOf("ROM Drive");
+        final Locations locations = new Locations.Simple();
+        locations.add(locationa);
+        locations.add(locationb);
+        final Releases releases = new PtReleases(
+            new Releases.Simple(
+                games,
+                platforms,
+                locations
+            )
+        );
         final Release one = releases.add(
-                new Game.Simple(new TextOf("P.O.W.")),
-                new Platform.Simple(new TextOf("Arcade")),
-                new Location.Simple(new TextOf("Physical Cabinet"))
+            titlea,
+            platforma,
+            locationa
         );
         final Release two = releases.add(
-                new Game.Simple(new TextOf("Choplifter")),
-                new Platform.Simple(new TextOf("NES")),
-                new Location.Simple(new TextOf("ROM Drive"))
+            titleb,
+            platformb,
+            locationb
         );
         MatcherAssert.assertThat(
-                "Release repository did not returned correct iterable",
-                releases.iterate(),
-                new IsIterableContainingInAnyOrder<>(
-                        new CollectionOf<>(
-                                new IsEqual<>(one),
-                                new IsEqual<>(two)
-                        )
+            "Release repository did not returned correct iterable",
+            releases.iterate(),
+            new IsIterableContainingInAnyOrder<>(
+                new CollectionOf<>(
+                    new IsEqual<>(one),
+                    new IsEqual<>(two)
                 )
+            )
         );
     }
 }

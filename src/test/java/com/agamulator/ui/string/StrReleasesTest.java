@@ -23,11 +23,12 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
+import com.agamulator.core.Games;
+import com.agamulator.core.Locations;
+import com.agamulator.core.Platforms;
 import com.agamulator.core.Releases;
 import com.agamulator.ui.printer.PtReleases;
+import org.cactoos.Text;
 import org.cactoos.text.JoinedText;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -39,6 +40,7 @@ import org.junit.Test;
  * Tests for {@link StrReleases}, a String representation of {@link Releases}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public class StrReleasesTest {
 
@@ -48,16 +50,37 @@ public class StrReleasesTest {
      */
     @Test
     public void returnIterable() {
-        final PtReleases releases = new PtReleases(new Releases.Simple());
-        releases.add(
-            new Game.Simple(new TextOf("Castlevania")),
-            new Platform.Simple(new TextOf("NES")),
-            new Location.Simple(new TextOf("Original Cartridge"))
+        final Text titlea = new TextOf("Castlevania");
+        final Text titleb = new TextOf("Super Castlevania IV");
+        final Games games = new Games.Simple();
+        games.add(titlea);
+        games.add(titleb);
+        final Text platforma = new TextOf("NES");
+        final Text platformb = new TextOf("SNES");
+        final Platforms platforms = new Platforms.Simple();
+        platforms.add(platforma);
+        platforms.add(platformb);
+        final Text locationa = new TextOf("Original Cartridge");
+        final Text locationb = new TextOf("ROM File");
+        final Locations locations = new Locations.Simple();
+        locations.add(locationa);
+        locations.add(locationb);
+        final PtReleases releases = new PtReleases(
+            new Releases.Simple(
+                games,
+                platforms,
+                locations
+            )
         );
         releases.add(
-            new Game.Simple(new TextOf("Super Castlevania IV")),
-            new Platform.Simple(new TextOf("Super NES")),
-            new Location.Simple(new TextOf("ROM File"))
+            titlea,
+            platforma,
+            locationa
+        );
+        releases.add(
+            titleb,
+            platformb,
+            locationb
         );
         MatcherAssert.assertThat(
             "Release repository did not formatted correctly to String",
@@ -67,7 +90,7 @@ public class StrReleasesTest {
                     new JoinedText(
                         "\n",
                         "Game: Castlevania for NES on Original Cartridge",
-                        "Game: Super Castlevania IV for Super NES on ROM File"
+                        "Game: Super Castlevania IV for SNES on ROM File"
                     )
                 ).asString()
             )

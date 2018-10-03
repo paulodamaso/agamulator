@@ -50,8 +50,13 @@ public final class PtGames implements FcGames {
     }
 
     @Override
-    public Game add(final Text name) {
-        return this.origin.add(name);
+    public Game add(final Text title) {
+        return this.origin.add(title);
+    }
+
+    @Override
+    public Game find(final Text title) {
+        return this.origin.find(title);
     }
 
     @Override

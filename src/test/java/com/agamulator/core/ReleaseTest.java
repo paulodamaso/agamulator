@@ -30,6 +30,8 @@ import org.junit.Test;
 
 /**
  * Tests {@link Release} behavior.
+ *
+ * @since 1.0
  */
 public final class ReleaseTest {
 

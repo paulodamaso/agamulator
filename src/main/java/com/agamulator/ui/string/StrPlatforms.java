@@ -47,9 +47,9 @@ public final class StrPlatforms implements FcPlatforms.Output<String> {
                     platform -> {
                         return
                         new PtPlatform<String>(
-                                platform
+                            platform
                         ).format(
-                                new StrPlatform()
+                            new StrPlatform()
                         );
                     },
                     list

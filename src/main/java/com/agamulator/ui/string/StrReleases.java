@@ -47,9 +47,9 @@ public final class StrReleases implements FcReleases.Output<String> {
                     release -> {
                         return
                             new PtRelease<String>(
-                                    release
+                                release
                             ).format(
-                                    new StrRelease()
+                                new StrRelease()
                             );
                     },
                     list
