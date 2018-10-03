@@ -38,11 +38,17 @@ import com.agamulator.ui.string.StrGames;
 import com.agamulator.ui.string.StrLocations;
 import com.agamulator.ui.string.StrPlatforms;
 import com.agamulator.ui.string.StrReleases;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.cactoos.Text;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
+import org.cactoos.text.JoinedText;
 import org.cactoos.text.SplitText;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -101,9 +107,8 @@ public final class Main {
             out.write("> platforms - list known platforms");
             out.write("> quit - quits AGamulator");
             Scanner in = new Scanner(System.in);
-            String line = in.nextLine();
-            List<Text> cmd =
-             new ListOf<>(new SplitText(line, "\\s+"));
+            Text line = new TextOf(in.nextLine());
+            List<Text> cmd = new ListOf<>(new SplitText(line, "\\s+"));
             switch(new UncheckedText(cmd.get(0)).asString()){
                 case "games":{
                     out.write(pgames.print(new StrGames()));
@@ -126,21 +131,32 @@ public final class Main {
                     break;
                 }
                 case "add":{
+                    List<Text> parameters = parameters(line);
                     switch(new UncheckedText(cmd.get(1)).asString()){
                         case "game": {
-                            games.add(cmd.get(2));
+                            games.add(
+                                parameters.get(0)
+                            );
                             break;
                         }
                         case "platform":{
-                            platforms.add(cmd.get(2));
+                            platforms.add(
+                                parameters.get(0)
+                            );
                             break;
                         }
                         case "location":{
-                            locations.add(cmd.get(2));
+                            locations.add(
+                                parameters.get(0)
+                            );
                             break;
                         }
                         case "release":{
-                            releases.add(cmd.get(2), cmd.get(3), cmd.get(4));
+                            releases.add(
+                                parameters.get(0),
+                                parameters.get(1),
+                                parameters.get(2)
+                            );
                             break;
                         }
                         default:{
@@ -162,5 +178,15 @@ public final class Main {
             }
 
         }
+    }
+
+    private static List<Text> parameters (final Text command) {
+        final List<Text> result = new ArrayList<>(0);
+        final Pattern p = Pattern.compile("'([^\\s']+)'");
+        final Matcher m = p.matcher(new UncheckedText(command).asString());
+        while( m.find()) {
+            result.add(new TextOf(m.group( 1 )));
+        }
+        return result;
     }
 }
