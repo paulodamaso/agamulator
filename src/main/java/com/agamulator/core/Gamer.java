@@ -23,14 +23,17 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
+import org.cactoos.text.UncheckedText;
 
 /**
  * The {@link Gamer}, a person which have and plays games.
  *
  * @since 1.0
+ * @todo #7:30min Refactor Gamer class to behave according to Release / Copy
+ *  logic, instead of using direct Game references. Gamer class was created
+ *  before this logic creation so it have to be fixed. Refactor Gamer tests too.
  */
 public interface Gamer {
 
@@ -56,55 +59,31 @@ public interface Gamer {
     Collection<Game> games();
 
     /**
-     * Simple gamer implementation which store its data in instance fields.
+     * Envelope for default {@link Gamer} behavior.
      */
-    final class Simple implements Gamer {
-
-        /**
-         * Gamer name.
-         */
-        private final Text name;
-
-        /**
-         * Gamer games.
-         */
-        private final Collection<Game> library;
-
-        /**
-         * Simple constructor with name.
-         *
-         * @param name Gamer name
-         */
-        public Simple(final Text name) {
-            this.name = name;
-            this.library = new ArrayList<>(0);
+    abstract class Envelope implements Gamer {
+        @Override
+        public int hashCode() {
+            return this.name().hashCode();
         }
 
-        /**
-         * Gamer name.
-         *
-         * @return The name of the gamer
-         */
-        public Text name() {
-            return this.name;
-        }
-
-        /**
-         * Adds a {@link Gamer} to library.
-         *
-         * @param game Game to be added to the player's library.
-         */
-        public void add(final Game game) {
-            this.library.add(game);
-        }
-
-        /**
-         * Gamer library.
-         *
-         * @return All the games of the gamer
-         */
-        public Collection<Game> games() {
-            return this.library;
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Gamer)) {
+                return false;
+            }
+            final Gamer that = (Gamer) obj;
+            return
+                new UncheckedText(
+                    this.name()
+                ).asString().equals(
+                    new UncheckedText(
+                        that.name()
+                    ).asString()
+                );
         }
     }
 }

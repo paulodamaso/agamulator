@@ -23,6 +23,10 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -40,15 +44,15 @@ public final class ReleaseTest {
      */
     @Test
     public void returnGame() {
-        final Game game = new Game.Simple(new TextOf("Loom"));
+        final Game game = new SpGame(new TextOf("Loom"));
         MatcherAssert.assertThat(
             "Could not return Release game",
             game,
             new IsEqual<>(
-                new Release.Simple(
+                new SpRelease(
                     game,
-                    new Platform.Simple(new TextOf("PS4")),
-                    new Location.Simple(new TextOf("PSN"))
+                    new SpPlatform(new TextOf("PS4")),
+                    new SpLocation(new TextOf("PSN"))
                 ).game()
             )
         );
@@ -59,14 +63,14 @@ public final class ReleaseTest {
      */
     @Test
     public void returnLocation() {
-        final Location location = new Location.Simple(new TextOf("Origin"));
+        final Location location = new SpLocation(new TextOf("Origin"));
         MatcherAssert.assertThat(
             "Could not return Release location",
             location,
             new IsEqual<>(
-                new Release.Simple(
-                    new Game.Simple(new TextOf("Dragon Age Origins")),
-                    new Platform.Simple(new TextOf("PC")),
+                new SpRelease(
+                    new SpGame(new TextOf("Dragon Age Origins")),
+                    new SpPlatform(new TextOf("PC")),
                     location
                 ).location()
             )
@@ -78,15 +82,15 @@ public final class ReleaseTest {
      */
     @Test
     public void returnPlatform() {
-        final Platform platform = new Platform.Simple(new TextOf("PC"));
+        final Platform platform = new SpPlatform(new TextOf("PC"));
         MatcherAssert.assertThat(
             "Could not return Release platform",
             platform,
             new IsEqual<>(
-                new Release.Simple(
-                    new Game.Simple(new TextOf("Splinter Cell")),
+                new SpRelease(
+                    new SpGame(new TextOf("Splinter Cell")),
                     platform,
-                    new Location.Simple(new TextOf("UPlay"))
+                    new SpLocation(new TextOf("UPlay"))
                 ).platform()
             )
         );

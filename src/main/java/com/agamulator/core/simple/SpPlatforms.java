@@ -21,46 +21,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
 import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Platforms;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.cactoos.Text;
+import org.cactoos.collection.CollectionOf;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple {@link Platforms} ({@link Platform} repository) implementation with
+ * the repository being stored in a {@link Collection}.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpPlatforms implements Platforms {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * A {@link Platform} {@link Collection}.
      */
-    T format(Output<T> output);
+    private final Collection<Platform> platforms;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
+     * Constructor accepting a platform list.
      *
-     * @param <T> Type of generated output
+     * @param platforms Platforms already in repository
      */
-    interface Output<T> {
+    public SpPlatforms(final Platform...platforms) {
+        this.platforms = new ArrayList<>(new CollectionOf<>(platforms));
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    @Override
+    public Platform find(final Text name) {
+        return
+            this.platforms.stream().filter(
+                plat -> name.equals(plat.name())
+            ).findFirst().get();
+    }
+
+    @Override
+    public Platform add(final Text name) {
+        final Platform added = new SpPlatform(name);
+        this.platforms.add(added);
+        return added;
+    }
+
+    @Override
+    public Iterable<Platform> iterate() {
+        return this.platforms;
     }
 }

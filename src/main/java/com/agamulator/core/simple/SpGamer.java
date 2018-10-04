@@ -21,46 +21,66 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
 import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Gamer;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.cactoos.Text;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple {@link Gamer} implementation which store its data in instance fields.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpGamer extends Gamer.Envelope {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Gamer name.
      */
-    T format(Output<T> output);
+    private final Text gamer;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
-     *
-     * @param <T> Type of generated output
+     * Gamer games.
      */
-    interface Output<T> {
+    private final Collection<Game> library;
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    /**
+     * Simple constructor with name.
+     *
+     * @param name Gamer name
+     */
+    public SpGamer(final Text name) {
+        super();
+        this.gamer = name;
+        this.library = new ArrayList<>(0);
+    }
+
+    /**
+     * Gamer name.
+     *
+     * @return The name of the gamer
+     */
+    public Text name() {
+        return this.gamer;
+    }
+
+    /**
+     * Adds a {@link Gamer} to library.
+     *
+     * @param game Game to be added to the player's library.
+     */
+    public void add(final Game game) {
+        this.library.add(game);
+    }
+
+    /**
+     * Gamer library.
+     *
+     * @return All the games of the gamer
+     */
+    public Collection<Game> games() {
+        return this.library;
     }
 }

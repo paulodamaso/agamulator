@@ -23,50 +23,62 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.fake.FkGamer;
+import com.agamulator.core.simple.SpGamer;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test case for {@link Gamer}.
+ * Test cases for {@link Gamer} and {@link Gamer.Envelope}.
  *
  * @since 1.0
  */
-public final class GamerTest {
+public class GamerTest {
 
     /**
-     * Gamer can return name.
+     * Gamer name for testing.
+     */
+    private final Text name = new TextOf("Fake Gamer");
+
+    /**
+     * Test for {@link Gamer.Envelope#equals(Object)} method. Must assert
+     * that the {@link Gamer#title()} values are equal in both objects.
      */
     @Test
-    public void returnName() {
-        final Text name = new TextOf("Gamer Name");
+    public void returnEquality() {
         MatcherAssert.assertThat(
-            "Returned wrong name",
-            new Gamer.Simple(name).name(),
-            new TextIs(name)
+            "Gamer envelope does not perform equals correctly",
+            new SpGamer(this.name),
+            new IsEqual<>(new FkGamer())
         );
     }
 
     /**
-     * Gamer can add game to library.
+     * Test for {@link Gamer.Envelope#hashCode()} method. Must assert
+     * that the {@link Gamer#name()} values hashes are equal in both objects.
      */
     @Test
-    public void addGame() {
-        final Game game = new Game.Simple(new TextOf("New Game"));
-        final Gamer gamer = new Gamer.Simple(new TextOf("Gamer"));
-        gamer.add(game);
+    public void returnHashcode() {
         MatcherAssert.assertThat(
-            "Did not added game",
-            gamer.games(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(
-                    game
-                )
-            )
+            "Gamer envelope does not perform hashcode correctly",
+            new SpGamer(this.name).hashCode(),
+            new IsEqual<>(new FkGamer().hashCode())
+        );
+    }
+
+    /**
+     * Test for {@link Gamer.Envelope#equals(Object)} method failure when
+     * using objects of two different classes.
+     */
+    @Test
+    public void returnInequality() {
+        MatcherAssert.assertThat(
+            "Gamer envelope does not inequality check correctly",
+            new FkGamer().equals("Not equals"),
+            new IsEqual<>(false)
         );
     }
 }

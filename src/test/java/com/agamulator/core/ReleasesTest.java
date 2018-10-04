@@ -23,6 +23,9 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.simple.SpGames;
+import com.agamulator.core.simple.SpLocations;
+import com.agamulator.core.simple.SpPlatforms;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -43,13 +46,13 @@ public final class ReleasesTest {
     @Test
     public void addRelease() {
         final Text title = new TextOf("Dark Forces");
-        final Games games = new Games.Simple();
+        final Games games = new SpGames();
         games.add(title);
         final Text platform = new TextOf("MS-DOS");
-        final Platforms platforms = new Platforms.Simple();
+        final Platforms platforms = new SpPlatforms();
         platforms.add(platform);
         final Text location = new TextOf("CD-ROM");
-        final Locations locations = new Locations.Simple();
+        final Locations locations = new SpLocations();
         locations.add(location);
         final Releases releases = new Releases.Simple(
             games,

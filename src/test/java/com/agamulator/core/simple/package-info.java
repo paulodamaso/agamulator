@@ -21,35 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.string;
-
-import com.agamulator.core.simple.SpPlatforms;
-import com.agamulator.ui.printer.PtPlatforms;
-import org.cactoos.text.TextOf;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
 
 /**
- * Tests for {@link StrPlatforms}, a repository of {@link StrPlatform}.
- *
+ * Tests for simple onjects.
  * @since 1.0
  */
-public class StrPlatformsTest {
-
-    /**
-     * Tests if {@link StrPlatforms} can return its list correctly formatted
-     * as a String.
-     */
-    @Test
-    public void returnIterable() {
-        final PtPlatforms platforms = new PtPlatforms(new SpPlatforms());
-        platforms.add(new TextOf("PS Vita"));
-        platforms.add(new TextOf("PS3"));
-        MatcherAssert.assertThat(
-            "Platform repository did not formatted correctly to String",
-            platforms.print(new StrPlatforms()),
-            new IsEqual("PS Vita\nPS3")
-        );
-    }
-}
+package com.agamulator.core.simple;

@@ -23,12 +23,15 @@
  */
 package com.agamulator;
 
-import com.agamulator.core.Copies;
 import com.agamulator.core.Gamer;
 import com.agamulator.core.Games;
 import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
 import com.agamulator.core.Releases;
+import com.agamulator.core.simple.SpGamer;
+import com.agamulator.core.simple.SpGames;
+import com.agamulator.core.simple.SpLocations;
+import com.agamulator.core.simple.SpPlatforms;
 import com.agamulator.ui.printed.Sysout;
 import com.agamulator.ui.printer.PtGames;
 import com.agamulator.ui.printer.PtLocations;
@@ -48,7 +51,6 @@ import java.util.regex.Pattern;
 import org.cactoos.Text;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
-import org.cactoos.text.JoinedText;
 import org.cactoos.text.SplitText;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -73,13 +75,13 @@ public final class Main {
      * @param args Arguments
      */
     public static void main(final String... args) {
-        final Games games = new Games.Simple();//game repository
+        final Games games = new SpGames();//game repository
         final PtGames pgames = new PtGames(games);//game frontend
-        final Locations locations = new Locations.Simple();//location repository
+        final Locations locations = new SpLocations();//location repository
         final PtLocations plocations = new PtLocations(locations);//location
-        final Platforms platforms = new Platforms.Simple();//platform repo
+        final Platforms platforms = new SpPlatforms();//platform repo
         final PtPlatforms pplatforms = new PtPlatforms(platforms);
-        final Gamer gamer = new Gamer.Simple(new TextOf("paulodamaso"));//gamer
+        final Gamer gamer = new SpGamer(new TextOf("paulodamaso"));//gamer
         final Releases releases = new Releases.Simple(
             games,
             platforms,

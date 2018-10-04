@@ -21,46 +21,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
 import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Locations;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.cactoos.Text;
+import org.cactoos.collection.CollectionOf;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple Locations implementation.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpLocations implements Locations {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Location {@link Collection}.
      */
-    T format(Output<T> output);
+    private final Collection<Location> locations;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
+     * Constructor.
      *
-     * @param <T> Type of generated output
+     * @param locations Locations
      */
-    interface Output<T> {
+    public SpLocations(final Location...locations) {
+        this.locations = new ArrayList<>(new CollectionOf<Location>(locations));
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    @Override
+    public Location find(final Text name) {
+        return
+            this.locations.stream().filter(
+                location -> name.equals(location.name())
+            ).findFirst().get();
+    }
+
+    @Override
+    public Location add(final Text name) {
+        final Location added = new SpLocation(name);
+        this.locations.add(added);
+        return added;
+    }
+
+    @Override
+    public Iterable<Location> iterate() {
+        return this.locations;
     }
 }

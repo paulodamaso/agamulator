@@ -21,46 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.fake;
 
-import com.agamulator.core.Game;
 import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import org.cactoos.Text;
+import org.cactoos.text.TextOf;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Fake {@link Location} implementation for testing.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class FkLocation extends Location.Envelope {
 
-    /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
-     */
-    T format(Output<T> output);
-
-    /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
-     *
-     * @param <T> Type of generated output
-     */
-    interface Output<T> {
-
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    @Override
+    public Text name() {
+        return new TextOf("Fake Game Location");
     }
 }

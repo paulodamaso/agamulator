@@ -23,11 +23,11 @@
  */
 package com.agamulator.ui.string;
 
+import com.agamulator.core.Game;
 import com.agamulator.core.Location;
 import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
 import com.agamulator.ui.face.FcRelease;
-import org.cactoos.Text;
 import org.cactoos.text.FormattedText;
 import org.cactoos.text.UncheckedText;
 
@@ -39,12 +39,15 @@ import org.cactoos.text.UncheckedText;
 public final class StrRelease implements FcRelease.Output<String> {
 
     @Override
-    public String out(final Text title, final Platform platform,
+    public String out(final Game game, final Platform platform,
         final Location location) {
         return
         new UncheckedText(
             new FormattedText(
-                "Game: %s for %s on %s", title, platform.name(), location.name()
+                "Game: %s for %s on %s",
+                game.title(),
+                platform.name(),
+                location.name()
             )
         ).asString();
     }

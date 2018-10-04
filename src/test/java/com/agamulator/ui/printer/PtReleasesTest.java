@@ -28,6 +28,9 @@ import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
 import com.agamulator.core.Release;
 import com.agamulator.core.Releases;
+import com.agamulator.core.simple.SpGames;
+import com.agamulator.core.simple.SpLocations;
+import com.agamulator.core.simple.SpPlatforms;
 import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
@@ -52,17 +55,17 @@ public class PtReleasesTest {
     public void returnIterable() {
         final Text titlea = new TextOf("P.O.W");
         final Text titleb = new TextOf("Choplifter");
-        final Games games = new Games.Simple();
+        final Games games = new SpGames();
         games.add(titlea);
         games.add(titleb);
         final Text platforma = new TextOf("Arcade");
         final Text platformb = new TextOf("NES");
-        final Platforms platforms = new Platforms.Simple();
+        final Platforms platforms = new SpPlatforms();
         platforms.add(platforma);
         platforms.add(platformb);
         final Text locationa = new TextOf("Physical Cabinet");
         final Text locationb = new TextOf("ROM Drive");
-        final Locations locations = new Locations.Simple();
+        final Locations locations = new SpLocations();
         locations.add(locationa);
         locations.add(locationb);
         final Releases releases = new PtReleases(

@@ -21,38 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
-
-import org.cactoos.collection.CollectionOf;
-import org.cactoos.text.TextOf;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
 
 /**
- * Tests for {@link Games} repository.
- *
+ * Fake object for core classes to be used in testing.
  * @since 1.0
  */
-public final class GamesTest {
-
-    /**
-     * Games repository can add game.
-     */
-    @Test
-    public void addGame() {
-        final String name = "Game Title";
-        final Games games = new Games.Simple();
-        final Game game = games.add(new TextOf(name));
-        MatcherAssert.assertThat(
-            "Game not added",
-            new CollectionOf<>(
-                games.iterate()
-            ),
-            new IsCollectionContaining<>(
-                new IsEqual<>(game)
-            )
-        );
-    }
-}
+package com.agamulator.core.fake;

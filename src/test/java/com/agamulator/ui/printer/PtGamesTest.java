@@ -25,6 +25,7 @@ package com.agamulator.ui.printer;
 
 import com.agamulator.core.Game;
 import com.agamulator.core.Games;
+import com.agamulator.core.simple.SpGames;
 import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
@@ -45,7 +46,7 @@ public class PtGamesTest {
      */
     @Test
     public void returnIterable() {
-        final Games games = new PtGames(new Games.Simple());
+        final Games games = new PtGames(new SpGames());
         final Game one = games.add(new TextOf("Maniac Mansion"));
         final Game two = games.add(
             new TextOf("Indiana Jones and The Fate of Atlantis")
@@ -67,7 +68,7 @@ public class PtGamesTest {
      */
     @Test
     public void find() {
-        final Games locations = new PtGames(new Games.Simple());
+        final Games locations = new PtGames(new SpGames());
         final Text title = new TextOf("Grim Fandango");
         final Game one = locations.add(title);
         MatcherAssert.assertThat(

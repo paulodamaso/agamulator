@@ -21,46 +21,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
 import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Games;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.cactoos.Text;
+import org.cactoos.collection.CollectionOf;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple {@link Games} implementation.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpGames implements Games {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Game library.
      */
-    T format(Output<T> output);
+    private final Collection<Game> library;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
+     * Constructor.
      *
-     * @param <T> Type of generated output
+     * @param games Games
      */
-    interface Output<T> {
+    public SpGames(final Game...games) {
+        this.library = new ArrayList<>(new CollectionOf<Game>(games));
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    @Override
+    public Game add(final Text name) {
+        final Game game = new SpGame(name);
+        this.library.add(game);
+        return game;
+    }
+
+    @Override
+    public Game find(final Text title) {
+        return
+            this.library.stream().filter(
+                game -> title.equals(game.title())
+            ).findFirst().get();
+    }
+
+    @Override
+    public Iterable<Game> iterate() {
+        return this.library;
     }
 }

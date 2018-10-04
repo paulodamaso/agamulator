@@ -24,6 +24,7 @@
 package com.agamulator.core;
 
 import org.cactoos.Text;
+import org.cactoos.text.UncheckedText;
 
 /**
  * Gaming platform (PC, Xbox, PS3, PS4, Wii, etc).
@@ -40,31 +41,31 @@ public interface Platform {
     Text name();
 
     /**
-     * Simple Platform implementation which stores its data in instance fields.
+     * Envelope for default {@link Platform} behavior.
      */
-    final class Simple implements Platform {
-
-        /**
-         * Platform name.
-         */
-        private final Text name;
-
-        /**
-         * Contructor.
-         *
-         * @param name Plataform name
-         */
-        public Simple(final Text name) {
-            this.name = name;
+    abstract class Envelope implements Platform {
+        @Override
+        public int hashCode() {
+            return this.name().hashCode();
         }
 
-        /**
-         * The Platform name.
-         *
-         * @return Platform name
-         */
-        public Text name() {
-            return this.name;
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Platform)) {
+                return false;
+            }
+            final Platform that = (Platform) obj;
+            return
+                new UncheckedText(
+                    this.name()
+                ).asString().equals(
+                    new UncheckedText(
+                        that.name()
+                    ).asString()
+                );
         }
     }
 }

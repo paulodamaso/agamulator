@@ -28,7 +28,6 @@ import com.agamulator.core.Location;
 import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
 import com.agamulator.ui.face.FcRelease;
-import org.cactoos.Text;
 
 /**
  * Printer implementation for {@link FcRelease}.
@@ -53,7 +52,7 @@ public final class PtRelease<T> implements FcRelease<T> {
 
     @Override
     public T format(final Output<T> output) {
-        return output.out(this.title(), this.platform(), this.location());
+        return output.out(this.game(), this.platform(), this.location());
     }
 
     @Override
@@ -71,8 +70,4 @@ public final class PtRelease<T> implements FcRelease<T> {
         return this.origin.game();
     }
 
-    @Override
-    public Text title() {
-        return this.origin.title();
-    }
 }

@@ -23,7 +23,11 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.Text;
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpGamer;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -38,39 +42,19 @@ import org.junit.Test;
 public final class CopyTest {
 
     /**
-     * Copy can return title.
-     */
-    @Test
-    public void returnTitle() {
-        final Text title = new TextOf("Game name");
-        MatcherAssert.assertThat(
-            "Returned wrong Title",
-            new Copy.Simple(
-                new Gamer.Simple(new TextOf("Gamer#1")),
-                new Release.Simple(
-                    new Game.Simple(title),
-                    new Platform.Simple(new TextOf("Platform name")),
-                    new Location.Simple(new TextOf("Location name"))
-                )
-            ).title(),
-            new IsEqual<>(title)
-        );
-    }
-
-    /**
      * Copy can return game.
      */
     @Test
     public void returnGame() {
-        final Game game = new Game.Simple(new TextOf("Joust"));
+        final Game game = new SpGame(new TextOf("Joust"));
         MatcherAssert.assertThat(
             "Returned wrong Game",
             new Copy.Simple(
-                new Gamer.Simple(new TextOf("Gamer#2")),
-                new Release.Simple(
+                new SpGamer(new TextOf("Gamer#2")),
+                new SpRelease(
                     game,
-                    new Platform.Simple(new TextOf("Arcade")),
-                    new Location.Simple(new TextOf("Cabinet Machine"))
+                    new SpPlatform(new TextOf("Arcade")),
+                    new SpLocation(new TextOf("Cabinet Machine"))
                 )
             ).game(),
             new IsEqual<>(game)
@@ -82,15 +66,15 @@ public final class CopyTest {
      */
     @Test
     public void returnOwner() {
-        final Gamer owner = new Gamer.Simple(new TextOf("Gamer Owner"));
+        final Gamer owner = new SpGamer(new TextOf("Gamer Owner"));
         MatcherAssert.assertThat(
             "Returned wrong owner",
             new Copy.Simple(
                 owner,
-                new Release.Simple(
-                    new Game.Simple(new TextOf("Game One name")),
-                    new Platform.Simple(new TextOf("Platform One name")),
-                    new Location.Simple(new TextOf("Location One name"))
+                new SpRelease(
+                    new SpGame(new TextOf("Game One name")),
+                    new SpPlatform(new TextOf("Platform One name")),
+                    new SpLocation(new TextOf("Location One name"))
                 )
             ).owner(),
             new IsEqual<>(owner)
@@ -102,17 +86,17 @@ public final class CopyTest {
      */
     @Test
     public void returnPlatform() {
-        final Platform platform = new Platform.Simple(
+        final Platform platform = new SpPlatform(
             new TextOf("Platform Two Name")
         );
         MatcherAssert.assertThat(
             "Returned wrong Platform",
             new Copy.Simple(
-                new Gamer.Simple(new TextOf("Gamer Two Name")),
-                new Release.Simple(
-                    new Game.Simple(new TextOf("Game Two Name")),
+                new SpGamer(new TextOf("Gamer Two Name")),
+                new SpRelease(
+                    new SpGame(new TextOf("Game Two Name")),
                     platform,
-                    new Location.Simple(new TextOf("Location Two Name"))
+                    new SpLocation(new TextOf("Location Two Name"))
                 )
             ).platform(),
             new IsEqual<>(platform)
@@ -124,16 +108,16 @@ public final class CopyTest {
      */
     @Test
     public void returnLocation() {
-        final Location location = new Location.Simple(
+        final Location location = new SpLocation(
             new TextOf("Location Three Name")
         );
         MatcherAssert.assertThat(
             "Returned wrong Location",
             new Copy.Simple(
-                new Gamer.Simple(new TextOf("Gamer Three Name")),
-                new Release.Simple(
-                    new Game.Simple(new TextOf("Game Three Name")),
-                    new Platform.Simple(new TextOf("Platform Three Name")),
+                new SpGamer(new TextOf("Gamer Three Name")),
+                new SpRelease(
+                    new SpGame(new TextOf("Game Three Name")),
+                    new SpPlatform(new TextOf("Platform Three Name")),
                     location
                 )
             ).location(),

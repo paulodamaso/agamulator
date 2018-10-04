@@ -23,6 +23,7 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.simple.SpRelease;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
@@ -93,7 +94,7 @@ public interface Releases {
         @Override
         public Release add(final Text game, final Text platform,
             final Text location) {
-            final Release release = new Release.Simple(
+            final Release release = new SpRelease(
                 this.games.find(game),
                 this.platforms.find(platform),
                 this.locations.find(location)

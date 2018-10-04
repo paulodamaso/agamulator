@@ -23,8 +23,6 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import org.cactoos.Text;
 
 /**
@@ -57,41 +55,4 @@ public interface Platforms {
      */
     Iterable<Platform> iterate();
 
-    /**
-     * Simple Platform implementation.
-     */
-    final class Simple implements Platforms {
-
-        /**
-         * Platform {@link Collection}.
-         */
-        private final Collection<Platform> platforms;
-
-        /**
-         * Constructor.
-         */
-        public Simple() {
-            this.platforms = new ArrayList<>(0);
-        }
-
-        @Override
-        public Platform find(final Text name) {
-            return
-                this.platforms.stream().filter(
-                    plat -> name.equals(plat.name())
-                ).findFirst().get();
-        }
-
-        @Override
-        public Platform add(final Text name) {
-            final Platform added = new Platform.Simple(name);
-            this.platforms.add(added);
-            return added;
-        }
-
-        @Override
-        public Iterable<Platform> iterate() {
-            return this.platforms;
-        }
-    }
 }

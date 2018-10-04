@@ -23,7 +23,7 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.Locations;
+import com.agamulator.core.simple.SpLocations;
 import com.agamulator.ui.printer.PtLocations;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -43,7 +43,7 @@ public class StrLocationsTest {
      */
     @Test
     public void returnIterable() {
-        final PtLocations locations = new PtLocations(new Locations.Simple());
+        final PtLocations locations = new PtLocations(new SpLocations());
         locations.add(new TextOf("PSN"));
         locations.add(new TextOf("Steam"));
         MatcherAssert.assertThat(

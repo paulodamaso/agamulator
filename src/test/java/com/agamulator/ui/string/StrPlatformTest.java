@@ -24,6 +24,7 @@
 package com.agamulator.ui.string;
 
 import com.agamulator.core.Platform;
+import com.agamulator.core.simple.SpPlatform;
 import com.agamulator.ui.printer.PtPlatform;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -44,7 +45,7 @@ public final class StrPlatformTest {
      */
     @Test
     public void formatString() {
-        final Platform platform = new Platform.Simple(new TextOf("PS Vita"));
+        final Platform platform = new SpPlatform(new TextOf("PS Vita"));
         MatcherAssert.assertThat(
             "Cannot format platform as string",
             new UncheckedText(platform.name()).asString(),

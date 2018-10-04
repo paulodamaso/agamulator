@@ -21,46 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
 import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import org.cactoos.Text;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple implementation of Location which stores its data in instance
+ * fields.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpLocation extends Location.Envelope {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Location name.
      */
-    T format(Output<T> output);
+    private final Text location;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
+     * Constructor.
      *
-     * @param <T> Type of generated output
+     * @param name Location name
      */
-    interface Output<T> {
+    public SpLocation(final Text name) {
+        super();
+        this.location = name;
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    /**
+     * Returns the provider name.
+     *
+     * @return Location name stored in memory.
+     */
+    public Text name() {
+        return this.location;
     }
 }

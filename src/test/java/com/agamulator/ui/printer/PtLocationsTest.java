@@ -25,6 +25,7 @@ package com.agamulator.ui.printer;
 
 import com.agamulator.core.Location;
 import com.agamulator.core.Locations;
+import com.agamulator.core.simple.SpLocations;
 import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
@@ -46,7 +47,7 @@ public class PtLocationsTest {
      */
     @Test
     public void returnIterable() {
-        final Locations locations = new PtLocations(new Locations.Simple());
+        final Locations locations = new PtLocations(new SpLocations());
         final Location one = locations.add(new TextOf("Steam"));
         final Location two = locations.add(new TextOf("Microsoft Live!"));
         MatcherAssert.assertThat(
@@ -66,7 +67,7 @@ public class PtLocationsTest {
      */
     @Test
     public void find() {
-        final Locations locations = new PtLocations(new Locations.Simple());
+        final Locations locations = new PtLocations(new SpLocations());
         final Text name = new TextOf("GoG Galaxy");
         final Location one = locations.add(name);
         MatcherAssert.assertThat(

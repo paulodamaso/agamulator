@@ -23,8 +23,6 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import org.cactoos.Text;
 
 /**
@@ -56,41 +54,4 @@ public interface Locations {
      */
     Iterable<Location> iterate();
 
-    /**
-     * Simple Locations implementation.
-     */
-    final class Simple implements Locations {
-
-        /**
-         * Location {@link Collection}.
-         */
-        private final Collection<Location> locations;
-
-        /**
-         * Constructor.
-         */
-        public Simple() {
-            this.locations = new ArrayList<>(0);
-        }
-
-        @Override
-        public Location find(final Text name) {
-            return
-                this.locations.stream().filter(
-                    location -> name.equals(location.name())
-                ).findFirst().get();
-        }
-
-        @Override
-        public Location add(final Text name) {
-            final Location added = new Location.Simple(name);
-            this.locations.add(added);
-            return added;
-        }
-
-        @Override
-        public Iterable<Location> iterate() {
-            return this.locations;
-        }
-    }
 }

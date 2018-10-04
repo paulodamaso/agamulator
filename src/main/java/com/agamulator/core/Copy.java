@@ -23,8 +23,6 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.Text;
-
 /**
  * A {@link Game} copy, which belongs to a a {@link Gamer}.
  *
@@ -85,9 +83,5 @@ public interface Copy extends Release {
             return this.release.game();
         }
 
-        @Override
-        public Text title() {
-            return this.release.title();
-        }
     }
 }

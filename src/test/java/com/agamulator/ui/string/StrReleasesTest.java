@@ -27,6 +27,9 @@ import com.agamulator.core.Games;
 import com.agamulator.core.Locations;
 import com.agamulator.core.Platforms;
 import com.agamulator.core.Releases;
+import com.agamulator.core.simple.SpGames;
+import com.agamulator.core.simple.SpLocations;
+import com.agamulator.core.simple.SpPlatforms;
 import com.agamulator.ui.printer.PtReleases;
 import org.cactoos.Text;
 import org.cactoos.text.JoinedText;
@@ -52,17 +55,17 @@ public class StrReleasesTest {
     public void returnIterable() {
         final Text titlea = new TextOf("Castlevania");
         final Text titleb = new TextOf("Super Castlevania IV");
-        final Games games = new Games.Simple();
+        final Games games = new SpGames();
         games.add(titlea);
         games.add(titleb);
         final Text platforma = new TextOf("NES");
         final Text platformb = new TextOf("SNES");
-        final Platforms platforms = new Platforms.Simple();
+        final Platforms platforms = new SpPlatforms();
         platforms.add(platforma);
         platforms.add(platformb);
         final Text locationa = new TextOf("Original Cartridge");
         final Text locationb = new TextOf("ROM File");
-        final Locations locations = new Locations.Simple();
+        final Locations locations = new SpLocations();
         locations.add(locationa);
         locations.add(locationb);
         final PtReleases releases = new PtReleases(

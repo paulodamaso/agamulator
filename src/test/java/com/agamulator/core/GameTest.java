@@ -23,29 +23,62 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.fake.FkGame;
+import com.agamulator.core.simple.SpGame;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
 import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test class for {@link Game}.
+ * Test cases for {@link Game} and {@link Game.Envelope}.
  *
  * @since 1.0
  */
-public final class GameTest {
+public class GameTest {
 
     /**
-     * Game can return title.
+     * Game title for testing.
+     */
+    private final Text title = new TextOf("Fake Game Title");
+
+    /**
+     * Test for {@link Game.Envelope#equals(Object)} method. Must assert
+     * that the {@link Game#title()} values are equal in both objects.
      */
     @Test
-    public void returnTitle() {
-        final Text title = new TextOf("Game Title");
+    public void returnEquality() {
         MatcherAssert.assertThat(
-            "Returned wrong title",
-            new Game.Simple(title).title(),
-            new TextIs(title)
+            "Game envelope does not perform equals correctly",
+            new SpGame(this.title),
+            new IsEqual<>(new FkGame())
+        );
+    }
+
+    /**
+     * Test for {@link Game.Envelope#hashCode()} method. Must assert
+     * that the {@link Game#title()} values hashes are equal in both objects.
+     */
+    @Test
+    public void returnHashcode() {
+        MatcherAssert.assertThat(
+            "Game envelope does not perform hashcode correctly",
+            new SpGame(this.title).hashCode(),
+            new IsEqual<>(new FkGame().hashCode())
+        );
+    }
+
+    /**
+     * Test for {@link Game.Envelope#equals(Object)} method failure when
+     * using objects of two different classes.
+     */
+    @Test
+    public void returnInequality() {
+        MatcherAssert.assertThat(
+            "Game envelope does not inequality check correctly",
+            new FkGame().equals("Not equals"),
+            new IsEqual<>(false)
         );
     }
 }

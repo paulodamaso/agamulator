@@ -23,12 +23,10 @@
  */
 package com.agamulator.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import org.cactoos.Text;
 
 /**
- * {@link Game} collection holder.
+ * A {@link Game} repository.
  *
  * @since 1.0
  */
@@ -57,41 +55,4 @@ public interface Games {
      */
     Iterable<Game> iterate();
 
-    /**
-     * Simple implementation.
-     */
-    final class Simple implements Games {
-
-        /**
-         * Game library.
-         */
-        private final Collection<Game> library;
-
-        /**
-         * Default constructor.
-         */
-        public Simple() {
-            this.library = new ArrayList<>(0);
-        }
-
-        @Override
-        public Game add(final Text name) {
-            final Game game = new Game.Simple(name);
-            this.library.add(game);
-            return game;
-        }
-
-        @Override
-        public Game find(final Text title) {
-            return
-                this.library.stream().filter(
-                    game -> title.equals(game.title())
-                ).findFirst().get();
-        }
-
-        @Override
-        public Iterable<Game> iterate() {
-            return this.library;
-        }
-    }
 }

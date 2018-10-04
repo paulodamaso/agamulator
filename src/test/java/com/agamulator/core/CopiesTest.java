@@ -23,6 +23,11 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpGamer;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsCollectionContaining;
@@ -44,17 +49,17 @@ public final class CopiesTest {
     public void addCopy() {
         final Copies copies = new Copies.Simple();
         final Copy copy = copies.add(
-            new Gamer.Simple(
+            new SpGamer(
                 new TextOf("Gamer Number One")
             ),
-            new Release.Simple(
-                new Game.Simple(
+            new SpRelease(
+                new SpGame(
                     new TextOf("Game Number One")
                 ),
-                new Platform.Simple(
+                new SpPlatform(
                     new TextOf("Gaming Platform")
                 ),
-                new Location.Simple(
+                new SpLocation(
                     new TextOf("Game Location")
                 )
             )

@@ -23,15 +23,14 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.Text;
-
+import org.cactoos.text.UncheckedText;
 /**
  * A {@link Game} release, i.e., the {@link Game} launched for some
  * {@link Platform} at some {@link Location}.
  *
  * @since 1.0
  */
-public interface Release extends Game {
+public interface Release {
 
     /**
      * The {@link Platform}.
@@ -55,57 +54,31 @@ public interface Release extends Game {
     Game game();
 
     /**
-     * Simple release of a {@link Game} with the fields stored in memory.
+     * Envelope for default {@link Release} behavior.
      */
-    final class Simple implements Release {
-
-        /**
-         * The {@link Game} of the release.
-         */
-        private final Game origin;
-
-        /**
-         * The release {@link Platform}.
-         */
-        private final Platform platform;
-
-        /**
-         * The release {@link Location}.
-         */
-        private final Location location;
-
-        /**
-         * Constructor.
-         *
-         * @param origin Game wrapped
-         * @param platform Release platform
-         * @param location Release location
-         */
-        public Simple(final Game origin, final Platform platform,
-            final Location location) {
-            this.location = location;
-            this.origin = origin;
-            this.platform = platform;
+    abstract class Envelope implements Release {
+        @Override
+        public int hashCode() {
+            return this.name().hashCode();
         }
 
         @Override
-        public Game game() {
-            return this.origin;
-        }
-
-        @Override
-        public Platform platform() {
-            return this.platform;
-        }
-
-        @Override
-        public Location location() {
-            return this.location;
-        }
-
-        @Override
-        public Text title() {
-            return this.origin.title();
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Location)) {
+                return false;
+            }
+            final Location that = (Location) obj;
+            return
+                new UncheckedText(
+                    this.name()
+                ).asString().equals(
+                    new UncheckedText(
+                        that.name()
+                    ).asString()
+                );
         }
     }
 }

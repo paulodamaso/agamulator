@@ -23,29 +23,62 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.fake.FkPlatform;
+import com.agamulator.core.simple.SpPlatform;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
 import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test class for {@link Platform}.
+ * Test cases for {@link Platform} and {@link Platform.Envelope}.
  *
  * @since 1.0
  */
-public final class PlatformTest {
+public class PlatformTest {
 
     /**
-     * Platform can return name.
+     * Platform name for testing.
+     */
+    private final Text name = new TextOf("Fake Gaming Platform");
+
+    /**
+     * Test for {@link Platform.Envelope#equals(Object)} method. Must assert
+     * that the {@link Platform#name()} values are equal in both objects.
      */
     @Test
-    public void returnName() {
-        final Text name = new TextOf("Platform name");
+    public void returnEquality() {
         MatcherAssert.assertThat(
-            "Returned wrong name",
-            new Platform.Simple(name).name(),
-            new TextIs(name)
+            "Platform envelope does not perform equals correctly",
+            new SpPlatform(this.name),
+            new IsEqual<>(new FkPlatform())
+        );
+    }
+
+    /**
+     * Test for {@link Platform.Envelope#hashCode()} method. Must assert
+     * that the {@link Platform#name()} values hashes are equal in both objects.
+     */
+    @Test
+    public void returnHashcode() {
+        MatcherAssert.assertThat(
+            "Platform envelope does not perform hashcode correctly",
+            new SpPlatform(this.name).hashCode(),
+            new IsEqual<>(new FkPlatform().hashCode())
+        );
+    }
+
+    /**
+     * Test for {@link Platform.Envelope#equals(Object)} method failure when
+     * using objects of two different classes.
+     */
+    @Test
+    public void returnInequality() {
+        MatcherAssert.assertThat(
+            "Platform envelope does not inequality check correctly",
+            new FkPlatform().equals("Not equals"),
+            new IsEqual<>(false)
         );
     }
 }

@@ -24,6 +24,7 @@
 package com.agamulator.ui.string;
 
 import com.agamulator.core.Location;
+import com.agamulator.core.simple.SpLocation;
 import com.agamulator.ui.printer.PtLocation;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -44,7 +45,7 @@ public final class StrLocationTest {
      */
     @Test
     public void formatString() {
-        final Location location = new Location.Simple(new TextOf("PSN"));
+        final Location location = new SpLocation(new TextOf("PSN"));
         MatcherAssert.assertThat(
             "Cannot format location as string",
             new UncheckedText(location.name()).asString(),

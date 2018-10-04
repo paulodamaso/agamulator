@@ -23,29 +23,62 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.fake.FkLocation;
+import com.agamulator.core.simple.SpLocation;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
 import org.junit.Test;
-import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Test class for {@link Location}.
+ * Test cases for {@link Location} and {@link Location.Envelope}.
  *
  * @since 1.0
  */
-public final class LocationTest {
+public class LocationTest {
 
     /**
-     * Location can return name.
+     * Location for testing.
+     */
+    private final Text name = new TextOf("Fake Game Location");
+
+    /**
+     * Test for {@link Location.Envelope#equals(Object)} method. Must assert
+     * that the {@link Location#name()} values are equal in both objects.
      */
     @Test
-    public void returnName() {
-        final Text name = new TextOf("Location name");
+    public void returnEquality() {
         MatcherAssert.assertThat(
-            "Returned wrong name",
-            new Location.Simple(name).name(),
-            new TextIs(name)
+            "Location envelope does not perform equals correctly",
+            new SpLocation(this.name),
+            new IsEqual<>(new FkLocation())
+        );
+    }
+
+    /**
+     * Test for {@link Location.Envelope#hashCode()} method. Must assert
+     * that the {@link Location#name()} values hashes are equal in both objects.
+     */
+    @Test
+    public void returnHashcode() {
+        MatcherAssert.assertThat(
+            "Location envelope does not perform hashcode correctly",
+            new SpLocation(this.name).hashCode(),
+            new IsEqual<>(new FkLocation().hashCode())
+        );
+    }
+
+    /**
+     * Test for {@link Location.Envelope#equals(Object)} method failure when
+     * using objects of two different classes.
+     */
+    @Test
+    public void returnInequality() {
+        MatcherAssert.assertThat(
+            "Location envelope does not inequality check correctly",
+            new FkLocation().equals("Not equals"),
+            new IsEqual<>(false)
         );
     }
 }

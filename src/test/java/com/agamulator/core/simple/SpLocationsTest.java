@@ -21,46 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.fake.FkLocation;
+import org.cactoos.Text;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Tests for {@link SpLocations}.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpLocationsTest {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Location name to be used in tests.
      */
-    T format(Output<T> output);
+    private final Text name = new TextOf("Fake Game Location");
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
-     *
-     * @param <T> Type of generated output
+     * Location repository can add Location.
      */
-    interface Output<T> {
+    @Test
+    public void addLocation() {
+        MatcherAssert.assertThat(
+            "Location not added",
+            new SpLocations().add(this.name),
+            new IsEqual<>(new FkLocation())
+        );
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    /**
+     * Locations can find location.
+     */
+    @Test
+    public void findLocation() {
+        MatcherAssert.assertThat(
+            "Location not found",
+            new SpLocations(new FkLocation()).find(this.name),
+            new IsEqual<>(new FkLocation())
+        );
     }
 }

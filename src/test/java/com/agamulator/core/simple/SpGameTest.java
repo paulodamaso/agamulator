@@ -21,53 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.core.simple;
 
-import org.cactoos.collection.CollectionOf;
+import com.agamulator.core.fake.FkGame;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Tests for {@link Locations}.
+ * Test class for {@link SpGame}.
  *
  * @since 1.0
  */
-public final class LocationsTest {
+public final class SpGameTest {
 
     /**
-     * Location repository can add Location.
+     * Game can return title.
      */
     @Test
-    public void addLocation() {
-        final String name = "Location one";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
+    public void returnTitle() {
         MatcherAssert.assertThat(
-            "Location not added",
-            new CollectionOf<>(
-                locations.iterate()
-            ),
-            new IsCollectionContaining<>(
-                new IsEqual<>(location)
-            )
-        );
-    }
-
-    /**
-     * Locations can find location.
-     */
-    @Test
-    public void findLocation() {
-        final String name = "Location two";
-        final Locations locations = new Locations.Simple();
-        final Location location = locations.add(new TextOf(name));
-        MatcherAssert.assertThat(
-            "Location not found",
-            locations.find(new TextOf(name)),
-            new IsEqual<>(location)
+            "Returned wrong title",
+            new SpGame(new TextOf("Fake Game Title")).title(),
+            new TextIs(new FkGame().title())
         );
     }
 }

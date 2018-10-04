@@ -23,6 +23,7 @@
  */
 package com.agamulator.ui.string;
 
+import com.agamulator.core.simple.SpGame;
 import com.agamulator.ui.printer.PtGame;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -44,7 +45,7 @@ public final class StrGameTest {
     @Test
     public void formatString() {
         final com.agamulator.core.Game game =
-            new com.agamulator.core.Game.Simple(new TextOf("Full throttle"));
+            new SpGame(new TextOf("Full throttle"));
         MatcherAssert.assertThat(
             "Cannot format game as string",
             new UncheckedText(game.title()).asString(),

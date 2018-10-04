@@ -23,10 +23,11 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import com.agamulator.ui.printer.PtRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -47,10 +48,10 @@ public final class StrReleaseTest {
      */
     @Test
     public void formatString() {
-        final Release release = new Release.Simple(
-            new Game.Simple(new TextOf("Final Fight")),
-            new Platform.Simple(new TextOf("Super NES")),
-            new Location.Simple(new TextOf("Original Cartridge"))
+        final Release release = new SpRelease(
+            new SpGame(new TextOf("Final Fight")),
+            new SpPlatform(new TextOf("Super NES")),
+            new SpLocation(new TextOf("Original Cartridge"))
         );
         MatcherAssert.assertThat(
             "Cannot format release as string",

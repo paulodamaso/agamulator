@@ -24,6 +24,7 @@
 package com.agamulator.core;
 
 import org.cactoos.Text;
+import org.cactoos.text.UncheckedText;
 
 /**
  * A game instance.
@@ -40,31 +41,31 @@ public interface Game {
     Text title();
 
     /**
-     * Simple game implementation which store its data in instance fields.
+     * Envelope for default {@link Game} behavior.
      */
-    final class Simple implements Game {
-
-        /**
-         * Game title.
-         */
-        private final Text title;
-
-        /**
-         * Primary constructor.
-         *
-         * @param title Game title
-         */
-        public Simple(final Text title) {
-            this.title = title;
+    abstract class Envelope implements Game {
+        @Override
+        public int hashCode() {
+            return this.title().hashCode();
         }
 
-        /**
-         * Game title.
-         *
-         * @return Game title
-         */
-        public Text title() {
-            return this.title;
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Game)) {
+                return false;
+            }
+            final Game that = (Game) obj;
+            return
+                new UncheckedText(
+                    this.title()
+                ).asString().equals(
+                    new UncheckedText(
+                        that.title()
+                    ).asString()
+                );
         }
     }
 }

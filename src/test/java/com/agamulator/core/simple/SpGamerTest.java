@@ -21,46 +21,59 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
 import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Gamer;
+import com.agamulator.core.fake.FkGamer;
+import org.cactoos.Text;
+import org.cactoos.text.TextOf;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Test case for {@link SpGamer}.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpGamerTest {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * Name.
      */
-    T format(Output<T> output);
+    private final Text name = new TextOf("Fake Gamer");
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
-     *
-     * @param <T> Type of generated output
+     * The {@link SpGamer} can return its name.
      */
-    interface Output<T> {
+    @Test
+    public void returnName() {
+        MatcherAssert.assertThat(
+            "Returned wrong name",
+            new SpGamer(this.name).name(),
+            new TextIs(new FkGamer().name())
+        );
+    }
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    /**
+     * Gamer can add game to library.
+     */
+    @Test
+    public void addGame() {
+        final Game game = new SpGame(new TextOf("New Game"));
+        final Gamer gamer = new SpGamer(new TextOf("Gamer"));
+        gamer.add(game);
+        MatcherAssert.assertThat(
+            "Did not added game",
+            gamer.games(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(
+                    game
+                )
+            )
+        );
     }
 }

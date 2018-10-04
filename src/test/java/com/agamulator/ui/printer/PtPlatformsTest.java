@@ -25,6 +25,7 @@ package com.agamulator.ui.printer;
 
 import com.agamulator.core.Platform;
 import com.agamulator.core.Platforms;
+import com.agamulator.core.simple.SpPlatforms;
 import org.cactoos.Text;
 import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
@@ -46,7 +47,7 @@ public class PtPlatformsTest {
      */
     @Test
     public void returnIterable() {
-        final Platforms platforms = new PtPlatforms(new Platforms.Simple());
+        final Platforms platforms = new PtPlatforms(new SpPlatforms());
         final Platform one = platforms.add(new TextOf("PC"));
         final Platform two = platforms.add(new TextOf("Xbox 360"));
         MatcherAssert.assertThat(
@@ -66,7 +67,7 @@ public class PtPlatformsTest {
      */
     @Test
     public void find() {
-        final Platforms platforms = new PtPlatforms(new Platforms.Simple());
+        final Platforms platforms = new PtPlatforms(new SpPlatforms());
         final Text name = new TextOf("PS4");
         final Platform one = platforms.add(name);
         MatcherAssert.assertThat(

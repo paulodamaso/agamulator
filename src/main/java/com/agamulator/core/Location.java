@@ -24,6 +24,7 @@
 package com.agamulator.core;
 
 import org.cactoos.Text;
+import org.cactoos.text.UncheckedText;
 
 /**
  * Game provider / library (Steam, PSN, Live, Origin, GoG, physical copy, etc).
@@ -40,32 +41,31 @@ public interface Location {
     Text name();
 
     /**
-     * Simple implementation of Location which stores its data in instance
-     * fields.
+     * Envelope for default {@link Location} behavior.
      */
-    final class Simple implements Location {
-
-        /**
-         * Location name.
-         */
-        private final Text name;
-
-        /**
-         * Primary constructor.
-         *
-         * @param name Location name
-         */
-        public Simple(final Text name) {
-            this.name = name;
+    abstract class Envelope implements Location {
+        @Override
+        public int hashCode() {
+            return this.name().hashCode();
         }
 
-        /**
-         * Returns the provider name.
-         *
-         * @return Location name stored in memory.
-         */
-        public Text name() {
-            return this.name;
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Location)) {
+                return false;
+            }
+            final Location that = (Location) obj;
+            return
+                new UncheckedText(
+                    this.name()
+                ).asString().equals(
+                    new UncheckedText(
+                        that.name()
+                    ).asString()
+                );
         }
     }
 }

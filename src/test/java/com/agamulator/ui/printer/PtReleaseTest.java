@@ -27,7 +27,10 @@ import com.agamulator.core.Game;
 import com.agamulator.core.Location;
 import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
-import org.cactoos.Text;
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -45,12 +48,12 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnGame() {
-        final Game game = new Game.Simple(new TextOf("Command & Conquer"));
+        final Game game = new SpGame(new TextOf("Command & Conquer"));
         final Release release =
-            new Release.Simple(
+            new SpRelease(
                 game,
-                new Platform.Simple(new TextOf("Mac")),
-                new Location.Simple(new TextOf("Physical CD ROM"))
+                new SpPlatform(new TextOf("Mac")),
+                new SpLocation(new TextOf("Physical CD ROM"))
             );
         MatcherAssert.assertThat(
             "Returned wrong game",
@@ -64,15 +67,15 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnLocation() {
-        final Location location = new Location.Simple(
+        final Location location = new SpLocation(
             new TextOf("Physical Game")
         );
         final Release release =
-            new Release.Simple(
-                new Game.Simple(
+            new SpRelease(
+                new SpGame(
                     new TextOf("Command & Conquer Red Alert")
                 ),
-                new Platform.Simple(new TextOf("MS-DOS")),
+                new SpPlatform(new TextOf("MS-DOS")),
                 location
             );
         MatcherAssert.assertThat(
@@ -87,38 +90,19 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnPlatform() {
-        final Platform platform = new Platform.Simple(new TextOf("Windows 95"));
+        final Platform platform = new SpPlatform(new TextOf("Windows 95"));
         final Release release =
-            new Release.Simple(
-                new Game.Simple(
+            new SpRelease(
+                new SpGame(
                     new TextOf("Command & Conquer Tiberiun Sun")
                 ),
                 platform,
-                new Location.Simple(new TextOf("Physical DVD-ROM"))
+                new SpLocation(new TextOf("Physical DVD-ROM"))
             );
         MatcherAssert.assertThat(
             "Returned wrong platform",
             platform,
             new IsEqual<>(new PtRelease<>(release).platform())
-        );
-    }
-
-    /**
-     * Tests if a {@link PtRelease} title is returned correctly.
-     */
-    @Test
-    public void returnTitle() {
-        final Text title = new TextOf("Earthworm Jim");
-        final Release release =
-            new Release.Simple(
-                new Game.Simple(title),
-                new Platform.Simple(new TextOf("SNES")),
-                new Location.Simple(new TextOf("SNES Cartridge"))
-            );
-        MatcherAssert.assertThat(
-            "Returned wrong title",
-            title,
-            new IsEqual<>(new PtRelease<>(release).title())
         );
     }
 }

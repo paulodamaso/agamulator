@@ -21,53 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.core.simple;
 
-import org.cactoos.collection.CollectionOf;
+import com.agamulator.core.Location;
+import com.agamulator.core.fake.FkLocation;
+import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
+import org.llorllale.cactoos.matchers.TextIs;
 
 /**
- * Tests for {@link Platforms}.
+ * Test class for {@link Location}.
  *
  * @since 1.0
  */
-public final class PlatformsTest {
+public final class SpLocationTest {
 
     /**
-     * Platform repository can add Platform.
+     * Location.
      */
-    @Test
-    public void addPlatform() {
-        final String name = "Platform one";
-        final Platforms platforms = new Platforms.Simple();
-        final Platform platform = platforms.add(new TextOf(name));
-        MatcherAssert.assertThat(
-            "Platform not added",
-            new CollectionOf<>(
-                platforms.iterate()
-            ),
-            new IsCollectionContaining<>(
-                new IsEqual<>(platform)
-            )
-        );
-    }
+    private final Text location = new TextOf("Fake Game Location");
 
     /**
-     * Platforms can find platform.
+     * Location can return name.
      */
     @Test
-    public void findPlatform() {
-        final String name = "Platform two";
-        final Platforms platforms = new Platforms.Simple();
-        final Platform platform = platforms.add(new TextOf(name));
+    public void returnName() {
         MatcherAssert.assertThat(
-            "Platform not found",
-            platforms.find(new TextOf(name)),
-            new IsEqual<>(platform)
+            "Returned wrong name",
+            new SpLocation(this.location).name(),
+            new TextIs(new FkLocation().name())
         );
     }
 }

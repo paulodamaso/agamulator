@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.face;
+package com.agamulator.core.simple;
 
 import com.agamulator.core.Game;
 import com.agamulator.core.Location;
@@ -29,38 +29,54 @@ import com.agamulator.core.Platform;
 import com.agamulator.core.Release;
 
 /**
- * Face for {@link Release}. Provides contracts for printing {@link Release}
- * instances in various output types.
+ * Simple release of a {@link Game}.
  *
- * @param <T> Type of the printed instance
  * @since 1.0
  */
-public interface FcRelease<T> extends Release {
+public final class SpRelease implements Release {
 
     /**
-     * Returns a formatted instance of {@link Release} as T.
-     *
-     * @param output Who will format the instance into the desired format
-     * @return Printed instance
+     * The {@link Game} of the release.
      */
-    T format(Output<T> output);
+    private final Game origin;
 
     /**
-     * Creates formatted instances of {@link Release} objects. Defines the
-     * behavior of formatting a {@link Release} into a T instance.
-     *
-     * @param <T> Type of generated output
+     * The release {@link Platform}.
      */
-    interface Output<T> {
+    private final Platform plat;
 
-        /**
-         * Creates an T instance which receives {@link Release} parameters.
-         *
-         * @param game The game
-         * @param platform The game Platform
-         * @param location The game Location
-         * @return A {@link Game} in T format
-         */
-        T out(Game game, Platform platform, Location location);
+    /**
+     * The release {@link Location}.
+     */
+    private final Location loc;
+
+    /**
+     * Constructor.
+     *
+     * @param origin Game wrapped
+     * @param platform Release platform
+     * @param location Release location
+     */
+    public SpRelease(final Game origin, final Platform platform,
+        final Location location) {
+        this.loc = location;
+        this.origin = origin;
+        this.plat = platform;
     }
+
+    @Override
+    public Game game() {
+        return this.origin;
+    }
+
+    @Override
+    public Platform platform() {
+        return this.plat;
+    }
+
+    @Override
+    public Location location() {
+        return this.loc;
+    }
+
 }
