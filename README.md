@@ -6,6 +6,8 @@ check every game platform, provider and your cd cases every time you want to
 buy a new game. Its purpose is to help you not to buy the same game more than
  once.
  
+ [![Build Status](https://www.travis-ci.org/paulodamaso/agamulator.svg?branch=master)](https://www.travis-ci.org/paulodamaso/agamulator)
+ 
 # Roadmap
 - [ ] Dev environment setup
     - [x] Add qulice checks
