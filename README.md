@@ -10,6 +10,8 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
  [![Build Status](https://www.travis-ci.org/paulodamaso/agamulator.svg?branch=master)](https://www.travis-ci.org/paulodamaso/agamulator)
  
+ [![codecov](https://codecov.io/gh/paulodamaso/agamulator/branch/master/graph/badge.svg)](https://codecov.io/gh/paulodamaso/agamulator)
+
  
 # Roadmap
 - [ ] Dev environment setup
