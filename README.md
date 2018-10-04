@@ -14,14 +14,18 @@ buy a new game. Its purpose is to help you not to buy the same game more than
 
  [![PDD status](http://www.0pdd.com/svg?name=paulodamaso/agamulator)](http://www.0pdd.com/p?name=paulodamaso/agamulator)
  
+ [![codebeat badge](https://codebeat.co/badges/a98668bc-0a59-41d6-b35c-129072438d89)](https://codebeat.co/projects/github-com-paulodamaso-agamulator-master)
+ 
 # Roadmap
-- [ ] Dev environment setup
+- [x] Dev environment setup
     - [x] Add qulice checks
     - [x] Add jacoco support
     - [x] Add travis support
     - [x] Add 0pdd support
     - [x] Add rultor support
     - [x] Add badges to repository
+    - [x] Add codebeat support
+    - [x] Add codecov support
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
