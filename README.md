@@ -12,13 +12,14 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
  [![codecov](https://codecov.io/gh/paulodamaso/agamulator/branch/master/graph/badge.svg)](https://codecov.io/gh/paulodamaso/agamulator)
 
+ [![PDD status](http://www.0pdd.com/svg?name=paulodamaso/agamulator)](http://www.0pdd.com/p?name=paulodamaso/agamulator)
  
 # Roadmap
 - [ ] Dev environment setup
     - [x] Add qulice checks
     - [x] Add jacoco support
     - [x] Add travis support
-    - [ ] Add 0pdd support
+    - [x] Add 0pdd support
     - [x] Add rultor support
     - [x] Add badges to repository
 - [ ] Local application
