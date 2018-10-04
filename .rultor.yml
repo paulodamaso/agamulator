@@ -1,0 +1,7 @@
+architect:
+  - paulodamaso
+docker:
+  image: yegor256/java8
+merge:
+  script: |
+    mvn clean install -Pqulice -Pjacoco --errors
