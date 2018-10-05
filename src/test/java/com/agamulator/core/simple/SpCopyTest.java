@@ -21,55 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.simple.SpGames;
-import com.agamulator.core.simple.SpLocations;
-import com.agamulator.core.simple.SpPlatforms;
-import org.cactoos.Text;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.Copy;
+import com.agamulator.core.Gamer;
+import com.agamulator.core.fake.FkGamer;
+import com.agamulator.core.fake.FkRelease;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 /**
- * Tests for {@link Releases}.
+ * Test class for {@link Copy}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
-public final class ReleasesTest {
+public final class SpCopyTest {
 
     /**
-     * Release repository can add Release.
+     * Copy can return release.
      */
     @Test
-    public void addRelease() {
-        final Text title = new TextOf("Dark Forces");
-        final Games games = new SpGames();
-        games.add(title);
-        final Text platform = new TextOf("MS-DOS");
-        final Platforms platforms = new SpPlatforms();
-        platforms.add(platform);
-        final Text location = new TextOf("CD-ROM");
-        final Locations locations = new SpLocations();
-        locations.add(location);
-        final Releases releases = new Releases.Simple(
-            games,
-            platforms,
-            locations
-        );
-        final Release release = releases.add(
-            title,
-            platform,
-            location
-        );
+    public void returnRelease() {
         MatcherAssert.assertThat(
-            "Release not added",
-            releases.iterate(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(release)
-            )
+            "Returned wrong Release",
+            new SpCopy(new FkGamer(), new FkRelease()).release(),
+            new IsEqual<>(new FkRelease())
+        );
+    }
+
+    /**
+     * Copy can return {@link Gamer}.
+     */
+    @Test
+    public void returnOwner() {
+        MatcherAssert.assertThat(
+            "Returned wrong owner",
+            new SpCopy(new FkGamer(), new FkRelease()).owner(),
+            new IsEqual<>(new FkGamer())
         );
     }
 }

@@ -28,7 +28,7 @@ package com.agamulator.core;
  *
  * @since 1.0
  */
-public interface Copy extends Release {
+public interface Copy {
 
     /**
      * The {@link Gamer} who owns this copy.
@@ -38,50 +38,10 @@ public interface Copy extends Release {
     Gamer owner();
 
     /**
-     * Simple implementation of Copy with ownership data stored in memory.
+     * The {@link Release} of this copy.
+     *
+     * @return Release
      */
-    final class Simple implements Copy {
+    Release release();
 
-        /**
-         * Copy owner.
-         */
-        private final Gamer owner;
-
-        /**
-         * The release this copy refers to.
-         */
-        private final Release release;
-
-        /**
-         * Constructor.
-         *
-         * @param owner Game owner
-         * @param release Game release
-         */
-        public Simple(final Gamer owner, final Release release) {
-            this.owner = owner;
-            this.release = release;
-        }
-
-        @Override
-        public Gamer owner() {
-            return this.owner;
-        }
-
-        @Override
-        public Platform platform() {
-            return this.release.platform();
-        }
-
-        @Override
-        public Location location() {
-            return this.release.location();
-        }
-
-        @Override
-        public Game game() {
-            return this.release.game();
-        }
-
-    }
 }

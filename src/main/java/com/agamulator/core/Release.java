@@ -23,7 +23,6 @@
  */
 package com.agamulator.core;
 
-import org.cactoos.text.UncheckedText;
 /**
  * A {@link Game} release, i.e., the {@link Game} launched for some
  * {@link Platform} at some {@link Location}.
@@ -59,7 +58,10 @@ public interface Release {
     abstract class Envelope implements Release {
         @Override
         public int hashCode() {
-            return this.name().hashCode();
+            return
+                this.game().hashCode()
+                * this.platform().hashCode()
+                * this.location().hashCode();
         }
 
         @Override
@@ -67,18 +69,14 @@ public interface Release {
             if (this == obj) {
                 return true;
             }
-            if (!(obj instanceof Location)) {
+            if (!(obj instanceof Release)) {
                 return false;
             }
-            final Location that = (Location) obj;
+            final Release that = (Release) obj;
             return
-                new UncheckedText(
-                    this.name()
-                ).asString().equals(
-                    new UncheckedText(
-                        that.name()
-                    ).asString()
-                );
+                this.game().equals(that.game())
+                && this.location().equals(that.location())
+                && this.platform().equals(that.platform());
         }
     }
 }

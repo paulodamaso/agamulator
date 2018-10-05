@@ -32,6 +32,7 @@ import com.agamulator.core.simple.SpGamer;
 import com.agamulator.core.simple.SpGames;
 import com.agamulator.core.simple.SpLocations;
 import com.agamulator.core.simple.SpPlatforms;
+import com.agamulator.core.simple.SpReleases;
 import com.agamulator.ui.printed.Sysout;
 import com.agamulator.ui.printer.PtGames;
 import com.agamulator.ui.printer.PtLocations;
@@ -82,7 +83,7 @@ public final class Main {
         final Platforms platforms = new SpPlatforms();//platform repo
         final PtPlatforms pplatforms = new PtPlatforms(platforms);
         final Gamer gamer = new SpGamer(new TextOf("paulodamaso"));//gamer
-        final Releases releases = new Releases.Simple(
+        final Releases releases = new SpReleases(
             games,
             platforms,
             locations

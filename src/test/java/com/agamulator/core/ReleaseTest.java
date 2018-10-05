@@ -23,6 +23,9 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.fake.FkGame;
+import com.agamulator.core.fake.FkLocation;
+import com.agamulator.core.fake.FkPlatform;
 import com.agamulator.core.simple.SpGame;
 import com.agamulator.core.simple.SpLocation;
 import com.agamulator.core.simple.SpPlatform;
@@ -30,68 +33,152 @@ import com.agamulator.core.simple.SpRelease;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsNot;
 import org.junit.Test;
 
 /**
- * Tests {@link Release} behavior.
+ * Test cases for {@link Release} and {@link Release.Envelope}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (200 lines)
  */
-public final class ReleaseTest {
+public class ReleaseTest {
 
     /**
-     * Tests if the Release can return its game.
+     * Test for {@link Release.Envelope#equals(Object)} method. Must assert
+     * that the {@link Release#game()}, {@link Release#location()} and
+     * {@link Release#platform()} values are equal in both objects.
      */
     @Test
-    public void returnGame() {
-        final Game game = new SpGame(new TextOf("Loom"));
+    public void returnEquality() {
         MatcherAssert.assertThat(
-            "Could not return Release game",
-            game,
+            "Release envelope does not perform equals correctly",
+            new SpRelease(
+                new FkGame(),
+                new FkPlatform(),
+                new FkLocation()
+            ),
             new IsEqual<>(
                 new SpRelease(
-                    game,
-                    new SpPlatform(new TextOf("PS4")),
-                    new SpLocation(new TextOf("PSN"))
-                ).game()
+                    new FkGame(),
+                    new FkPlatform(),
+                    new FkLocation()
+                )
             )
         );
     }
 
     /**
-     * Tests if the Release can return its location.
+     * Test for {@link Release.Envelope#hashCode()} method. Must assert
+     * that the {@link Release} hashes are equal in both objects.
      */
     @Test
-    public void returnLocation() {
-        final Location location = new SpLocation(new TextOf("Origin"));
+    public void returnHashcode() {
         MatcherAssert.assertThat(
-            "Could not return Release location",
-            location,
+            "Release envelope does not perform hashcode correctly",
+            new SpRelease(
+                new FkGame(),
+                new FkPlatform(),
+                new FkLocation()
+            ).hashCode(),
             new IsEqual<>(
                 new SpRelease(
-                    new SpGame(new TextOf("Dragon Age Origins")),
-                    new SpPlatform(new TextOf("PC")),
-                    location
-                ).location()
+                    new FkGame(),
+                    new FkPlatform(),
+                    new FkLocation()
+                ).hashCode()
             )
         );
     }
 
     /**
-     * Tests if the Release can return its platform.
+     * Test for {@link Release.Envelope#equals(Object)} method failure when
+     * using objects of two different classes.
      */
     @Test
-    public void returnPlatform() {
-        final Platform platform = new SpPlatform(new TextOf("PC"));
+    public void returnInequalityWhenDifferentClasses() {
         MatcherAssert.assertThat(
-            "Could not return Release platform",
-            platform,
-            new IsEqual<>(
-                new SpRelease(
-                    new SpGame(new TextOf("Splinter Cell")),
-                    platform,
-                    new SpLocation(new TextOf("UPlay"))
-                ).platform()
+            "Release envelope does not inequality check correctly",
+            new SpRelease(
+                new FkGame(),
+                new FkPlatform(),
+                new FkLocation()
+            ).equals("Not a release"),
+            new IsEqual<>(false)
+        );
+    }
+
+    /**
+     * Test for {@link Release.Envelope#equals(Object)} method failure when
+     * using objects with different {@link Release#game()} values.
+     */
+    @Test
+    public void returnInequalityWhenDifferentGame() {
+        MatcherAssert.assertThat(
+            "Release envelope does not check inequality correctly on game",
+            new SpRelease(
+                new SpGame(new TextOf("Game")),
+                new FkPlatform(),
+                new FkLocation()
+            ),
+            new IsNot<>(
+                new IsEqual<>(
+                    new SpRelease(
+                        new FkGame(),
+                        new FkPlatform(),
+                        new FkLocation()
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * Test for {@link Release.Envelope#equals(Object)} method failure when
+     * using objects with different {@link Release#platform()} values.
+     */
+    @Test
+    public void returnInequalityWhenDifferentPlatform() {
+        MatcherAssert.assertThat(
+            "Release envelope does not check inequality correctly on platform",
+            new SpRelease(
+                new FkGame(),
+                new SpPlatform(new TextOf("Platform")),
+                new FkLocation()
+            ),
+            new IsNot<>(
+                new IsEqual<>(
+                    new SpRelease(
+                        new FkGame(),
+                        new FkPlatform(),
+                        new FkLocation()
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * Test for {@link Release.Envelope#equals(Object)} method failure when
+     * using objects with different {@link Release#location()} values.
+     */
+    @Test
+    public void returnInequalityWhenDifferentLocation() {
+        MatcherAssert.assertThat(
+            "Release envelope does not check inequality correctly on location",
+            new SpRelease(
+                new FkGame(),
+                new FkPlatform(),
+                new SpLocation(new TextOf("Location"))
+            ),
+            new IsNot<>(
+                new IsEqual<>(
+                    new SpRelease(
+                        new FkGame(),
+                        new FkPlatform(),
+                        new FkLocation()
+                    )
+                )
             )
         );
     }

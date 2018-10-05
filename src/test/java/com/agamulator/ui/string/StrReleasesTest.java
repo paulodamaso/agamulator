@@ -30,6 +30,7 @@ import com.agamulator.core.Releases;
 import com.agamulator.core.simple.SpGames;
 import com.agamulator.core.simple.SpLocations;
 import com.agamulator.core.simple.SpPlatforms;
+import com.agamulator.core.simple.SpReleases;
 import com.agamulator.ui.printer.PtReleases;
 import org.cactoos.Text;
 import org.cactoos.text.JoinedText;
@@ -69,7 +70,7 @@ public class StrReleasesTest {
         locations.add(locationa);
         locations.add(locationb);
         final PtReleases releases = new PtReleases(
-            new Releases.Simple(
+            new SpReleases(
                 games,
                 platforms,
                 locations

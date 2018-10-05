@@ -23,61 +23,45 @@
  */
 package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
+import com.agamulator.core.Copy;
+import com.agamulator.core.Gamer;
 import com.agamulator.core.Release;
 
 /**
- * Simple release of a {@link Game}.
+ * Simple implementation of Copy with ownership data stored in memory.
  *
  * @since 1.0
  */
-public final class SpRelease extends Release.Envelope {
+public final class SpCopy implements Copy {
 
     /**
-     * The {@link Game} of the release.
+     * Copy owner.
      */
-    private final Game origin;
+    private final Gamer gamer;
 
     /**
-     * The release {@link Platform}.
+     * The release this copy refers to.
      */
-    private final Platform plat;
-
-    /**
-     * The release {@link Location}.
-     */
-    private final Location loc;
+    private final Release game;
 
     /**
      * Constructor.
      *
-     * @param origin Game wrapped
-     * @param platform Release platform
-     * @param location Release location
+     * @param owner Game owner
+     * @param release Game release
      */
-    public SpRelease(final Game origin, final Platform platform,
-        final Location location) {
-        super();
-        this.loc = location;
-        this.origin = origin;
-        this.plat = platform;
+    public SpCopy(final Gamer owner, final Release release) {
+        this.gamer = owner;
+        this.game = release;
     }
 
     @Override
-    public Game game() {
-        return this.origin;
+    public Gamer owner() {
+        return this.gamer;
     }
 
     @Override
-    public Platform platform() {
-        return this.plat;
+    public Release release() {
+        return this.game;
     }
-
-    @Override
-    public Location location() {
-        return this.loc;
-    }
-
 }

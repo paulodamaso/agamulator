@@ -23,9 +23,6 @@
  */
 package com.agamulator.core;
 
-import com.agamulator.core.simple.SpRelease;
-import java.util.ArrayList;
-import java.util.Collection;
 import org.cactoos.Text;
 
 /**
@@ -52,60 +49,4 @@ public interface Releases {
      */
     Iterable<Release> iterate();
 
-    /**
-     * Simple {@link Releases} implementation with data stored in memory.
-     */
-    final class Simple implements Releases {
-
-        /**
-         * Releases storage.
-         */
-        private final Collection<Release> releases;
-
-        /**
-         * Game storage.
-         */
-        private final Games games;
-
-        /**
-         * Location storage.
-         */
-        private final Locations locations;
-
-        /**
-         * Platform storage.
-         */
-        private final Platforms platforms;
-
-        /**
-         * Constructor.
-         * @param games Game repository
-         * @param platforms Platform repository
-         * @param locations Location repository
-         */
-        public Simple(final Games games, final Platforms platforms,
-            final Locations locations) {
-            this.games = games;
-            this.platforms = platforms;
-            this.locations = locations;
-            this.releases = new ArrayList<>(0);
-        }
-
-        @Override
-        public Release add(final Text game, final Text platform,
-            final Text location) {
-            final Release release = new SpRelease(
-                this.games.find(game),
-                this.platforms.find(platform),
-                this.locations.find(location)
-            );
-            this.releases.add(release);
-            return release;
-        }
-
-        @Override
-        public Iterable<Release> iterate() {
-            return this.releases;
-        }
-    }
 }

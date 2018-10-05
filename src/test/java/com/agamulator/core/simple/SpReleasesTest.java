@@ -23,61 +23,40 @@
  */
 package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
+import com.agamulator.core.Releases;
+import com.agamulator.core.fake.FkGame;
+import com.agamulator.core.fake.FkLocation;
+import com.agamulator.core.fake.FkPlatform;
+import com.agamulator.core.fake.FkRelease;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsEqual;
+import org.junit.Test;
 
 /**
- * Simple release of a {@link Game}.
+ * Tests for {@link Releases}.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
-public final class SpRelease extends Release.Envelope {
+public final class SpReleasesTest {
 
     /**
-     * The {@link Game} of the release.
+     * Release repository can add Release.
      */
-    private final Game origin;
-
-    /**
-     * The release {@link Platform}.
-     */
-    private final Platform plat;
-
-    /**
-     * The release {@link Location}.
-     */
-    private final Location loc;
-
-    /**
-     * Constructor.
-     *
-     * @param origin Game wrapped
-     * @param platform Release platform
-     * @param location Release location
-     */
-    public SpRelease(final Game origin, final Platform platform,
-        final Location location) {
-        super();
-        this.loc = location;
-        this.origin = origin;
-        this.plat = platform;
+    @Test
+    public void addRelease() {
+        MatcherAssert.assertThat(
+            "Release not added",
+            new SpReleases(
+                new SpGames(new FkGame()),
+                new SpPlatforms(new FkPlatform()),
+                new SpLocations(new FkLocation())
+            ).add(
+                new FkGame().title(),
+                new FkPlatform().name(),
+                new FkLocation().name()
+            ),
+            new IsEqual<>(new FkRelease())
+        );
     }
-
-    @Override
-    public Game game() {
-        return this.origin;
-    }
-
-    @Override
-    public Platform platform() {
-        return this.plat;
-    }
-
-    @Override
-    public Location location() {
-        return this.loc;
-    }
-
 }

@@ -23,6 +23,7 @@
  */
 package com.agamulator.core;
 
+import com.agamulator.core.simple.SpCopy;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -68,7 +69,7 @@ public interface Copies {
 
         @Override
         public Copy add(final Gamer gamer, final Release release) {
-            final Copy copy = new Copy.Simple(gamer, release);
+            final Copy copy = new SpCopy(gamer, release);
             this.copies.add(copy);
             return copy;
         }

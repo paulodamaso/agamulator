@@ -29,6 +29,7 @@ import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsNot;
 import org.junit.Test;
 
 /**
@@ -44,15 +45,33 @@ public class GamerTest {
     private final Text name = new TextOf("Fake Gamer");
 
     /**
+     * Fake game for testing.
+     */
+    private final Gamer fake = new FkGamer();
+
+    /**
      * Test for {@link Gamer.Envelope#equals(Object)} method. Must assert
-     * that the {@link Gamer#title()} values are equal in both objects.
+     * that the {@link Gamer#name()} values are equal in both objects.
      */
     @Test
     public void returnEquality() {
         MatcherAssert.assertThat(
             "Gamer envelope does not perform equals correctly",
             new SpGamer(this.name),
-            new IsEqual<>(new FkGamer())
+            new IsEqual<>(this.fake)
+        );
+    }
+
+    /**
+     * Test for {@link Gamer.Envelope#equals(Object)} method. Must assert
+     * that the {@link Gamer} have the same reference.
+     */
+    @Test
+    public void returnEqualityWhenSameReference() {
+        MatcherAssert.assertThat(
+            "Gamer envelope does not success when references are the same",
+            this.fake,
+            new IsEqual<>(this.fake)
         );
     }
 
@@ -65,7 +84,7 @@ public class GamerTest {
         MatcherAssert.assertThat(
             "Gamer envelope does not perform hashcode correctly",
             new SpGamer(this.name).hashCode(),
-            new IsEqual<>(new FkGamer().hashCode())
+            new IsEqual<>(this.fake.hashCode())
         );
     }
 
@@ -74,11 +93,24 @@ public class GamerTest {
      * using objects of two different classes.
      */
     @Test
-    public void returnInequality() {
+    public void returnInequalityWhenDifferentClasses() {
         MatcherAssert.assertThat(
-            "Gamer envelope does not inequality check correctly",
-            new FkGamer().equals("Not equals"),
+            "Gamer envelope does not fail when classes are different",
+            this.fake.equals(this.name),
             new IsEqual<>(false)
+        );
+    }
+
+    /**
+     * Test for {@link Gamer.Envelope#equals(Object)} method failure when
+     * using {@link Game} objects with different names.
+     */
+    @Test
+    public void returnInequalityWhenDifferentName() {
+        MatcherAssert.assertThat(
+            "Gamer envelope does not fail correctly when names are different",
+            this.fake,
+            new IsNot<>(new IsEqual<>(new SpGamer(new TextOf("Gamer"))))
         );
     }
 }
