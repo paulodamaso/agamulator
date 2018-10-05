@@ -31,6 +31,7 @@ import com.agamulator.core.Releases;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 
 /**
  * Simple {@link Releases} implementation with data stored in memory.
@@ -71,6 +72,20 @@ public final class SpReleases implements Releases {
         this.platforms = platforms;
         this.locations = locations;
         this.releases = new ArrayList<>(0);
+    }
+
+    /**
+     * Constructor.
+     * @param games Game repository
+     * @param platforms Platform repository
+     * @param locations Location repository
+     */
+    public SpReleases(final Games games, final Platforms platforms,
+        final Locations locations, final Release...releases) {
+        this.games = games;
+        this.platforms = platforms;
+        this.locations = locations;
+        this.releases = new ArrayList<>(new ListOf<Release>(releases));
     }
 
     @Override

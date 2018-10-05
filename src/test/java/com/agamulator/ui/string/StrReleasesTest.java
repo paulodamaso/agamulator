@@ -23,16 +23,15 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.Games;
-import com.agamulator.core.Locations;
-import com.agamulator.core.Platforms;
+import com.agamulator.core.Release;
 import com.agamulator.core.Releases;
-import com.agamulator.core.simple.SpGames;
-import com.agamulator.core.simple.SpLocations;
-import com.agamulator.core.simple.SpPlatforms;
-import com.agamulator.core.simple.SpReleases;
+import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.simple.SpLocation;
+import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.simple.SpRelease;
 import com.agamulator.ui.printer.PtReleases;
 import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 import org.cactoos.text.JoinedText;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
@@ -44,7 +43,6 @@ import org.junit.Test;
  * Tests for {@link StrReleases}, a String representation of {@link Releases}.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public class StrReleasesTest {
 
@@ -54,50 +52,46 @@ public class StrReleasesTest {
      */
     @Test
     public void returnIterable() {
-        final Text titlea = new TextOf("Castlevania");
-        final Text titleb = new TextOf("Super Castlevania IV");
-        final Games games = new SpGames();
-        games.add(titlea);
-        games.add(titleb);
-        final Text platforma = new TextOf("NES");
-        final Text platformb = new TextOf("SNES");
-        final Platforms platforms = new SpPlatforms();
-        platforms.add(platforma);
-        platforms.add(platformb);
-        final Text locationa = new TextOf("Original Cartridge");
-        final Text locationb = new TextOf("ROM File");
-        final Locations locations = new SpLocations();
-        locations.add(locationa);
-        locations.add(locationb);
-        final PtReleases releases = new PtReleases(
-            new SpReleases(
-                games,
-                platforms,
-                locations
-            )
-        );
-        releases.add(
-            titlea,
-            platforma,
-            locationa
-        );
-        releases.add(
-            titleb,
-            platformb,
-            locationb
-        );
         MatcherAssert.assertThat(
             "Release repository did not formatted correctly to String",
-            releases.print(new StrReleases()),
+            new PtReleases(new FkReleases()).print(new StrReleases()),
             new IsEqual(
                 new UncheckedText(
                     new JoinedText(
                         "\n",
-                        "Game: Castlevania for NES on Original Cartridge",
-                        "Game: Super Castlevania IV for SNES on ROM File"
+                        "Game: Castlevania for NES on NES Cartridge",
+                        "Game: Super Castlevania IV for SNES on SNES Cartridge"
                     )
                 ).asString()
             )
         );
+    }
+
+    /**
+     * Fake {@link Release} for tests.
+     */
+    private final class FkReleases implements Releases {
+
+        @Override
+        public Release add(final Text game, final Text platform,
+            final Text location) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Iterable<Release> iterate() {
+            return new ListOf<>(
+                new SpRelease(
+                    new SpGame(new TextOf("Castlevania")),
+                    new SpPlatform(new TextOf("NES")),
+                    new SpLocation(new TextOf("NES Cartridge"))
+                ),
+                new SpRelease(
+                    new SpGame(new TextOf("Super Castlevania IV")),
+                    new SpPlatform(new TextOf("SNES")),
+                    new SpLocation(new TextOf("SNES Cartridge"))
+                )
+            );
+        }
     }
 }

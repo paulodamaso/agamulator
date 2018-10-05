@@ -32,7 +32,7 @@ import com.agamulator.core.Release;
  *
  * @since 1.0
  */
-public final class SpCopy implements Copy {
+public final class SpCopy extends Copy.Envelope {
 
     /**
      * Copy owner.
@@ -51,6 +51,7 @@ public final class SpCopy implements Copy {
      * @param release Game release
      */
     public SpCopy(final Gamer owner, final Release release) {
+        super();
         this.gamer = owner;
         this.game = release;
     }

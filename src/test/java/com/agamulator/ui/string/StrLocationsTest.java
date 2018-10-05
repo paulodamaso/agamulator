@@ -23,8 +23,12 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.simple.SpLocations;
+import com.agamulator.core.Location;
+import com.agamulator.core.Locations;
+import com.agamulator.core.simple.SpLocation;
 import com.agamulator.ui.printer.PtLocations;
+import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -43,13 +47,35 @@ public class StrLocationsTest {
      */
     @Test
     public void returnIterable() {
-        final PtLocations locations = new PtLocations(new SpLocations());
-        locations.add(new TextOf("PSN"));
-        locations.add(new TextOf("Steam"));
         MatcherAssert.assertThat(
             "Location repository did not formatted correctly to String",
-            locations.print(new StrLocations()),
-            new IsEqual("PSN\nSteam")
+            new PtLocations(new FkLocations()).print(new StrLocations()),
+            new IsEqual("Physical Copy\nPSN\nSteam")
         );
+    }
+
+    /**
+     * Fake {@link Locations} for testing.
+     */
+    private final class FkLocations implements Locations {
+
+        @Override
+        public Location find(final Text name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Location add(final Text name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Iterable<Location> iterate() {
+            return new ListOf<>(
+                new SpLocation(new TextOf("Physical Copy")),
+                new SpLocation(new TextOf("PSN")),
+                new SpLocation(new TextOf("Steam"))
+            );
+        }
     }
 }

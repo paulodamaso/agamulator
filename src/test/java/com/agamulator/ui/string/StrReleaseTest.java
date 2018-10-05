@@ -24,12 +24,10 @@
 package com.agamulator.ui.string;
 
 import com.agamulator.core.Release;
-import com.agamulator.core.simple.SpGame;
-import com.agamulator.core.simple.SpLocation;
-import com.agamulator.core.simple.SpPlatform;
-import com.agamulator.core.simple.SpRelease;
+import com.agamulator.core.fake.FkRelease;
 import com.agamulator.ui.printer.PtRelease;
-import org.cactoos.text.TextOf;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.UncheckedText;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
@@ -38,7 +36,6 @@ import org.junit.Test;
  * Tests for {@link StrRelease}.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public final class StrReleaseTest {
 
@@ -48,20 +45,21 @@ public final class StrReleaseTest {
      */
     @Test
     public void formatString() {
-        final Release release = new SpRelease(
-            new SpGame(new TextOf("Final Fight")),
-            new SpPlatform(new TextOf("Super NES")),
-            new SpLocation(new TextOf("Original Cartridge"))
-        );
         MatcherAssert.assertThat(
             "Cannot format release as string",
             new PtRelease<String>(
-                release
+                new FkRelease()
             ).format(
                 new StrRelease()
             ),
             new IsEqual<>(
-                "Game: Final Fight for Super NES on Original Cartridge"
+                new UncheckedText(
+                    new JoinedText(
+                        "",
+                        "Game: Fake Game Title ",
+                        "for Fake Gaming Platform on Fake Game Location"
+                    )
+                ).asString()
             )
         );
     }

@@ -39,9 +39,14 @@ import org.junit.Test;
 public class LocationTest {
 
     /**
-     * Location for testing.
+     * Location name for testing.
      */
     private final Text name = new TextOf("Fake Game Location");
+
+    /**
+     * Fake location.
+     */
+    private final Location location = new FkLocation();
 
     /**
      * Test for {@link Location.Envelope#equals(Object)} method. Must assert
@@ -52,7 +57,20 @@ public class LocationTest {
         MatcherAssert.assertThat(
             "Location envelope does not perform equals correctly",
             new SpLocation(this.name),
-            new IsEqual<>(new FkLocation())
+            new IsEqual<>(this.location)
+        );
+    }
+
+    /**
+     * Test for {@link Location.Envelope#equals(Object)} method. Must assert
+     * that the result is true when comparing objects with the same reference.
+     */
+    @Test
+    public void returnEqualityWhenSameReference() {
+        MatcherAssert.assertThat(
+            "Location envelope does not success when references are the same",
+            this.location,
+            new IsEqual<>(this.location)
         );
     }
 
@@ -65,7 +83,7 @@ public class LocationTest {
         MatcherAssert.assertThat(
             "Location envelope does not perform hashcode correctly",
             new SpLocation(this.name).hashCode(),
-            new IsEqual<>(new FkLocation().hashCode())
+            new IsEqual<>(this.location.hashCode())
         );
     }
 
@@ -76,8 +94,8 @@ public class LocationTest {
     @Test
     public void returnInequality() {
         MatcherAssert.assertThat(
-            "Location envelope does not inequality check correctly",
-            new FkLocation().equals("Not equals"),
+            "Did not failed when comapring objects of two different classes",
+            this.location.equals("Not equals"),
             new IsEqual<>(false)
         );
     }

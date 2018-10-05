@@ -34,18 +34,83 @@ import com.agamulator.core.Release;
  * @since 1.0
  */
 public final class FkRelease extends Release.Envelope {
+
+    /**
+     * Game.
+     */
+    private final Game gam;
+
+    /**
+     * Platform.
+     */
+    private final Platform plat;
+
+    /**
+     * Location.
+     */
+    private final Location loc;
+
+    /**
+     * Empty constructor.
+     */
+    public FkRelease() {
+        this(new FkGame(), new FkPlatform(), new FkLocation());
+    }
+
+    /**
+     * Primary constructor.
+     *
+     * @param game Game
+     * @param platform Platform
+     * @param location Location
+     */
+    public FkRelease(final Game game, final Platform platform,
+        final Location location) {
+        super();
+        this.gam = game;
+        this.plat = platform;
+        this.loc = location;
+    }
+
+    /**
+     * Game constructor.
+     *
+     * @param game Game
+     */
+    public FkRelease(final Game game) {
+        this(game, new FkPlatform(), new FkLocation());
+    }
+
+    /**
+     * Platform constructor.
+     *
+     * @param platform Platform
+     */
+    public FkRelease(final Platform platform) {
+        this(new FkGame(), platform, new FkLocation());
+    }
+
+    /**
+     * Platform constructor.
+     *
+     * @param location Location
+     */
+    public FkRelease(final Location location) {
+        this(new FkGame(), new FkPlatform(), location);
+    }
+
     @Override
     public Platform platform() {
-        return new FkPlatform();
+        return this.plat;
     }
 
     @Override
     public Location location() {
-        return new FkLocation();
+        return this.loc;
     }
 
     @Override
     public Game game() {
-        return new FkGame();
+        return this.gam;
     }
 }

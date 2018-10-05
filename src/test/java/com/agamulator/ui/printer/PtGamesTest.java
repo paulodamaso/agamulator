@@ -23,14 +23,15 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Game;
 import com.agamulator.core.Games;
+import com.agamulator.core.fake.FkGame;
+import com.agamulator.core.fake.FkGames;
+import com.agamulator.core.simple.SpGame;
 import com.agamulator.core.simple.SpGames;
 import org.cactoos.Text;
-import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -46,20 +47,10 @@ public class PtGamesTest {
      */
     @Test
     public void returnIterable() {
-        final Games games = new PtGames(new SpGames());
-        final Game one = games.add(new TextOf("Maniac Mansion"));
-        final Game two = games.add(
-            new TextOf("Indiana Jones and The Fate of Atlantis")
-        );
         MatcherAssert.assertThat(
             "Game repository did not returned correct iterable",
-            games.iterate(),
-            new IsIterableContainingInAnyOrder<>(
-                new CollectionOf<>(
-                    new IsEqual<>(one),
-                    new IsEqual<>(two)
-                )
-            )
+            new FkGames().iterate(),
+            new IsCollectionContaining<>(new IsEqual<>(new FkGame()))
         );
     }
 
@@ -68,13 +59,27 @@ public class PtGamesTest {
      */
     @Test
     public void find() {
-        final Games locations = new PtGames(new SpGames());
-        final Text title = new TextOf("Grim Fandango");
-        final Game one = locations.add(title);
         MatcherAssert.assertThat(
             "Game not found",
-            locations.find(title),
-            new IsEqual<>(one)
+            new PtGames(new FkGames()).find(new FkGame().title()),
+            new IsEqual<>(new FkGame())
+        );
+    }
+
+    /**
+     * Game title to be used in tests.
+     */
+    private final Text title = new TextOf("Testing Game Title");
+
+    /**
+     * The {@link PtGames} repository can add game.
+     */
+    @Test
+    public void addGame() {
+        MatcherAssert.assertThat(
+            "Game not added",
+            new PtGames(new FkGames()).add(this.title),
+            new IsEqual<>(new FkGame())
         );
     }
 }

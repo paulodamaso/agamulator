@@ -23,9 +23,8 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.simple.SpGame;
+import com.agamulator.core.fake.FkGame;
 import com.agamulator.ui.printer.PtGame;
-import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -44,14 +43,12 @@ public final class StrGameTest {
      */
     @Test
     public void formatString() {
-        final com.agamulator.core.Game game =
-            new SpGame(new TextOf("Full throttle"));
         MatcherAssert.assertThat(
             "Cannot format game as string",
-            new UncheckedText(game.title()).asString(),
+            new UncheckedText(new FkGame().title()).asString(),
             new IsEqual<>(
                 new PtGame<String>(
-                    game
+                    new FkGame()
                 ).format(
                     new StrGame()
                 )

@@ -27,6 +27,7 @@ import com.agamulator.core.fake.FkGame;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public final class SpGamesTest {
     /**
      * Game title to be used in tests.
      */
-    private final Text title = new TextOf("Fake Game Title");
+    private final Text title = new TextOf("Testing Game Title");
 
     /**
      * The {@link SpGames} repository can add game.
@@ -49,8 +50,22 @@ public final class SpGamesTest {
     public void addGame() {
         MatcherAssert.assertThat(
             "Game not added",
-            new SpGames().add(this.title),
-            new IsEqual<>(new FkGame())
+            new SpGames(new FkGame()).add(this.title),
+            new IsEqual<>(new SpGame(this.title))
+        );
+    }
+
+    /**
+     * Games can return an iterable.
+     */
+    @Test
+    public void returnIterable() {
+        MatcherAssert.assertThat(
+            "Iterable not returned",
+            new SpGames(new FkGame()).iterate(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(new FkGame())
+            )
         );
     }
 
@@ -61,7 +76,7 @@ public final class SpGamesTest {
     public void findGame() {
         MatcherAssert.assertThat(
             "Game not found",
-            new SpGames(new FkGame()).find(this.title),
+            new SpGames(new FkGame()).find(new FkGame().title()),
             new IsEqual<>(new FkGame())
         );
     }

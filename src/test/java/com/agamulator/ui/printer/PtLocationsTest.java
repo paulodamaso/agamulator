@@ -23,14 +23,13 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Location;
-import com.agamulator.core.Locations;
-import com.agamulator.core.simple.SpLocations;
+
+import com.agamulator.core.fake.FkLocation;
+import com.agamulator.core.fake.FkLocations;
 import org.cactoos.Text;
-import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -47,18 +46,10 @@ public class PtLocationsTest {
      */
     @Test
     public void returnIterable() {
-        final Locations locations = new PtLocations(new SpLocations());
-        final Location one = locations.add(new TextOf("Steam"));
-        final Location two = locations.add(new TextOf("Microsoft Live!"));
         MatcherAssert.assertThat(
             "Location repository did not returned correct iterable",
-            locations.iterate(),
-            new IsIterableContainingInAnyOrder<>(
-                new CollectionOf<>(
-                    new IsEqual<>(one),
-                    new IsEqual<>(two)
-                )
-            )
+            new FkLocations().iterate(),
+            new IsCollectionContaining<>(new IsEqual<>(new FkLocation()))
         );
     }
 
@@ -67,13 +58,27 @@ public class PtLocationsTest {
      */
     @Test
     public void find() {
-        final Locations locations = new PtLocations(new SpLocations());
-        final Text name = new TextOf("GoG Galaxy");
-        final Location one = locations.add(name);
         MatcherAssert.assertThat(
             "Location not found",
-            locations.find(name),
-            new IsEqual<>(one)
+            new PtLocations(new FkLocations()).find(new FkLocation().name()),
+            new IsEqual<>(new FkLocation())
+        );
+    }
+
+    /**
+     * Location name to be used in tests.
+     */
+    private final Text name = new TextOf("Testing Game Location");
+
+    /**
+     * Location repository can add Location.
+     */
+    @Test
+    public void addLocation() {
+        MatcherAssert.assertThat(
+            "Location not added",
+            new PtLocations(new FkLocations()).add(this.name),
+            new IsEqual<>(new FkLocation())
         );
     }
 }

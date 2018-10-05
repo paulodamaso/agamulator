@@ -21,39 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.string;
+package com.agamulator.core.fake;
 
-import com.agamulator.core.Location;
-import com.agamulator.core.fake.FkLocation;
-import com.agamulator.ui.printer.PtLocation;
-import org.cactoos.text.UncheckedText;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import com.agamulator.core.Platform;
+import com.agamulator.core.Platforms;
+import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 
 /**
- * Tests for {@link StrLocation}.
+ * Fake {@link Platform} repository.
  *
  * @since 1.0
  */
-public final class StrLocationTest {
+public final class FkPlatforms implements Platforms {
 
-    /**
-     * Tests if a {@link StrLocation} can format correctly a
-     * {@link Location} into a String.
-     */
-    @Test
-    public void formatString() {
-        MatcherAssert.assertThat(
-            "Cannot format location as string",
-            new UncheckedText(new FkLocation().name()).asString(),
-            new IsEqual<>(
-                new PtLocation<String>(
-                    new FkLocation()
-                ).format(
-                    new StrLocation()
-                )
-            )
-        );
+    @Override
+    public Platform find(final Text name) {
+        return new FkPlatform();
+    }
+
+    @Override
+    public Platform add(final Text name) {
+        return new FkPlatform();
+    }
+
+    @Override
+    public Iterable<Platform> iterate() {
+        return new ListOf<>(new FkPlatform());
     }
 }

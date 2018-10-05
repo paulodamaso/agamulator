@@ -170,9 +170,6 @@ public final class Main {
                         }
                     }
                 }
-                case "quit":{
-                    break;
-                }
                 default:{
                     out.write(new UncheckedText(new FormattedText(
                     "Unrecognized command: '%s'",cmd.get(0))).asString());

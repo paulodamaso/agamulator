@@ -21,39 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.string;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.Location;
-import com.agamulator.core.fake.FkLocation;
-import com.agamulator.ui.printer.PtLocation;
-import org.cactoos.text.UncheckedText;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import com.agamulator.core.Copies;
+import com.agamulator.core.Copy;
+import com.agamulator.core.Gamer;
+import com.agamulator.core.Release;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.cactoos.list.ListOf;
 
 /**
- * Tests for {@link StrLocation}.
+ * Simple {@link Copies} implementation with data stored in memory.
  *
  * @since 1.0
  */
-public final class StrLocationTest {
+public final class SpCopies implements Copies {
 
     /**
-     * Tests if a {@link StrLocation} can format correctly a
-     * {@link Location} into a String.
+     * Copies storage.
      */
-    @Test
-    public void formatString() {
-        MatcherAssert.assertThat(
-            "Cannot format location as string",
-            new UncheckedText(new FkLocation().name()).asString(),
-            new IsEqual<>(
-                new PtLocation<String>(
-                    new FkLocation()
-                ).format(
-                    new StrLocation()
-                )
-            )
-        );
+    private final Collection<Copy> copies;
+
+    /**
+     * Constructor.
+     *
+     * @param copies Copies
+     */
+    public SpCopies(final Copy...copies) {
+        this.copies = new ArrayList<>(new ListOf<>(copies));
+    }
+
+    @Override
+    public Copy add(final Gamer gamer, final Release release) {
+        final Copy copy = new SpCopy(gamer, release);
+        this.copies.add(copy);
+        return copy;
+    }
+
+    @Override
+    public Iterable<Copy> iterate() {
+        return this.copies;
     }
 }

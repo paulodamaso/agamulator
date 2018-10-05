@@ -44,14 +44,10 @@ public final class StrPlatforms implements FcPlatforms.Output<String> {
             new JoinedText(
                 "\n",
                 new Mapped<>(
-                    platform -> {
-                        return
-                        new PtPlatform<String>(
-                            platform
-                        ).format(
+                    platform
+                        -> new PtPlatform<String>(platform).format(
                             new StrPlatform()
-                        );
-                    },
+                        ),
                     list
                 )
             )

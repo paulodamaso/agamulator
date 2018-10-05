@@ -21,39 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.string;
+package com.agamulator.core.fake;
 
-import com.agamulator.core.Location;
-import com.agamulator.core.fake.FkLocation;
-import com.agamulator.ui.printer.PtLocation;
-import org.cactoos.text.UncheckedText;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import com.agamulator.core.Game;
+import com.agamulator.core.Games;
+import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 
 /**
- * Tests for {@link StrLocation}.
+ * Fake {@link Game} repository.
  *
  * @since 1.0
  */
-public final class StrLocationTest {
+public final class FkGames implements Games {
 
-    /**
-     * Tests if a {@link StrLocation} can format correctly a
-     * {@link Location} into a String.
-     */
-    @Test
-    public void formatString() {
-        MatcherAssert.assertThat(
-            "Cannot format location as string",
-            new UncheckedText(new FkLocation().name()).asString(),
-            new IsEqual<>(
-                new PtLocation<String>(
-                    new FkLocation()
-                ).format(
-                    new StrLocation()
-                )
-            )
-        );
+    @Override
+    public Game add(final Text name) {
+        return new FkGame();
+    }
+
+    @Override
+    public Game find(final Text title) {
+        return new FkGame();
+    }
+
+    @Override
+    public Iterable<Game> iterate() {
+        return new ListOf<>(new FkGame());
     }
 }

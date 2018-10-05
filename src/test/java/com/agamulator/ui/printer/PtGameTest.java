@@ -23,9 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.simple.SpGame;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.fake.FkGame;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
@@ -42,12 +40,10 @@ public final class PtGameTest {
      */
     @Test
     public void returnTitle() {
-        final Game game =
-            new SpGame(new TextOf("Zak McKracken"));
         MatcherAssert.assertThat(
             "Returned wrong title",
-            game.title(),
-            new IsEqual<>(new PtGame<>(game).title())
+            new FkGame().title(),
+            new IsEqual<>(new PtGame<>(new FkGame()).title())
         );
     }
 }

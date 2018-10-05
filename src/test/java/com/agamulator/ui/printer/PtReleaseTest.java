@@ -23,15 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Location;
-import com.agamulator.core.Platform;
-import com.agamulator.core.Release;
-import com.agamulator.core.simple.SpGame;
-import com.agamulator.core.simple.SpLocation;
-import com.agamulator.core.simple.SpPlatform;
-import com.agamulator.core.simple.SpRelease;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.fake.FkRelease;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
@@ -48,17 +40,10 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnGame() {
-        final Game game = new SpGame(new TextOf("Command & Conquer"));
-        final Release release =
-            new SpRelease(
-                game,
-                new SpPlatform(new TextOf("Mac")),
-                new SpLocation(new TextOf("Physical CD ROM"))
-            );
         MatcherAssert.assertThat(
             "Returned wrong game",
-            game,
-            new IsEqual<>(new PtRelease<>(release).game())
+            new FkRelease().game(),
+            new IsEqual<>(new PtRelease<>(new FkRelease()).game())
         );
     }
 
@@ -67,21 +52,10 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnLocation() {
-        final Location location = new SpLocation(
-            new TextOf("Physical Game")
-        );
-        final Release release =
-            new SpRelease(
-                new SpGame(
-                    new TextOf("Command & Conquer Red Alert")
-                ),
-                new SpPlatform(new TextOf("MS-DOS")),
-                location
-            );
         MatcherAssert.assertThat(
             "Returned wrong location",
-            location,
-            new IsEqual<>(new PtRelease<>(release).location())
+            new FkRelease().location(),
+            new IsEqual<>(new PtRelease<>(new FkRelease()).location())
         );
     }
 
@@ -90,19 +64,10 @@ public final class PtReleaseTest {
      */
     @Test
     public void returnPlatform() {
-        final Platform platform = new SpPlatform(new TextOf("Windows 95"));
-        final Release release =
-            new SpRelease(
-                new SpGame(
-                    new TextOf("Command & Conquer Tiberiun Sun")
-                ),
-                platform,
-                new SpLocation(new TextOf("Physical DVD-ROM"))
-            );
         MatcherAssert.assertThat(
             "Returned wrong platform",
-            platform,
-            new IsEqual<>(new PtRelease<>(release).platform())
+            new FkRelease().platform(),
+            new IsEqual<>(new PtRelease<>(new FkRelease()).platform())
         );
     }
 }

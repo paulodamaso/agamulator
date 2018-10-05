@@ -44,14 +44,7 @@ public final class StrGames implements FcGames.Output<String> {
             new JoinedText(
                 "\n",
                 new Mapped<>(
-                    game -> {
-                        return
-                        new PtGame<String>(
-                            game
-                        ).format(
-                            new StrGame()
-                        );
-                    },
+                    game -> new PtGame<String>(game).format(new StrGame()),
                     list
                 )
             )

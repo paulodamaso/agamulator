@@ -21,14 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.core;
+package com.agamulator.core.simple;
 
-import com.agamulator.core.simple.SpGame;
-import com.agamulator.core.simple.SpGamer;
-import com.agamulator.core.simple.SpLocation;
-import com.agamulator.core.simple.SpPlatform;
-import com.agamulator.core.simple.SpRelease;
-import org.cactoos.text.TextOf;
+import com.agamulator.core.Copies;
+import com.agamulator.core.Copy;
+import com.agamulator.core.fake.FkCopy;
+import com.agamulator.core.fake.FkGamer;
+import com.agamulator.core.fake.FkRelease;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
@@ -40,36 +39,29 @@ import org.junit.Test;
  * @since 1.0
  * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
-public final class CopiesTest {
+public final class SpCopiesTest {
 
     /**
      * Copies repository can add {@link Copy}.
      */
     @Test
     public void addCopy() {
-        final Copies copies = new Copies.Simple();
-        final Copy copy = copies.add(
-            new SpGamer(
-                new TextOf("Gamer Number One")
-            ),
-            new SpRelease(
-                new SpGame(
-                    new TextOf("Game Number One")
-                ),
-                new SpPlatform(
-                    new TextOf("Gaming Platform")
-                ),
-                new SpLocation(
-                    new TextOf("Game Location")
-                )
-            )
-        );
         MatcherAssert.assertThat(
             "Copy not added",
-            copies.iterate(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(copy)
-            )
+            new SpCopies().add(new FkGamer(), new FkRelease()),
+            new IsEqual<>(new SpCopy(new FkGamer(), new FkRelease()))
+        );
+    }
+
+    /**
+     * Copies repository can add {@link Copy}.
+     */
+    @Test
+    public void returnIterable() {
+        MatcherAssert.assertThat(
+            "Copy returned",
+            new SpCopies(new FkCopy()).iterate(),
+            new IsCollectionContaining<>(new IsEqual<>(new FkCopy()))
         );
     }
 }

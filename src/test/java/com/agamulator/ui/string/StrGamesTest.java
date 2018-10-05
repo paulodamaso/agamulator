@@ -23,8 +23,12 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.simple.SpGames;
+import com.agamulator.core.Game;
+import com.agamulator.core.Games;
+import com.agamulator.core.simple.SpGame;
 import com.agamulator.ui.printer.PtGames;
+import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -35,7 +39,7 @@ import org.junit.Test;
  *
  * @since 1.0
  */
-public class StrGamesTest {
+public final class StrGamesTest {
 
     /**
      * Tests if {@link StrGames} can return its list correctly formatted as a
@@ -43,13 +47,35 @@ public class StrGamesTest {
      */
     @Test
     public void returnIterable() {
-        final PtGames games = new PtGames(new SpGames());
-        games.add(new TextOf("Day Of The Tentacle"));
-        games.add(new TextOf("Grim Fandango"));
         MatcherAssert.assertThat(
             "Game repository did not formatted correctly to String",
-            games.print(new StrGames()),
-            new IsEqual("Day Of The Tentacle\nGrim Fandango")
+            new PtGames(new FkStrGames()).print(new StrGames()),
+            new IsEqual("Day Of The Tentacle\nGrim Fandango\nManiac Mansion")
         );
+    }
+
+    /**
+     * Fake {@link Games} implementation.
+     */
+    private final class FkStrGames implements Games {
+
+        @Override
+        public Game add(final Text name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Game find(final Text title) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Iterable<Game> iterate() {
+            return new ListOf<>(
+                new SpGame(new TextOf("Day Of The Tentacle")),
+                new SpGame(new TextOf("Grim Fandango")),
+                new SpGame(new TextOf("Maniac Mansion"))
+            );
+        }
     }
 }

@@ -44,6 +44,11 @@ public class PlatformTest {
     private final Text name = new TextOf("Fake Gaming Platform");
 
     /**
+     * Platform for testing.
+     */
+    private final Platform platform = new FkPlatform();
+
+    /**
      * Test for {@link Platform.Envelope#equals(Object)} method. Must assert
      * that the {@link Platform#name()} values are equal in both objects.
      */
@@ -53,6 +58,19 @@ public class PlatformTest {
             "Platform envelope does not perform equals correctly",
             new SpPlatform(this.name),
             new IsEqual<>(new FkPlatform())
+        );
+    }
+
+    /**
+     * Test for {@link Location.Envelope#equals(Object)} method. Must assert
+     * that the result is true when comparing objects with the same reference.
+     */
+    @Test
+    public void returnEqualityWhenSameReference() {
+        MatcherAssert.assertThat(
+            "Platform envelope does not success when references are the same",
+            this.platform,
+            new IsEqual<>(this.platform)
         );
     }
 
@@ -76,7 +94,7 @@ public class PlatformTest {
     @Test
     public void returnInequality() {
         MatcherAssert.assertThat(
-            "Platform envelope does not inequality check correctly",
+            "Platform envelope does not fails when using different classes",
             new FkPlatform().equals("Not equals"),
             new IsEqual<>(false)
         );

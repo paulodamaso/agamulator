@@ -48,7 +48,7 @@ public final class SpLocations implements Locations {
      * @param locations Locations
      */
     public SpLocations(final Location...locations) {
-        this.locations = new ArrayList<>(new CollectionOf<Location>(locations));
+        this.locations = new ArrayList<>(new CollectionOf<>(locations));
     }
 
     @Override

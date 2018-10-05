@@ -48,7 +48,7 @@ public final class SpGames implements Games {
      * @param games Games
      */
     public SpGames(final Game...games) {
-        this.library = new ArrayList<>(new CollectionOf<Game>(games));
+        this.library = new ArrayList<>(new CollectionOf<>(games));
     }
 
     @Override

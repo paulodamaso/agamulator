@@ -108,7 +108,7 @@ public class GamerTest {
     @Test
     public void returnInequalityWhenDifferentName() {
         MatcherAssert.assertThat(
-            "Gamer envelope does not fail correctly when names are different",
+            "Gamer envelope does not fail when names are different",
             this.fake,
             new IsNot<>(new IsEqual<>(new SpGamer(new TextOf("Gamer"))))
         );

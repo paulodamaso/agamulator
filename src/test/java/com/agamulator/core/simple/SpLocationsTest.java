@@ -27,6 +27,7 @@ import com.agamulator.core.fake.FkLocation;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public final class SpLocationsTest {
     /**
      * Location name to be used in tests.
      */
-    private final Text name = new TextOf("Fake Game Location");
+    private final Text name = new TextOf("Testing Game Location");
 
     /**
      * Location repository can add Location.
@@ -49,8 +50,22 @@ public final class SpLocationsTest {
     public void addLocation() {
         MatcherAssert.assertThat(
             "Location not added",
-            new SpLocations().add(this.name),
-            new IsEqual<>(new FkLocation())
+            new SpLocations(new FkLocation()).add(this.name),
+            new IsEqual<>(new SpLocation(this.name))
+        );
+    }
+
+    /**
+     * Locations can return an iterable.
+     */
+    @Test
+    public void returnIterable() {
+        MatcherAssert.assertThat(
+            "Iterable not returned",
+            new SpLocations(new FkLocation()).iterate(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(new FkLocation())
+            )
         );
     }
 
@@ -61,7 +76,7 @@ public final class SpLocationsTest {
     public void findLocation() {
         MatcherAssert.assertThat(
             "Location not found",
-            new SpLocations(new FkLocation()).find(this.name),
+            new SpLocations(new FkLocation()).find(new FkLocation().name()),
             new IsEqual<>(new FkLocation())
         );
     }

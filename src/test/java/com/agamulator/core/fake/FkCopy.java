@@ -21,39 +21,73 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.agamulator.ui.string;
+package com.agamulator.core.fake;
 
-import com.agamulator.core.Location;
-import com.agamulator.core.fake.FkLocation;
-import com.agamulator.ui.printer.PtLocation;
-import org.cactoos.text.UncheckedText;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsEqual;
-import org.junit.Test;
+import com.agamulator.core.Copy;
+import com.agamulator.core.Gamer;
+import com.agamulator.core.Release;
 
 /**
- * Tests for {@link StrLocation}.
+ * Fake {@link Copy} for testing.
  *
  * @since 1.0
  */
-public final class StrLocationTest {
+public final class FkCopy extends Copy.Envelope {
 
     /**
-     * Tests if a {@link StrLocation} can format correctly a
-     * {@link Location} into a String.
+     * Gamer.
      */
-    @Test
-    public void formatString() {
-        MatcherAssert.assertThat(
-            "Cannot format location as string",
-            new UncheckedText(new FkLocation().name()).asString(),
-            new IsEqual<>(
-                new PtLocation<String>(
-                    new FkLocation()
-                ).format(
-                    new StrLocation()
-                )
-            )
-        );
+    private final Gamer gam;
+
+    /**
+     * Release.
+     */
+    private final Release rel;
+
+    /**
+     * Primary constructor.
+     *
+     * @param gamer Gamer
+     * @param release Release
+     */
+    public FkCopy(final Gamer gamer, final Release release) {
+        super();
+        this.gam = gamer;
+        this.rel = release;
+    }
+
+    /**
+     * Gamer constructor.
+     *
+     * @param gamer Gamer
+     */
+    public FkCopy(final Gamer gamer) {
+        this(gamer, new FkRelease());
+    }
+
+    /**
+     * Release constructor.
+     *
+     * @param release Release
+     */
+    public FkCopy(final Release release) {
+        this(new FkGamer(), release);
+    }
+
+    /**
+     * Empty constructor.
+     */
+    public FkCopy() {
+        this(new FkGamer(), new FkRelease());
+    }
+
+    @Override
+    public Gamer owner() {
+        return this.gam;
+    }
+
+    @Override
+    public Release release() {
+        return this.rel;
     }
 }

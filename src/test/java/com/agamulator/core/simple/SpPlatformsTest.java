@@ -27,6 +27,7 @@ import com.agamulator.core.fake.FkPlatform;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public final class SpPlatformsTest {
     /**
      * Platform name to be used in tests.
      */
-    private final Text name = new TextOf("Fake Gaming Platform");
+    private final Text name = new TextOf("Testing Gaming Platform");
 
     /**
      * Platform repository can add Platform.
@@ -49,8 +50,22 @@ public final class SpPlatformsTest {
     public void addPlatform() {
         MatcherAssert.assertThat(
             "Platform not added",
-            new SpPlatforms().add(this.name),
-            new IsEqual<>(new FkPlatform())
+            new SpPlatforms(new FkPlatform()).add(this.name),
+            new IsEqual<>(new SpPlatform(this.name))
+        );
+    }
+
+    /**
+     * Platforms can return an iterable.
+     */
+    @Test
+    public void returnIterable() {
+        MatcherAssert.assertThat(
+            "Iterable not returned",
+            new SpPlatforms(new FkPlatform()).iterate(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(new FkPlatform())
+            )
         );
     }
 
@@ -61,7 +76,7 @@ public final class SpPlatformsTest {
     public void findPlatform() {
         MatcherAssert.assertThat(
             "Platform not found",
-            new SpPlatforms(new FkPlatform()).find(this.name),
+            new SpPlatforms(new FkPlatform()).find(new FkPlatform().name()),
             new IsEqual<>(new FkPlatform())
         );
     }

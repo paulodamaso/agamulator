@@ -23,10 +23,6 @@
  */
 package com.agamulator.core;
 
-import com.agamulator.core.simple.SpCopy;
-import java.util.ArrayList;
-import java.util.Collection;
-
 /**
  * Game {@link Copy} repository.
  *
@@ -50,33 +46,4 @@ public interface Copies {
      */
     Iterable<Copy> iterate();
 
-    /**
-     * Simple {@link Copies} implementation with data stored in memory.
-     */
-    final class Simple implements Copies {
-
-        /**
-         * Copies storage.
-         */
-        private final Collection<Copy> copies;
-
-        /**
-         * Constructor.
-         */
-        public Simple() {
-            this.copies = new ArrayList<>(0);
-        }
-
-        @Override
-        public Copy add(final Gamer gamer, final Release release) {
-            final Copy copy = new SpCopy(gamer, release);
-            this.copies.add(copy);
-            return copy;
-        }
-
-        @Override
-        public Iterable<Copy> iterate() {
-            return this.copies;
-        }
-    }
 }

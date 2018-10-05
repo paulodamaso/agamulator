@@ -44,14 +44,10 @@ public final class StrLocations implements FcLocations.Output<String> {
             new JoinedText(
                 "\n",
                 new Mapped<>(
-                    location -> {
-                        return
-                        new PtLocation<String>(
-                            location
-                        ).format(
+                    location
+                        -> new PtLocation<String>(location).format(
                             new StrLocation()
-                        );
-                    },
+                            ),
                     list
                 )
             )

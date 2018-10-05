@@ -24,9 +24,8 @@
 package com.agamulator.ui.string;
 
 import com.agamulator.core.Platform;
-import com.agamulator.core.simple.SpPlatform;
+import com.agamulator.core.fake.FkPlatform;
 import com.agamulator.ui.printer.PtPlatform;
-import org.cactoos.text.TextOf;
 import org.cactoos.text.UncheckedText;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -45,13 +44,12 @@ public final class StrPlatformTest {
      */
     @Test
     public void formatString() {
-        final Platform platform = new SpPlatform(new TextOf("PS Vita"));
         MatcherAssert.assertThat(
             "Cannot format platform as string",
-            new UncheckedText(platform.name()).asString(),
+            new UncheckedText(new FkPlatform().name()).asString(),
             new IsEqual<>(
                 new PtPlatform<String>(
-                    platform
+                    new FkPlatform()
                 ).format(
                     new StrPlatform()
                 )

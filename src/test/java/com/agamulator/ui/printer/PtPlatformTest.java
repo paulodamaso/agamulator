@@ -24,6 +24,7 @@
 package com.agamulator.ui.printer;
 
 import com.agamulator.core.Platform;
+import com.agamulator.core.fake.FkPlatform;
 import com.agamulator.core.simple.SpPlatform;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -42,11 +43,10 @@ public final class PtPlatformTest {
      */
     @Test
     public void returnName() {
-        final Platform platform = new SpPlatform(new TextOf("PC"));
         MatcherAssert.assertThat(
             "Returned wrong platform name",
-            platform.name(),
-            new IsEqual<>(new PtPlatform<>(platform).name())
+            new FkPlatform().name(),
+            new IsEqual<>(new PtPlatform<>(new FkPlatform()).name())
         );
     }
 }

@@ -24,6 +24,7 @@
 package com.agamulator.ui.printer;
 
 import com.agamulator.core.Location;
+import com.agamulator.core.fake.FkLocation;
 import com.agamulator.core.simple.SpLocation;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -42,12 +43,10 @@ public final class PtLocationTest {
      */
     @Test
     public void returnName() {
-        final Location location =
-            new SpLocation(new TextOf("Steam"));
         MatcherAssert.assertThat(
             "Returned wrong location name",
-            location.name(),
-            new IsEqual<>(new PtLocation<>(location).name())
+            new FkLocation().name(),
+            new IsEqual<>(new PtLocation<>(new FkLocation()).name())
         );
     }
 }

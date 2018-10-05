@@ -24,11 +24,14 @@
 package com.agamulator.core.simple;
 
 import com.agamulator.core.Releases;
-import com.agamulator.core.fake.FkGame;
-import com.agamulator.core.fake.FkLocation;
-import com.agamulator.core.fake.FkPlatform;
+import com.agamulator.core.fake.FkGames;
+import com.agamulator.core.fake.FkLocations;
+import com.agamulator.core.fake.FkPlatforms;
 import com.agamulator.core.fake.FkRelease;
+import com.agamulator.core.fake.FkReleases;
+import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -36,7 +39,6 @@ import org.junit.Test;
  * Tests for {@link Releases}.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public final class SpReleasesTest {
 
@@ -48,15 +50,34 @@ public final class SpReleasesTest {
         MatcherAssert.assertThat(
             "Release not added",
             new SpReleases(
-                new SpGames(new FkGame()),
-                new SpPlatforms(new FkPlatform()),
-                new SpLocations(new FkLocation())
+                new FkGames(),
+                new FkPlatforms(),
+                new FkLocations()
             ).add(
-                new FkGame().title(),
-                new FkPlatform().name(),
-                new FkLocation().name()
+                new TextOf("Fake Game Title"),
+                new TextOf("Fake Gaming Platform"),
+                new TextOf("Fake Game Location")
             ),
             new IsEqual<>(new FkRelease())
+        );
+    }
+
+    /**
+     * Release repository can iterate.
+     */
+    @Test
+    public void returnIterable() {
+        MatcherAssert.assertThat(
+            "Iterable not returned",
+            new SpReleases(
+                new FkGames(),
+                new FkPlatforms(),
+                new FkLocations(),
+                new FkRelease()
+            ).iterate(),
+            new IsCollectionContaining<>(
+                new IsEqual<>(new FkRelease())
+            )
         );
     }
 }

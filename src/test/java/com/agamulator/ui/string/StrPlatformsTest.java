@@ -23,8 +23,12 @@
  */
 package com.agamulator.ui.string;
 
-import com.agamulator.core.simple.SpPlatforms;
+import com.agamulator.core.Platform;
+import com.agamulator.core.Platforms;
+import com.agamulator.core.simple.SpPlatform;
 import com.agamulator.ui.printer.PtPlatforms;
+import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
@@ -35,7 +39,7 @@ import org.junit.Test;
  *
  * @since 1.0
  */
-public class StrPlatformsTest {
+public final class StrPlatformsTest {
 
     /**
      * Tests if {@link StrPlatforms} can return its list correctly formatted
@@ -43,13 +47,35 @@ public class StrPlatformsTest {
      */
     @Test
     public void returnIterable() {
-        final PtPlatforms platforms = new PtPlatforms(new SpPlatforms());
-        platforms.add(new TextOf("PS Vita"));
-        platforms.add(new TextOf("PS3"));
         MatcherAssert.assertThat(
             "Platform repository did not formatted correctly to String",
-            platforms.print(new StrPlatforms()),
-            new IsEqual("PS Vita\nPS3")
+            new PtPlatforms(new FkPlatforms()).print(new StrPlatforms()),
+            new IsEqual("PC\nPS3\nWii")
         );
+    }
+
+    /**
+     * Fake {@link StrPlatforms} for testing.
+     */
+    private final class FkPlatforms implements Platforms {
+
+        @Override
+        public Platform find(final Text name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Platform add(final Text name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Iterable<Platform> iterate() {
+            return new ListOf<>(
+                new SpPlatform(new TextOf("PC")),
+                new SpPlatform(new TextOf("PS3")),
+                new SpPlatform(new TextOf("Wii"))
+            );
+        }
     }
 }

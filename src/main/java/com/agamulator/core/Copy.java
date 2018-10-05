@@ -44,4 +44,29 @@ public interface Copy {
      */
     Release release();
 
+    /**
+     * Envelope for default {@link Copy} behavior.
+     */
+    abstract class Envelope implements Copy {
+
+        @Override
+        public int hashCode() {
+            return this.owner().hashCode()
+                * this.release().hashCode();
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Copy)) {
+                return false;
+            }
+            final Copy that = (Copy) obj;
+            return
+                this.owner().equals(that.owner())
+                && this.release().equals(that.release());
+        }
+    }
 }
