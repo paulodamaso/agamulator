@@ -28,10 +28,8 @@ import com.agamulator.core.fake.FkGames;
 import com.agamulator.core.fake.FkLocations;
 import com.agamulator.core.fake.FkPlatforms;
 import com.agamulator.core.fake.FkRelease;
-import com.agamulator.core.fake.FkReleases;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
@@ -74,10 +72,8 @@ public final class SpReleasesTest {
                 new FkPlatforms(),
                 new FkLocations(),
                 new FkRelease()
-            ).iterate(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(new FkRelease())
-            )
+            ).iterate().iterator().next(),
+            new IsEqual<>(new FkRelease())
         );
     }
 }

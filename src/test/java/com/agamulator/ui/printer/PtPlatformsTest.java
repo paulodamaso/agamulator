@@ -23,17 +23,11 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Platform;
-import com.agamulator.core.Platforms;
 import com.agamulator.core.fake.FkPlatform;
 import com.agamulator.core.fake.FkPlatforms;
-import com.agamulator.core.simple.SpPlatform;
-import com.agamulator.core.simple.SpPlatforms;
 import org.cactoos.Text;
-import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
@@ -72,7 +66,7 @@ public class PtPlatformsTest {
     public void find() {
         MatcherAssert.assertThat(
             "Platform not found",
-             new PtPlatforms(new FkPlatforms()).find(new FkPlatform().name()),
+            new PtPlatforms(new FkPlatforms()).find(new FkPlatform().name()),
             new IsEqual<>(new FkPlatform())
         );
     }

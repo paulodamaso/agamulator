@@ -26,8 +26,6 @@ package com.agamulator.ui.printer;
 import com.agamulator.core.Games;
 import com.agamulator.core.fake.FkGame;
 import com.agamulator.core.fake.FkGames;
-import com.agamulator.core.simple.SpGame;
-import com.agamulator.core.simple.SpGames;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -41,6 +39,11 @@ import org.junit.Test;
  * @since 1.0
  */
 public class PtGamesTest {
+
+    /**
+     * Game title to be used in tests.
+     */
+    private final Text title = new TextOf("Testing Game Title");
 
     /**
      * Tests if {@link PtGames} can return correct iterable of printable games.
@@ -65,11 +68,6 @@ public class PtGamesTest {
             new IsEqual<>(new FkGame())
         );
     }
-
-    /**
-     * Game title to be used in tests.
-     */
-    private final Text title = new TextOf("Testing Game Title");
 
     /**
      * The {@link PtGames} repository can add game.

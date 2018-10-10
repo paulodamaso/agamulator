@@ -37,7 +37,6 @@ import org.junit.Test;
  * Tests for {@link Copies}.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (100 lines)
  */
 public final class SpCopiesTest {
 

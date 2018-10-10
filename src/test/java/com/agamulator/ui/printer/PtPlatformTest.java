@@ -23,10 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Platform;
 import com.agamulator.core.fake.FkPlatform;
-import com.agamulator.core.simple.SpPlatform;
-import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;

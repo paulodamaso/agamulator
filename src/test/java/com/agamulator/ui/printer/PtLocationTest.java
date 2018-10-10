@@ -23,10 +23,7 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Location;
 import com.agamulator.core.fake.FkLocation;
-import com.agamulator.core.simple.SpLocation;
-import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;

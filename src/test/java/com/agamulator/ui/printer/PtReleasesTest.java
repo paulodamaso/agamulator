@@ -23,25 +23,10 @@
  */
 package com.agamulator.ui.printer;
 
-import com.agamulator.core.Games;
-import com.agamulator.core.Locations;
-import com.agamulator.core.Platforms;
-import com.agamulator.core.Release;
-import com.agamulator.core.Releases;
-import com.agamulator.core.fake.FkGames;
-import com.agamulator.core.fake.FkLocations;
-import com.agamulator.core.fake.FkPlatforms;
 import com.agamulator.core.fake.FkRelease;
 import com.agamulator.core.fake.FkReleases;
-import com.agamulator.core.simple.SpGames;
-import com.agamulator.core.simple.SpLocations;
-import com.agamulator.core.simple.SpPlatforms;
-import com.agamulator.core.simple.SpReleases;
-import org.cactoos.Text;
-import org.cactoos.collection.CollectionOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
@@ -70,15 +55,11 @@ public class PtReleasesTest {
      * Release repository can add Release.
      */
     @Test
-    public void addRelease(){
+    public void addRelease() {
         MatcherAssert.assertThat(
             "Release not added",
             new PtReleases(
-                new SpReleases(
-                    new FkGames(),
-                    new FkPlatforms(),
-                    new FkLocations()
-                )
+                new FkReleases()
             ).add(
                 new TextOf("Fake Game Title"),
                 new TextOf("Fake Gaming Platform"),

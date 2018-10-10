@@ -68,10 +68,7 @@ public final class SpReleases implements Releases {
      */
     public SpReleases(final Games games, final Platforms platforms,
         final Locations locations) {
-        this.games = games;
-        this.platforms = platforms;
-        this.locations = locations;
-        this.releases = new ArrayList<>(0);
+        this(games, platforms, locations, new Release[0]);
     }
 
     /**
@@ -79,13 +76,15 @@ public final class SpReleases implements Releases {
      * @param games Game repository
      * @param platforms Platform repository
      * @param locations Location repository
+     * @param releases Releases
+     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SpReleases(final Games games, final Platforms platforms,
         final Locations locations, final Release...releases) {
         this.games = games;
         this.platforms = platforms;
         this.locations = locations;
-        this.releases = new ArrayList<>(new ListOf<Release>(releases));
+        this.releases = new ArrayList<>(new ListOf<>(releases));
     }
 
     @Override

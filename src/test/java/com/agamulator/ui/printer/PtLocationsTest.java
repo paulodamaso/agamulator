@@ -23,7 +23,6 @@
  */
 package com.agamulator.ui.printer;
 
-
 import com.agamulator.core.fake.FkLocation;
 import com.agamulator.core.fake.FkLocations;
 import org.cactoos.Text;
@@ -39,6 +38,11 @@ import org.junit.Test;
  * @since 1.0
  */
 public class PtLocationsTest {
+
+    /**
+     * Location name to be used in tests.
+     */
+    private final Text name = new TextOf("Testing Game Location");
 
     /**
      * Tests if {@link PtLocations} can return correct iterable of printable
@@ -64,11 +68,6 @@ public class PtLocationsTest {
             new IsEqual<>(new FkLocation())
         );
     }
-
-    /**
-     * Location name to be used in tests.
-     */
-    private final Text name = new TextOf("Testing Game Location");
 
     /**
      * Location repository can add Location.
