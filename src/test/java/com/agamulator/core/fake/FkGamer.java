@@ -23,8 +23,9 @@
  */
 package com.agamulator.core.fake;
 
-import com.agamulator.core.Game;
+import com.agamulator.core.Copy;
 import com.agamulator.core.Gamer;
+import com.agamulator.core.Release;
 import java.util.Collection;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
@@ -41,12 +42,12 @@ public final class FkGamer extends Gamer.Envelope {
     }
 
     @Override
-    public void add(final Game game) {
+    public Copy add(final Release game) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public Collection<Game> games() {
+    public Collection<Release> games() {
         throw new UnsupportedOperationException();
     }
 }

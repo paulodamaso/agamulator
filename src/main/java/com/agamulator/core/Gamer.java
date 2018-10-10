@@ -45,18 +45,19 @@ public interface Gamer {
     Text name();
 
     /**
-     * Adds a game to the library.
+     * Adds a release to the library.
      *
-     * @param game Game to be added to the player's library.
+     * @param game Release to be added to the player's library.
+     * @return Game copy
      */
-    void add(Game game);
+    Copy add(Release game);
 
     /**
-     * Return the games owned by this player.
+     * Return the copies owned by this player.
      *
-     * @return Games owned by this player
+     * @return Copies owned by this player
      */
-    Collection<Game> games();
+    Collection<Release> games();
 
     /**
      * Envelope for default {@link Gamer} behavior.

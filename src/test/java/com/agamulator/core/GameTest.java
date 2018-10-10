@@ -44,6 +44,11 @@ public class GameTest {
     private final Text title = new TextOf("Fake Game Title");
 
     /**
+     * Game for testing.
+     */
+    private final Game game = new SpGame(this.title);
+
+    /**
      * Test for {@link Game.Envelope#equals(Object)} method. Must assert
      * that the {@link Game#title()} values are equal in both objects.
      */
@@ -53,6 +58,19 @@ public class GameTest {
             "Game envelope does not perform equals correctly",
             new SpGame(this.title),
             new IsEqual<>(new FkGame())
+        );
+    }
+
+    /**
+     * Test for {@link Game.Envelope#equals(Object)} method. Must assert
+     * that the method returns true when comparing the same reference.
+     */
+    @Test
+    public void returnEqualityWhenSameReference() {
+        MatcherAssert.assertThat(
+            "Game envelope does not perform equals correctly on same reference",
+            this.game,
+            new IsEqual<>(this.game)
         );
     }
 

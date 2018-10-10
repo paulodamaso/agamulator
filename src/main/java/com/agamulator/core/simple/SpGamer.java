@@ -23,11 +23,13 @@
  */
 package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
+import com.agamulator.core.Copy;
 import com.agamulator.core.Gamer;
+import com.agamulator.core.Release;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.cactoos.Text;
+import org.cactoos.list.ListOf;
 
 /**
  * Simple {@link Gamer} implementation which store its data in instance fields.
@@ -44,7 +46,7 @@ public final class SpGamer extends Gamer.Envelope {
     /**
      * Gamer games.
      */
-    private final Collection<Game> library;
+    private final Collection<Release> library;
 
     /**
      * Simple constructor with name.
@@ -52,9 +54,19 @@ public final class SpGamer extends Gamer.Envelope {
      * @param name Gamer name
      */
     public SpGamer(final Text name) {
+        this(name, new Release[0]);
+    }
+
+    /**
+     * Constructor with name and copies owned.
+     *
+     * @param name Gamer name
+     * @param copies Releases owned
+     */
+    public SpGamer(final Text name, final Release...copies) {
         super();
         this.gamer = name;
-        this.library = new ArrayList<>(0);
+        this.library = new ArrayList<>(new ListOf<>(copies));
     }
 
     /**
@@ -70,9 +82,11 @@ public final class SpGamer extends Gamer.Envelope {
      * Adds a {@link Gamer} to library.
      *
      * @param game Game to be added to the player's library.
+     * @return Copy added
      */
-    public void add(final Game game) {
+    public Copy add(final Release game) {
         this.library.add(game);
+        return new SpCopy(this, game);
     }
 
     /**
@@ -80,7 +94,7 @@ public final class SpGamer extends Gamer.Envelope {
      *
      * @return All the games of the gamer
      */
-    public Collection<Game> games() {
+    public Collection<Release> games() {
         return this.library;
     }
 }

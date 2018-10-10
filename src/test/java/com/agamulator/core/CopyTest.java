@@ -64,7 +64,7 @@ public final class CopyTest {
      * that the result is true when comapring the sabe {@link Copy} reference.
      */
     @Test
-    public void returnEqualitySameReference() {
+    public void returnEqualityWhenSameReference() {
         MatcherAssert.assertThat(
             "Copy envelope does not perform equals correctly on same reference",
             this.copy,

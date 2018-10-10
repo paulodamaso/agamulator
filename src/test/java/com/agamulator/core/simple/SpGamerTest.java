@@ -23,13 +23,12 @@
  */
 package com.agamulator.core.simple;
 
-import com.agamulator.core.Game;
-import com.agamulator.core.Gamer;
+import com.agamulator.core.fake.FkCopy;
 import com.agamulator.core.fake.FkGamer;
+import com.agamulator.core.fake.FkRelease;
 import org.cactoos.Text;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 import org.llorllale.cactoos.matchers.TextIs;
@@ -63,16 +62,25 @@ public final class SpGamerTest {
      */
     @Test
     public void addGame() {
-        final Game game = new SpGame(new TextOf("New Game"));
-        final Gamer gamer = new SpGamer(new TextOf("Gamer"));
-        gamer.add(game);
         MatcherAssert.assertThat(
             "Did not added game",
-            gamer.games(),
-            new IsCollectionContaining<>(
-                new IsEqual<>(
-                    game
-                )
+            new SpGamer(this.name).add(new FkRelease()),
+            new IsEqual<>(
+                new FkCopy()
+            )
+        );
+    }
+
+    /**
+     * Gamer can iterate game library.
+     */
+    @Test
+    public void iterate() {
+        MatcherAssert.assertThat(
+            "Could not iterate game library",
+            new SpGamer(this.name, new FkRelease()).games().iterator().next(),
+            new IsEqual<>(
+                new FkRelease()
             )
         );
     }
