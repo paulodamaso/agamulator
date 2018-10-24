@@ -1,0 +1,9 @@
+language: java
+
+jdk:
+- openjdk8
+
+build:
+  ci:
+  - mvn clean install -B -Pqulice --errors
+  - cp target/jacoco.exec shippable/codecoverage
