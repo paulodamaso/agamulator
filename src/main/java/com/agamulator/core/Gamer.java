@@ -31,9 +31,6 @@ import org.cactoos.text.UncheckedText;
  * The {@link Gamer}, a person which have and plays games.
  *
  * @since 1.0
- * @todo #7:30min Refactor Gamer class to behave according to Release / Copy
- *  logic, instead of using direct Game references. Gamer class was created
- *  before this logic creation so it have to be fixed. Refactor Gamer tests too.
  */
 public interface Gamer {
 
