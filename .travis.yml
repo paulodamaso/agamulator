@@ -16,8 +16,6 @@ env:
 jdk:
   - oraclejdk8
 addons:
-  #sonar token name: agamulator
-  #sonar token: ebf0ff589e03754013f6806f570e97a0ee02e4e1
   sonarcloud:
     organization: "paulodamaso-github"
     token: $SONAR_TOKEN
