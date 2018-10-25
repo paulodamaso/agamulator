@@ -38,7 +38,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  [![Tech debt](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=sqale_index)](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=sqale_index)
  [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=vulnerabilities)](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=vulnerabilities)
  
- 
+ [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/s/master "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
  
  
 
