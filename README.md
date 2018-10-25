@@ -45,15 +45,20 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
  
 # Roadmap
-- [x] Dev environment setup
-    - [x] Add qulice checks
-    - [x] Add jacoco support
-    - [x] Add travis support
-    - [x] Add 0pdd support
-    - [x] Add rultor support
-    - [x] Add badges to repository
-    - [x] Add codebeat support
-    - [x] Add codecov support
+- [x] Dev environment setup (0.0.1)
+    - [x] Add qulice checks (0.0.1)
+    - [x] Add jacoco support (0.0.1)
+    - [x] Add travis support (0.0.1)
+    - [x] Add 0pdd support (0.0.1)
+    - [x] Add rultor support (0.0.1)
+    - [x] Add badges to repository (0.0.1)
+    - [x] Add codebeat support (0.0.1)
+    - [x] Add codecov support (0.0.1)
+    - [x] Add codacy checks (0.0.2)
+    - [x] Add scrutinizer checks (0.0.2)
+    - [x] Add shippable checks (0.0.2)
+    - [x] Add sonar cloud checks (0.0.2)
+    - [x] Add wercker checks (0.0.2)
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
