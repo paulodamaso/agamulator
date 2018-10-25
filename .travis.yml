@@ -20,5 +20,5 @@ addons:
     organization: "paulodamaso-github"
     token:
       secure: d5d0d4d4908def3bcc19deb8dbae14317dfbf15a
-  script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+#  script:
+#  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
