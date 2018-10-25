@@ -41,7 +41,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
 [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/s/master "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
  
 # Roadmap
-  - [x] Dev environment setup (0.0.1)
+- [x] Dev environment setup (0.0.1)
     - [x] Add qulice checks (0.0.1)
     - [x] Add jacoco support (0.0.1)
     - [x] Add travis support (0.0.1)
