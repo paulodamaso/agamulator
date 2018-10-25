@@ -55,12 +55,12 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [x] Add shippable checks (0.0.2)
     - [x] Add sonar cloud checks (0.0.2)
     - [x] Add wercker checks (0.0.2)
-  - [ ] Local application
+- [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
       - [ ] Simple persistence implementation with MongoDB
     - [ ] Takes HTML wrapper
-  - [ ] Remote application
+- [ ] Remote application
     - [ ] Application environment
     - [ ] Authentication
     - [ ] Read games from each location via API
