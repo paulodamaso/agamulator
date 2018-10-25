@@ -15,7 +15,6 @@ env:
     - JAVA_OPTS="-Xmx256m"
 jdk:
   - oraclejdk8
-
 addons:
   sonarcloud:
     organization: "paulodamaso-github"
