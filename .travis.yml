@@ -15,9 +15,9 @@ env:
     - JAVA_OPTS="-Xmx256m"
 jdk:
   - oraclejdk8
-addons:
-  sonarcloud:
-    organization: "paulodamaso-github"
-    token: $SONAR_TOKEN
+#addons:
+#  sonarcloud:
+#    organization: "paulodamaso-github"
+#    token: $SONAR_TOKEN
 #  script:
 #  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
