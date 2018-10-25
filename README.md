@@ -41,32 +41,32 @@ buy a new game. Its purpose is to help you not to buy the same game more than
 [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/s/master "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
  
 # Roadmap
-- [x] Dev environment setup (0.0.1)
-    - [x] Add qulice checks (0.0.1)
-    - [x] Add jacoco support (0.0.1)
-    - [x] Add travis support (0.0.1)
-    - [x] Add 0pdd support (0.0.1)
-    - [x] Add rultor support (0.0.1)
-    - [x] Add badges to repository (0.0.1)
-    - [x] Add codebeat support (0.0.1)
-    - [x] Add codecov support (0.0.1)
-    - [x] Add codacy checks (0.0.2)
-    - [x] Add scrutinizer checks (0.0.2)
-    - [x] Add shippable checks (0.0.2)
-    - [x] Add sonar cloud checks (0.0.2)
-    - [x] Add wercker checks (0.0.2)
-- [ ] Local application
-    - [ ] Console wrapper
-    - [ ] Persistence implementation
-        - [ ] Simple persistence implementation with MongoDB
-    - [ ] Takes HTML wrapper
-- [ ] Remote application
-    - [ ] Application environment
-    - [ ] Authentication
-    - [ ] Read games from each location via API
-    - [ ] Takes service wrapper
-    - [ ] Android app
-    - [ ] iOs app
+* [x] Dev environment setup (0.0.1)
+  * [x] Add qulice checks (0.0.1)
+  * [x] Add jacoco support (0.0.1)
+  * [x] Add travis support (0.0.1)
+  * [x] Add 0pdd support (0.0.1)
+  * [x] Add rultor support (0.0.1)
+  * [x] Add badges to repository (0.0.1)
+  * [x] Add codebeat support (0.0.1)
+  * [x] Add codecov support (0.0.1)
+  * [x] Add codacy checks (0.0.2)
+  * [x] Add scrutinizer checks (0.0.2)
+  * [x] Add shippable checks (0.0.2)
+  * [x] Add sonar cloud checks (0.0.2)
+  * [x] Add wercker checks (0.0.2)
+* [ ] Local application
+  * [ ] Console wrapper
+  * [ ] Persistence implementation
+    * [ ] Simple persistence implementation with MongoDB
+  * [ ] Takes HTML wrapper
+* [ ] Remote application
+  * [ ] Application environment
+  * [ ] Authentication
+  * [ ] Read games from each location via API
+  * [ ] Takes service wrapper
+  * [ ] Android app
+  * [ ] iOs app
     
 # Future features
 - [ ] Link for gameplay in game list
