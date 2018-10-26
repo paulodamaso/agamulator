@@ -10,15 +10,12 @@ build:
             tests:
                 override:
                     - java-scrutinizer-run
-                    -
-                        command: java-sonar-run
-                        use_website_config: true
         coverage:
           tests:
             override:
               - command: mvn clean verify -Pqulice,jacoco --errors --batch-mode
                 coverage:
-                  file: 'site/jacoco/jacoco.xml'
+                  file: 'target/site/jacoco/jacoco.xml'
                   format: 'jacoco'
 checks:
     java:
