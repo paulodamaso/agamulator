@@ -1,5 +1,12 @@
+#see pipeline design in wercker page
 box: openjdk:8-jdk
 build:
+  steps:
+  - wercker/maven:
+    goals: clean package
+    cache_repo: true
+    version: 3.5.2
+test:
   steps:
   - wercker/maven:
     goals: clean verify
