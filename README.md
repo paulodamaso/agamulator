@@ -50,6 +50,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
 # Roadmap
 - [x] Dev environment setup
+    - [x] Add wercker checks
     - [x] Add qulice checks
     - [x] Add jacoco support
     - [x] Add travis support
@@ -60,8 +61,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [x] Add codecov support
     - [x] Add Scrutinizer checks
     - [x] Add Shippable checks
-    - [x] Add Appveyior checks
-    - [x] Add Wercker checks
+    - [x] Add Appveyor checks
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
