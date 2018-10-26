@@ -56,6 +56,7 @@ once.
 - [x] Add Shippable checks
 - [x] Add Appveyor checks
 - [x] Add wercker checks
+- [ ] Tune SonarCloud checks
 ### Local application - 1.0.0 
 - [ ] Console wrapper
 - [ ] Simple persistence implementation with MongoDB
