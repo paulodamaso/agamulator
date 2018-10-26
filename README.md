@@ -38,6 +38,9 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  [![Tech debt](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=sqale_index)]()
  [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=vulnerabilities)]()
  
+ [![Build status](https://ci.appveyor.com/api/projects/status/sgi0ilk940746r81?svg=true)](https://ci.appveyor.com/project/paulodamaso/agamulator)
+
+ 
  
  
  
@@ -54,6 +57,9 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [x] Add badges to repository
     - [x] Add codebeat support
     - [x] Add codecov support
+    - [x] Add Scrutinizer checks
+    - [x] Add Shippable checks
+    - [x] Add Appveyor checks
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
