@@ -3,6 +3,6 @@ build:
   steps:
   - wercker/maven:
     goals: clean verify
-    profiles: jacoco qulice
+    profiles: jacoco,qulice
     cache_repo: true
     version: 3.5.2
