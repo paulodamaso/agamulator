@@ -61,7 +61,6 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [x] Add Scrutinizer checks
     - [x] Add Shippable checks
     - [x] Add Appveyor checks
-    - [x] Add Wercker checks
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
