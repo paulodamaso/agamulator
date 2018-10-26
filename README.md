@@ -40,7 +40,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  
  [![Build status](https://ci.appveyor.com/api/projects/status/sgi0ilk940746r81?svg=true)](https://ci.appveyor.com/project/paulodamaso/agamulator)
 
- 
+ [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/m/ "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
  
  
  
@@ -60,6 +60,7 @@ buy a new game. Its purpose is to help you not to buy the same game more than
     - [x] Add Scrutinizer checks
     - [x] Add Shippable checks
     - [x] Add Appveyor checks
+    - [x] Add Wercker checks
 - [ ] Local application
     - [ ] Console wrapper
     - [ ] Persistence implementation
