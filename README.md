@@ -22,8 +22,8 @@ buy a new game. Its purpose is to help you not to buy the same game more than
  [![Build Status](https://scrutinizer-ci.com/g/paulodamaso/agamulator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/paulodamaso/agamulator/build-status/master)
  [![Code Coverage](https://scrutinizer-ci.com/g/paulodamaso/agamulator/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/paulodamaso/agamulator/?branch=master)
  
- [![Run Status](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/badge?branch=master)]()
- [![Coverage Badge](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/coverageBadge?branch=master)]()
+ [![Run Status](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/badge?branch=master)](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/badge?branch=master)
+ [![Coverage Badge](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/coverageBadge?branch=master)](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/coverageBadge?branch=master)
  
  [![Sonar Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)]()
  [![Sonar Cloud](https://sonarcloud.io/api/project_badges/quality_gate?project=paulodamaso_agamulator)]()
