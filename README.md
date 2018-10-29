@@ -4,7 +4,7 @@ A game accumulator.
 aGamulator tracks all your games in a convenient library so you don't need to 
 check every game platform, provider and your cd cases every time you want to 
 buy a new game. Its purpose is to help you not to buy the same game more than
-once. 
+once.
  
  [![DevOps By Rultor.com](http://www.rultor.com/b/paulodamaso/agamulator)](http://www.rultor.com/p/paulodamaso/agamulator)
   
@@ -19,6 +19,7 @@ once.
  [![Run Status](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/badge?branch=master)](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/badge?branch=master)
  [![Coverage Badge](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/coverageBadge?branch=master)](https://api.shippable.com/projects/5ba4fa0c8cb5b50700bc9b48/coverageBadge?branch=master)
  [![Build status](https://ci.appveyor.com/api/projects/status/sgi0ilk940746r81?svg=true)](https://ci.appveyor.com/project/paulodamaso/agamulator)
+ [![CircleCI](https://circleci.com/gh/paulodamaso/agamulator/tree/master.svg?style=svg)](https://circleci.com/gh/paulodamaso/agamulator/tree/master)
  
  [![Sonar Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)
  
