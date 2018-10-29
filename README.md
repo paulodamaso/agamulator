@@ -8,7 +8,7 @@ once.
  
  [![DevOps By Rultor.com](http://www.rultor.com/b/paulodamaso/agamulator)](http://www.rultor.com/p/paulodamaso/agamulator)
  [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org/)
-   
+ 
  [![Build Status](https://www.travis-ci.org/paulodamaso/agamulator.svg?branch=master)](https://www.travis-ci.org/paulodamaso/agamulator) 
  [![codecov](https://codecov.io/gh/paulodamaso/agamulator/branch/master/graph/badge.svg)](https://codecov.io/gh/paulodamaso/agamulator)
  [![PDD status](http://www.0pdd.com/svg?name=paulodamaso/agamulator)](http://www.0pdd.com/p?name=paulodamaso/agamulator) 
