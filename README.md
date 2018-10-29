@@ -38,6 +38,8 @@ once.
  [![Tech debt](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=sqale_index)]()
  [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=paulodamaso_agamulator&metric=vulnerabilities)]()
  
+ [![CircleCI](https://circleci.com/gh/paulodamaso/agamulator/tree/master.svg?style=svg)](https://circleci.com/gh/paulodamaso/agamulator/tree/master)
+ 
  [![Build status](https://ci.appveyor.com/api/projects/status/sgi0ilk940746r81?svg=true)](https://ci.appveyor.com/project/paulodamaso/agamulator)
 
  [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/m/ "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
