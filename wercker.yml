@@ -1,5 +1,5 @@
 #see pipeline design in wercker page
-box: openjdk:8-jdk
+box: oracle-java8
 build:
   steps:
   - wercker/maven:
