@@ -39,34 +39,10 @@ once.
  
  [![wercker status](https://app.wercker.com/status/115ca755d07d2f759bb7303215b94179/m/ "wercker status")](https://app.wercker.com/project/byKey/115ca755d07d2f759bb7303215b94179)
 
-## Roadmap
-### Dev environment setup
-- [x] Add qulice checks
-- [x] Add jacoco support
-- [x] Add travis support
-- [x] Add 0pdd support
-- [x] Add rultor support
-- [x] Add badges to repository
-- [x] Add codebeat support
-- [x] Add codecov support - release 0.0.1
-- [x] Add Scrutinizer checks
-- [x] Add Shippable checks
-- [x] Add Appveyor checks
-- [x] Add wercker checks
-- [ ] Tune SonarCloud checks
-### Local application - 1.0.0 
-- [ ] Console wrapper
-- [ ] Simple persistence implementation with MongoDB
-- [ ] Takes HTML wrapper
-### Remote application
-- [ ] Application environment
-- [ ] Authentication
-- [ ] Read games from each location via API
-- [ ] Takes service wrapper
-- [ ] Android app
-- [ ] iOs app
-## Future features
-- [ ] Link for gameplay in game list
+##Roadmap
+See current roadmap in [ROADMAP.md](ROADMAP.md)
+
+
 ## Guidelines / Inspirations / Principles
 - [Elegant Objects](https://www.elegantobjects.org/)
 - Front end based on [Fully encapsulated](https://g4s8.github.io/fully-encapsulated/) and [Printers Instead of Getters](https://www.yegor256.com/2016/04/05/printers-instead-of-getters.html) 
