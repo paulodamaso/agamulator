@@ -2,6 +2,8 @@ filter:
     paths:
         - src/main/java/
 build:
+    environment:
+        java: 'java-8-oracle'
     nodes:
         analysis:
             environment:
